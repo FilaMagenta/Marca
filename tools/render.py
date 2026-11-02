@@ -40,11 +40,15 @@ FONT_FILES = {
     ("playfair", 400): FONTDIR / "Playfair_Display/static/PlayfairDisplay-Regular.ttf",
     ("playfair", 700): FONTDIR / "Playfair_Display/static/PlayfairDisplay-Bold.ttf",
     ("playfair", 900): FONTDIR / "Playfair_Display/static/PlayfairDisplay-Black.ttf",
+    ("playfair_i", 400): FONTDIR / "Playfair_Display/static/PlayfairDisplay-Italic.ttf",
+    ("playfair_i", 700): FONTDIR / "Playfair_Display/static/PlayfairDisplay-BoldItalic.ttf",
+    ("playfair_i", 900): FONTDIR / "Playfair_Display/static/PlayfairDisplay-BlackItalic.ttf",
     ("lato", 400): FONTDIR / "Lato/Lato-Regular.ttf",
     ("lato", 700): FONTDIR / "Lato/Lato-Bold.ttf",
     ("lato", 900): FONTDIR / "Lato/Lato-Black.ttf",
 }
 FAMILY = {"playfair": "Playfair Display", "lato": "Lato"}
+ACCENT = "#A91F5C"   # accent per defecte sobre fons clar (magenta viu)
 _cache = {}
 
 
@@ -61,43 +65,46 @@ def tag(el):
 
 # ───────────────────────── text ─────────────────────────
 def parse_runs(s):
-    """'**a** [[b]]' → [(text, bold, gold)] conservant espais."""
-    runs, bold, gold, buf = [], False, False, ""
+    """'**a** [[b]] {{c}}' → [(text, bold, accent, italic)] conservant espais.
+    **negreta** = nom propi; [[x]] = paraula clau amb color d'accent; {{x}} = paraula en cursiva amb color d'accent."""
+    runs, bold, acc, ital, buf = [], False, False, False, ""
     i = 0
+
+    def flush():
+        nonlocal buf
+        if buf: runs.append((buf, bold, acc, ital)); buf = ""
     while i < len(s):
-        if s.startswith("**", i):
-            if buf: runs.append((buf, bold, gold)); buf = ""
-            bold = not bold; i += 2
-        elif s.startswith("[[", i):
-            if buf: runs.append((buf, bold, gold)); buf = ""
-            gold = True; i += 2
-        elif s.startswith("]]", i):
-            if buf: runs.append((buf, bold, gold)); buf = ""
-            gold = False; i += 2
-        else:
-            buf += s[i]; i += 1
-    if buf: runs.append((buf, bold, gold))
+        if s.startswith("**", i): flush(); bold = not bold; i += 2
+        elif s.startswith("[[", i): flush(); acc = True; i += 2
+        elif s.startswith("]]", i): flush(); acc = False; i += 2
+        elif s.startswith("{{", i): flush(); acc = True; ital = True; i += 2
+        elif s.startswith("}}", i): flush(); acc = False; ital = False; i += 2
+        else: buf += s[i]; i += 1
+    flush()
     return runs
 
 
 def words_of(line, caps):
-    """Llista de paraules [txt, bold, gold, glue]; glue=True si va enganxada a l'anterior (canvi de format sense espai)."""
+    """Llista de paraules [txt, bold, accent, glue, italic]; glue=True si va enganxada a l'anterior."""
     out = []
     prev_end_space = True
-    for txt, b, g in parse_runs(line):
+    for txt, b, g, it in parse_runs(line):
         if caps: txt = txt.upper()
-        toks = re.findall(r"\s+|\S+", txt)
-        for k, tk in enumerate(toks):
+        for tk in re.findall(r"\s+|\S+", txt):
             if tk.isspace():
                 prev_end_space = True
                 continue
-            out.append([tk, b, g, not prev_end_space and bool(out)])
+            out.append([tk, b, g, not prev_end_space and bool(out), it])
             prev_end_space = False
     return out
 
 
 def bw_for(base, bold):
     return {400: 700, 700: 900, 900: 900}[base] if bold else base
+
+
+def fam_for(fam, italic):
+    return fam + "_i" if italic and fam == "playfair" else fam
 
 
 def measure(txt, fam, weight, size, tracking):
@@ -109,12 +116,13 @@ def wrap(lines, fam, base, size, tracking, width, caps):
     for raw in lines:
         words = words_of(raw, caps)
         cur, cw = [], 0.0
-        space = lambda b: measure(" ", fam, bw_for(base, b), size, tracking)
         for w in words:
-            ww = measure(w[0], fam, bw_for(base, w[1]), size, tracking)
-            add = ww + (0 if (not cur or w[3]) else space(w[1]))
+            f = fam_for(fam, w[4])
+            ww = measure(w[0], f, bw_for(base, w[1]), size, tracking)
+            sp = measure(" ", f, bw_for(base, w[1]), size, tracking)
+            add = ww + (0 if (not cur or w[3]) else sp)
             if cur and cw + add > width:
-                out.append(cur); cur, cw = [[w[0], w[1], w[2], False]], ww
+                out.append(cur); cur, cw = [[w[0], w[1], w[2], False, w[4]]], ww
             else:
                 cur.append(w); cw += add
         out.append(cur)
@@ -123,9 +131,10 @@ def wrap(lines, fam, base, size, tracking, width, caps):
 
 def line_width(line, fam, base, size, tracking):
     t = 0.0
-    for i, (w, b, g, glue) in enumerate(line):
-        t += measure(w, fam, bw_for(base, b), size, tracking)
-        if i and not glue: t += measure(" ", fam, bw_for(base, b), size, tracking)
+    for i, (w, b, g, glue, it) in enumerate(line):
+        f = fam_for(fam, it)
+        t += measure(w, f, bw_for(base, b), size, tracking)
+        if i and not glue: t += measure(" ", f, bw_for(base, b), size, tracking)
     return t
 
 
@@ -137,6 +146,7 @@ def layout_text(el, value):
     lh, tr = float(a["data-lh"]), float(a["data-tracking"])
     caps, valign, align = a["data-caps"] == "1", a["data-valign"], a["data-align"]
     fill = a["data-fill"]
+    accent = a.get("data-accent", ACCENT)
     raw = value.replace("\\n", "\n").split("\n")
     size, lines = size_max, None
     while size >= size_min:
@@ -155,18 +165,19 @@ def layout_text(el, value):
     for c in list(el): el.remove(c)
     el.text = None
     el.set("font-family", FAMILY[fam]); el.set("font-weight", str(base)); el.set("font-size", f"{size:.1f}")
-    el.set("fill", fill); el.set("text-anchor", align); el.set("letter-spacing", f"{tr}")
+    el.set("fill", fill); el.set("font-variant-ligatures", "none"); el.set("text-anchor", align); el.set("letter-spacing", f"{tr}")
     el.set("{http://www.w3.org/XML/1998/namespace}space", "preserve")
     for k in [k for k in a if k.startswith("data-")]: del el.attrib[k]
     for i, line in enumerate(lines):
         y = top + (i + .5) * size * lh + .33 * size
         ts = ET.SubElement(el, f"{{{SVG}}}tspan", {"x": f"{x:.1f}", "y": f"{y:.1f}"})
-        for j, (w, b, g, glue) in enumerate(line):
+        for j, (w, b, g, glue, it) in enumerate(line):
             r = ET.SubElement(ts, f"{{{SVG}}}tspan")
             nxt_glue = j < len(line) - 1 and line[j + 1][3]
             r.text = w + (" " if j < len(line) - 1 and not nxt_glue else "")
             if b: r.set("font-weight", str(bw_for(base, True)))
-            if g: r.set("fill", GOLD)
+            if it: r.set("font-style", "italic")
+            if g: r.set("fill", accent)
 
 
 # ───────────────────────── fotos ─────────────────────────
@@ -188,42 +199,60 @@ def photo_uri(path, w, h, focus, gray, zoom=1.0):
 
 # ───────────────────────── horaris ─────────────────────────
 def build_grups(g, grups):
+    """Blocs d'horari: etiqueta-pestanya (magenta) + files [etiqueta, hora, detall?].
+    Hora a l'esquerra en Lato Black (color accent), acte en Playfair, detall opcional en Lato petit."""
     bx, by, bw, bh = [float(v) for v in g.get("data-box").split()]
     smax, smin = float(g.get("data-size")), float(g.get("data-min"))
-    fill, gold = g.get("data-fill"), g.get("data-gold")
-    LH, GAP = 1.2, .6
-    n_lines = sum(1 + len(x.get("files", [])) if x.get("titol") else len(x.get("files", [])) for x in grups)
-    n_gaps = max(len(grups) - 1, 0)
+    ink, accent = g.get("data-fill"), g.get("data-accent")
+    tabfill, tabink, rule = g.get("data-tab"), g.get("data-tabink"), g.get("data-rule")
+    ROW, DET, TAB, GAP = 1.3, .7, 1.0, 1.0
+
+    def rows_h(s):
+        h = 0
+        for x in grups:
+            if x.get("titol"): h += (TAB + .45) * s
+            for f in x.get("files", []):
+                h += ROW * s + (DET * s if len(f) > 2 and f[2] else 0)
+        return h + max(len(grups) - 1, 0) * GAP * s
 
     def fits(s):
-        if n_lines * LH * s + n_gaps * GAP * s > bh: return False
+        if rows_h(s) > bh: return False
+        hw = measure("00:00", "lato", 900, s * .92, 0) + s * .6
         for x in grups:
-            for lab, hr in x.get("files", []):
-                if measure(lab + ":", "playfair", 400, s, 0) + measure(str(hr), "playfair", 700, s, 0) + 70 > bw: return False
+            for f in x.get("files", []):
+                if hw + measure(f[0], "playfair", 400, s, 0) > bw: return False
         return True
     s = smax
     while s > smin and not fits(s): s -= 2
-    used = n_lines * LH * s + n_gaps * GAP * s
+    used = rows_h(s)
     y = by + (bh - used) / 2 if used < bh else by
     for k in list(g): g.remove(k)
+    hw = measure("00:00", "lato", 900, s * .92, 0) + s * .6
 
-    def t(txt, x, y, weight, color, anchor="start"):
-        e = ET.SubElement(g, f"{{{SVG}}}text", {"x": f"{x:.1f}", "y": f"{y:.1f}", "font-family": "Playfair Display",
-                                                "font-weight": str(weight), "font-size": f"{s:.1f}", "fill": color, "text-anchor": anchor})
+    def t(txt, x, y, fam, weight, size, color, anchor="start", tracking=0, extra=None):
+        e = ET.SubElement(g, f"{{{SVG}}}text", {"x": f"{x:.1f}", "y": f"{y:.1f}", "font-family": FAMILY[fam],
+                                                "font-weight": str(weight), "font-size": f"{size:.1f}", "fill": color,
+                                                "text-anchor": anchor, "letter-spacing": str(tracking)})
         e.text = txt
     for gi, x in enumerate(grups):
         if gi: y += GAP * s
         if x.get("titol"):
-            t(x["titol"] + ":", bx, y + LH * s * .5 + .33 * s, 700, fill); y += LH * s
-        for lab, hr in x.get("files", []):
-            base = y + LH * s * .5 + .33 * s
-            t(lab + ":", bx, base, 400, fill)
-            t(str(hr), bx + bw, base, 700, gold, "end")
-            lw = measure(lab + ":", "playfair", 400, s, 0); hw = measure(str(hr), "playfair", 700, s, 0)
-            if bw - lw - hw > 120:
-                ET.SubElement(g, f"{{{SVG}}}path", {"d": f"M{bx+lw+24:.1f},{base-.12*s:.1f}H{bx+bw-hw-24:.1f}", "stroke": gold,
-                                                    "stroke-width": "2", "stroke-dasharray": "2 9", "stroke-linecap": "round", "opacity": ".55"})
-            y += LH * s
+            ts = s * .40; label = x["titol"].upper()
+            tw = measure(label, "lato", 700, ts, ts * .22) + s * .9
+            th = TAB * s
+            ET.SubElement(g, f"{{{SVG}}}rect", {"x": f"{bx:.1f}", "y": f"{y:.1f}", "width": f"{tw:.1f}", "height": f"{th:.1f}", "fill": tabfill})
+            t(label, bx + s * .45, y + th / 2 + ts * .36, "lato", 700, ts, tabink, tracking=ts * .22)
+            ET.SubElement(g, f"{{{SVG}}}path", {"d": f"M{bx+tw+s*.3:.1f},{y+th/2:.1f}H{bx+bw:.1f}", "stroke": rule, "stroke-width": "2"})
+            y += (TAB + .45) * s
+        for f in x.get("files", []):
+            lab, hr = f[0], str(f[1]); det = f[2] if len(f) > 2 else ""
+            base = y + ROW * s * .5 + .33 * s
+            t(hr, bx, base, "lato", 900, s * .92, accent)
+            t(lab, bx + hw, base, "playfair", 400, s, ink)
+            y += ROW * s
+            if det:
+                t(det, bx + hw, y - .02 * s + DET * s * .5, "lato", 400, s * .5, accent)
+                y += DET * s
     for k in [k for k in g.attrib if k.startswith("data-")]: del g.attrib[k]
 
 

@@ -1,6 +1,6 @@
 {
  "story-horaris": {
-  "descripcio": "Horaris d'actes, diana, entradeta, arrancà, etc. Blocs de títol + files etiqueta/hora.",
+  "descripcio": "Horaris d'actes (diana, entradeta, Mig Any…) sobre paper clar. Blocs amb pestanya + files hora / acte.",
   "usar_per_a": [
    "horaris d'una entradeta",
    "horaris del Mig Any",
@@ -8,13 +8,15 @@
   ],
   "format": "story 1080×1920",
   "camps": {
-   "titol": "Títol de la story (\\n per a salt de línia). Ex.: 'Horaris\\nMig Any'",
-   "grups": "[{'titol':'Diana Centenari','files':[['Arrancà','9:35'],['Carbonato','10:31']]}, ...] (màx. ~3 grups / 8 files)",
-   "nota": "(opc.) Línia curta al peu en Lato: 'Recorregut per Sant Nicolau'"
+   "titol": "Títol (\\n per a salt). Paraula en cursiva magenta amb {{ }}: 'Mig {{Any}}'",
+   "data": "(opc.) Línia de data en majúscules: 'Dissabte · 24 d'octubre de 2026'",
+   "subtitol": "(opc.) Línia en cursiva sota el títol: 'Horaris de la jornada'",
+   "grups": "[{'titol':'La diana','files':[['Arrancà','9:35','detall opcional'],['Carbonato','10:31']]}, ...] (màx. ~3 grups / 8 files)",
+   "nota": "(opc.) Línia curta al peu en Lato"
   }
  },
  "story-anunci": {
-  "descripcio": "Anunci només de text sobre vellut amb escut: novetats, avisos, convocatòries, renovació de contractes.",
+  "descripcio": "Anunci només de text sobre paper clar amb escut: novetats, avisos, convocatòries, renovacions.",
   "usar_per_a": [
    "hem renovat contracte amb la banda",
    "convocatòria",
@@ -23,14 +25,28 @@
   ],
   "format": "story 1080×1920",
   "camps": {
-   "etiqueta": "(opc.) Etiqueta tècnica en majúscules, per defecte 'Filà Magenta · Alcoi'",
-   "titol": "Frase principal (2-4 línies). **negreta** per a noms. [[daurat]] per a paraules clau.",
+   "etiqueta": "(opc.) Etiqueta en majúscules, per defecte 'Filà Magenta · Alcoi'",
+   "titol": "Frase principal (2-4 línies). **negreta** per a noms. [[x]] = color d'accent; {{x}} = cursiva d'accent.",
+   "text": "(opc.) Cos explicatiu",
+   "dada": "(opc.) Data/hora/lloc destacat en Lato"
+  }
+ },
+ "story-anunci-magenta": {
+  "descripcio": "Igual que story-anunci però sobre magenta pla: per a notícies destacades i solemnes.",
+  "usar_per_a": [
+   "renovació amb la banda",
+   "comunicat destacat"
+  ],
+  "format": "story 1080×1920",
+  "camps": {
+   "etiqueta": "(opc.) Etiqueta en majúscules, per defecte 'Filà Magenta · Alcoi'",
+   "titol": "Frase principal (2-4 línies). **negreta** per a noms. [[x]] = color d'accent; {{x}} = cursiva d'accent.",
    "text": "(opc.) Cos explicatiu",
    "dada": "(opc.) Data/hora/lloc destacat en Lato"
   }
  },
  "story-foto": {
-  "descripcio": "Una fotografia vertical (o retallada) a pantalla completa amb titular a sota. Ràpida, per a el dia a dia.",
+  "descripcio": "Una fotografia (vertical o retallada) emmarcada sobre paper, amb segell de l'escut i titular a sota.",
   "usar_per_a": [
    "foto d'un acte",
    "moment de l'entradeta",
@@ -39,7 +55,7 @@
   "format": "story 1080×1920",
   "camps": {
    "foto": "Ruta a la fotografia",
-   "titol": "Titular (1-3 línies)",
+   "titol": "Titular (1-2 línies)",
    "subtitol": "(opc.) Frase en Lato",
    "etiqueta": "(opc.) Etiqueta en majúscules"
   }
@@ -62,7 +78,7 @@
   }
  },
  "story-dol": {
-  "descripcio": "Condol per defunció. Foto en blanc i negre, fons més fosc, to sobri (sense emojis ni exclamacions).",
+  "descripcio": "Condol per defunció. Paper gris sense calidesa, foto en blanc i negre, to sobri (sense emojis ni exclamacions).",
   "usar_per_a": [
    "ha mort un company/a",
    "condol",
@@ -77,8 +93,21 @@
    "etiqueta": "(opc.) Per defecte 'In memoriam'"
   }
  },
+ "story-olla": {
+  "descripcio": "Concurs d'olla: olla daurada i titular segons classificació (campions / subcampions / tercers).",
+  "usar_per_a": [
+   "resultat del concurs d'olla",
+   "avís del concurs"
+  ],
+  "format": "story 1080×1920",
+  "camps": {
+   "etiqueta": "(opc.) per defecte 'Filà Magenta · Alcoi'",
+   "titol": "Titular. [[x]] per a la paraula clau",
+   "dada": "(opc.) 'Enhorabona als cuiners'"
+  }
+ },
  "post-anunci": {
-  "descripcio": "Anunci només de text dins el marc ornamental: felicitacions, avisos, renovacions.",
+  "descripcio": "Anunci només de text sobre paper clar: felicitacions, avisos, renovacions.",
   "usar_per_a": [
    "felicitar algú amb text",
    "avís",
@@ -86,12 +115,12 @@
   ],
   "format": "post 1080×1350 (4:5)",
   "camps": {
-   "text": "Frase completa; **negreta** per a noms propis i [[daurat]] per a paraules clau",
+   "text": "Frase completa; **negreta** per a noms propis, [[x]] accent, {{x}} cursiva d'accent",
    "dada": "(opc.) Data o lloc en Lato (majúscules)"
   }
  },
  "post-anunci-titol": {
-  "descripcio": "Anunci amb titular daurat i cos. Per a missatges amb més informació (assemblea, sopar, cartells).",
+  "descripcio": "Anunci amb titular i cos sobre paper. Per a missatges amb més informació (assemblea, sopar, cartells).",
   "usar_per_a": [
    "convocatòria d'assemblea",
    "novetat",
@@ -99,13 +128,13 @@
   ],
   "format": "post 1080×1350 (4:5)",
   "camps": {
-   "titol": "Titular daurat (1-2 línies)",
+   "titol": "Titular (1-2 línies). {{x}} = paraula en cursiva d'accent",
    "text": "Cos",
    "dada": "(opc.) Data/lloc"
   }
  },
  "post-comunicat": {
-  "descripcio": "Portada simètrica i solemne per a comunicats oficials. El text complet va al peu de foto o a un 2n slide.",
+  "descripcio": "Portada simètrica i solemne sobre magenta pla per a comunicats oficials. El text complet va al peu de foto o a un 2n slide.",
   "usar_per_a": [
    "comunicat oficial",
    "nota de premsa",
@@ -118,7 +147,7 @@
   }
  },
  "post-foto": {
-  "descripcio": "Una sola fotografia a sang amb titular. Per a anunci amb foto o resum d'un acte en una imatge.",
+  "descripcio": "Una sola fotografia emmarcada sobre paper amb titular. Per a anunci amb foto o resum d'un acte.",
   "usar_per_a": [
    "anunci amb una foto",
    "foto destacada d'un acte"
@@ -146,7 +175,7 @@
   }
  },
  "post-dol": {
-  "descripcio": "Condol per defunció (post). Foto en B/N, to sobri.",
+  "descripcio": "Condol per defunció (post). Paper gris, foto en B/N, to sobri.",
   "usar_per_a": [
    "ha mort un company/a",
    "condol"
@@ -160,22 +189,22 @@
   }
  },
  "carrusel-portada": {
-  "descripcio": "Portada de carrusel: foto a la finestra de la cortina, titular blanc + daurat, subtítol i 'Continua →'.",
+  "descripcio": "Portada de carrusel: foto emmarcada sobre paper amb segell, titular en majúscules (magenta + cursiva d'accent) i 'Continua →'.",
   "usar_per_a": [
    "portada de fotos d'un acte",
    "resum d'una activitat"
   ],
   "format": "post 1080×1350 (4:5)",
   "camps": {
-   "foto": "Foto de portada (zona visible: part superior dreta)",
-   "titol1": "Primera línia (blanc, majúscules)",
-   "titol2": "(opc.) Segona línia (daurat)",
+   "foto": "Foto de portada",
+   "titol1": "Primera línia (magenta, majúscules)",
+   "titol2": "(opc.) Segona línia (cursiva, color d'accent)",
    "subtitol": "Frase curta. **negreta** per a noms",
    "continua": "true/false: mostra 'Continua →' (per defecte true)"
   }
  },
  "carrusel-interior": {
-  "descripcio": "Foto a sang per als slides interiors del carrusel, amb escut petit i comptador opcional.",
+  "descripcio": "Foto a sang per als slides interiors del carrusel, amb escut petit, peu en targeta de paper i comptador opcional.",
   "usar_per_a": [
    "resta de fotos del carrusel"
   ],
@@ -187,7 +216,7 @@
   }
  },
  "carrusel-interior-apaisat": {
-  "descripcio": "Foto apaïsada (4:3) sencera a tota l'amplada, centrada sobre vellut. El llenç segueix sent 4:5 perquè Instagram fixa la proporció del carrusel amb la primera imatge.",
+  "descripcio": "Foto apaïsada (4:3) emmarcada sobre paper. El llenç segueix sent 4:5 perquè Instagram fixa la proporció del carrusel amb la primera imatge.",
   "usar_per_a": [
    "foto horitzontal d'un carrusel (grups, files)"
   ],
@@ -199,7 +228,7 @@
   }
  },
  "video-lower-third": {
-  "descripcio": "Capa transparent 1920×1080 (PNG amb alfa) amb nom i càrrec sobre un vídeo.",
+  "descripcio": "Capa transparent 1920×1080 (PNG amb alfa): targeta de paper amb nom i càrrec sobre un vídeo.",
   "usar_per_a": [
    "identificar qui parla al vídeo"
   ],
@@ -210,7 +239,7 @@
   }
  },
  "video-titol": {
-  "descripcio": "Capa transparent vertical 1080×1920 amb títol i escut per a obrir un vídeo/reel (respecta zones segures).",
+  "descripcio": "Capa transparent vertical 1080×1920: targeta de paper amb títol i escut per a obrir un vídeo/reel (respecta zones segures).",
   "usar_per_a": [
    "títol d'inici de reel",
    "tancament amb data"

@@ -1,24 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
   <title>Vídeo · Lower third</title>
   <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="#C69232"/><stop offset="1" stop-color="#A9761E"/>
-    </linearGradient>
-    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
-    </linearGradient>
-    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
-    </linearGradient>
-    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
-      <stop offset=".55" stop-color="#7D1941" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
-    </radialGradient>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
   </defs>
-<rect x="0" y="820" width="1920" height="260" fill="url(#fadeBottom)" opacity=".85"/>
-  <rect x="96" y="896" width="6" height="108" fill="url(#gold)"/>
-  <text id="field-nom" data-box="126 880 1100 80" data-size="64" data-min="28" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-align="start" data-lh="1" data-tracking="0" data-caps="0" data-valign="middle" >Nom Cognom</text>
-  <text id="field-carrec" data-box="126 962 1100 44" data-size="28" data-min="20" data-font="lato" data-weight="700" data-fill="#C69232" data-align="start" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-if="carrec" >Càrrec</text>
-  <g id="escut-circular" transform="translate(1700,884) scale(0.2344)">
+<rect x="96" y="858" width="1100" height="160" fill="#3A1427" opacity="0.070"/><rect x="93" y="855" width="1106" height="166" fill="#3A1427" opacity="0.052"/><rect x="90" y="852" width="1112" height="172" fill="#3A1427" opacity="0.034"/><rect x="87" y="849" width="1118" height="178" fill="#3A1427" opacity="0.016"/><rect x="96" y="850" width="1100" height="160" fill="#F3EBDD" opacity="0.96"/>
+  <rect x="96" y="850" width="10" height="160" fill="#7D1941"/>
+  <rect x="116" y="862" width="1068" height="136" fill="none" stroke="#C69232" stroke-width="1.5" opacity=".8"/>
+  <text id="field-nom" data-box="150 868 1000 76" data-size="60" data-min="27" data-font="playfair" data-weight="700" data-fill="#7D1941" data-accent="#A91F5C" data-align="start" data-lh="1" data-tracking="0" data-caps="0" data-valign="middle" >Nom Cognom</text>
+  <text id="field-carrec" data-box="150 948 1000 40" data-size="26" data-min="20" data-font="lato" data-weight="700" data-fill="#A91F5C" data-accent="#A91F5C" data-align="start" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-if="carrec" >Càrrec</text>
+  <g id="escut-circular" transform="translate(1190,830) scale(0.2148)">
   
   <path
      d="m 256.0055,256.00034 m -255.99998225,0 a 256,254.33051 0 1 1 511.98896225,0 256,254.33051 0 1 1 -511.98896225,0"

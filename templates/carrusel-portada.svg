@@ -1,23 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1350" viewBox="0 0 1080 1350">
   <title>Carrusel · Portada</title>
   <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="#C69232"/><stop offset="1" stop-color="#A9761E"/>
-    </linearGradient>
-    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
-    </linearGradient>
-    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
-    </linearGradient>
-    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
-      <stop offset=".55" stop-color="#7D1941" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
-    </radialGradient>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
   </defs>
-<rect width="1080" height="1350" fill="#2A0614"/>
-  <image id="field-foto" data-box="300 0 780 660" data-gray="0" x="300" y="0" width="780" height="660" preserveAspectRatio="xMidYMid slice" href=""/>
-  <image id="cortina" x="0" y="0" width="1080" height="1350" preserveAspectRatio="none" href="../assets/fons/cortina-45.png"/>
-  <g id="escut-circular" transform="translate(68,57) scale(0.4941)">
+<image id="fons" x="0" y="0" width="1080" height="1350" preserveAspectRatio="xMidYMid slice" href="../assets/fons/clar-post.jpg"/>
+  <g id="marc"><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#C69232" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1234" fill="none" stroke="#C69232" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#C69232"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#C69232"/><path d="M58,1283L60.0,1290.0L67,1292L60.0,1294.0L58,1301L56.0,1294.0L49,1292L56.0,1290.0Z" fill="#C69232"/><path d="M1022,1283L1024.0,1290.0L1031,1292L1024.0,1294.0L1022,1301L1020.0,1294.0L1013,1292L1020.0,1290.0Z" fill="#C69232"/></g>
+  <rect x="86" y="86" width="908" height="700" fill="none" stroke="#C69232" stroke-width="2"/>
+  <image id="field-foto" data-box="100 100 880 672" data-gray="0" x="100" y="100" width="880" height="672" preserveAspectRatio="xMidYMid slice" href=""/>
+  <circle cx="170.0" cy="170.0" r="70.0" fill="#F3EBDD" filter="url(#ombra)"/><circle cx="170.0" cy="170.0" r="70.0" fill="none" stroke="#C69232" stroke-width="2.5"/><g id="escut-circular" transform="translate(110,110) scale(0.2344)">
   
   <path
      d="m 256.0055,256.00034 m -255.99998225,0 a 256,254.33051 0 1 1 511.98896225,0 256,254.33051 0 1 1 -511.98896225,0"
@@ -62,9 +52,9 @@
      stroke-width="19.8637"
      id="cp-path7" />
 </g>
-  <text id="field-titol1" data-box="30 935 1020 130" data-size="126" data-min="56" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-align="start" data-lh="1" data-tracking="0" data-caps="1" data-valign="bottom" >TITOL</text>
-  <text id="field-titol2" data-box="30 1060 1020 130" data-size="126" data-min="56" data-font="playfair" data-weight="700" data-fill="#C69232" data-align="start" data-lh="1" data-tracking="0" data-caps="1" data-valign="bottom" data-if="titol2" >DESTACAT</text>
-  <text id="field-subtitol" data-box="40 1200 760 110" data-size="44" data-min="24" data-font="playfair" data-weight="400" data-fill="#F5F5F5" data-align="start" data-lh="1.2" data-tracking="0" data-caps="0" data-valign="top" >Subtítol breu</text>
-  <g id="continua" data-if="continua"><text id="label-continua" x="990" y="1275" text-anchor="end" font-family="Playfair Display" font-size="36" fill="#C69232">Continua</text>
-  <path d="M1006,1267H1046M1030,1251L1046,1267L1030,1283" fill="none" stroke="#C69232" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text id="field-titol1" data-box="80 810 920 120" data-size="100" data-min="45" data-font="playfair" data-weight="700" data-fill="#7D1941" data-accent="#A91F5C" data-align="start" data-lh="1" data-tracking="0" data-caps="1" data-valign="bottom" >TITOL</text>
+  <text id="field-titol2" data-box="80 925 920 110" data-size="100" data-min="45" data-font="playfair" data-weight="700" data-fill="#A91F5C" data-accent="#A91F5C" data-align="start" data-lh="1" data-tracking="0" data-caps="1" data-valign="bottom" data-if="titol2" font-style="italic">DESTACAT</text>
+  <text id="field-subtitol" data-box="84 1060 700 120" data-size="40" data-min="24" data-font="playfair" data-weight="400" data-fill="#3A1427" data-accent="#A91F5C" data-align="start" data-lh="1.22" data-tracking="0" data-caps="0" data-valign="top" >Subtítol breu</text>
+  <g id="continua" data-if="continua"><text id="label-continua" x="960" y="1235" text-anchor="end" font-family="Playfair Display" font-style="italic" font-size="38" fill="#A91F5C">Continua</text>
+  <path d="M976,1226H1004M992,1212L1006,1226L992,1240" fill="none" stroke="#A91F5C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
 </svg>

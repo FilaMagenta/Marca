@@ -1,23 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1350" viewBox="0 0 1080 1350">
-  <title>Carrusel · Foto interior apaïsada</title>
+  <title>Carrusel · Foto interior apaisada</title>
   <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="#C69232"/><stop offset="1" stop-color="#A9761E"/>
-    </linearGradient>
-    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
-    </linearGradient>
-    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
-    </linearGradient>
-    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
-      <stop offset=".55" stop-color="#7D1941" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
-    </radialGradient>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
   </defs>
-<rect width="1080" height="1350" fill="#2A0614"/>
-  <image id="field-foto" data-box="0 270 1080 810" data-gray="0" x="0" y="270" width="1080" height="810" preserveAspectRatio="xMidYMid slice" href=""/>
-  <rect y="268" width="1080" height="3" fill="url(#gold)"/><rect y="1079" width="1080" height="3" fill="url(#gold)"/>
-  <g id="escut-circular" transform="translate(40,40) scale(0.1875)">
+<image id="fons" x="0" y="0" width="1080" height="1350" preserveAspectRatio="xMidYMid slice" href="../assets/fons/clar-post.jpg"/>
+  <g id="marc"><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#C69232" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1234" fill="none" stroke="#C69232" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#C69232"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#C69232"/><path d="M58,1283L60.0,1290.0L67,1292L60.0,1294.0L58,1301L56.0,1294.0L49,1292L56.0,1290.0Z" fill="#C69232"/><path d="M1022,1283L1024.0,1290.0L1031,1292L1024.0,1294.0L1022,1301L1020.0,1294.0L1013,1292L1020.0,1290.0Z" fill="#C69232"/></g>
+  <rect x="76" y="226" width="928" height="708" fill="none" stroke="#C69232" stroke-width="2"/>
+  <image id="field-foto" data-box="90 240 900 680" data-gray="0" x="90" y="240" width="900" height="680" preserveAspectRatio="xMidYMid slice" href=""/>
+  <g id="escut-circular" transform="translate(50,100) scale(0.1953)">
   
   <path
      d="m 256.0055,256.00034 m -255.99998225,0 a 256,254.33051 0 1 1 511.98896225,0 256,254.33051 0 1 1 -511.98896225,0"
@@ -62,7 +52,7 @@
      stroke-width="19.8637"
      id="ia-path7" />
 </g>
-  <text id="field-peu" data-box="60 1115 760 150" data-size="38" data-min="24" data-font="playfair" data-weight="400" data-fill="#F5F5F5" data-align="start" data-lh="1.22" data-tracking="0" data-caps="0" data-valign="top" data-if="peu" ></text>
-  <g data-if="pagina"><rect x="880" y="1250" width="160" height="56" rx="28" fill="#14030A" fill-opacity=".6" stroke="url(#gold)" stroke-width="2"/></g>
-  <text id="field-pagina" data-box="880 1250 160 56" data-size="28" data-min="20" data-font="lato" data-weight="700" data-fill="#C69232" data-align="middle" data-lh="1.14" data-tracking="3" data-caps="0" data-valign="middle" data-if="pagina" >02 / 08</text>
+  <text id="field-peu" data-box="80 980 920 170" data-size="42" data-min="24" data-font="playfair" data-weight="400" data-fill="#3A1427" data-accent="#A91F5C" data-align="start" data-lh="1.24" data-tracking="0" data-caps="0" data-valign="top" data-if="peu" ></text>
+  <g data-if="pagina"><rect x="870" y="110" width="160" height="56" rx="28" fill="none" stroke="#C69232" stroke-width="2"/></g>
+  <text id="field-pagina" data-box="870 110 160 56" data-size="26" data-min="20" data-font="lato" data-weight="700" data-fill="#B08628" data-accent="#A91F5C" data-align="middle" data-lh="1.14" data-tracking="3" data-caps="0" data-valign="middle" data-if="pagina" >02 / 08</text>
 </svg>

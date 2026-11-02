@@ -15,7 +15,15 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "templates"
 OUT.mkdir(exist_ok=True)
 
-MAG, GOLD, GREEN, WHITE, GREY, VEL = "#7D1941", "#C69232", "#576437", "#F5F5F5", "#373C41", "#2A0614"
+MAG, GOLD, GREEN, WHITE, GREY = "#7D1941", "#C69232", "#576437", "#F5F5F5", "#373C41"
+# Derivats del disseny «Paper i fil» (no són de paleta: tons per a text/fons sobre paper clar)
+PAPER, INK, ACC, GOLD_T = "#F3EBDD", "#3A1427", "#A91F5C", "#B08628"
+
+THEMES = {   # fons, tinta (cos), titular, accent (paraula clau / cursiva), etiqueta, color de filets
+    "clar":    dict(bg="clar",    ink=INK,       title=MAG,       acc=ACC,       label=GOLD_T,   line=GOLD,      eye=ACC),
+    "magenta": dict(bg="magenta", ink="#F5F5F5", title="#F5F5F5", acc="#E8C77D", label="#E8C77D", line="#D9B25F", eye="#E8C77D"),
+    "dol":     dict(bg="dol",     ink="#2F2B2D", title="#2F2B2D", acc="#6E686A", label="#8A8587", line="#A8A29E", eye="#6E686A"),
+}
 FONS = "../assets/fons/"
 
 
@@ -44,12 +52,15 @@ def escut_circ(x, y, d, tag="c"):
     return f'<g id="escut-circular" transform="translate({x},{y}) scale({d/512:.4f})">{_asset_inner("escut-circular.svg", tag)}</g>'
 
 
-def text(fid, box, size, *, font="playfair", weight=400, fill=WHITE, align="middle", lh=1.14,
-         tracking=0, caps=False, valign="middle", minsize=None, sample="", cond=None, extra="", keep=False):
+def text(fid, box, size, *, th="clar", font="playfair", weight=400, fill=None, align="middle", lh=1.14,
+         tracking=0, caps=False, valign="middle", minsize=None, sample="", cond=None, extra="", keep=False, accent=None):
+    T = THEMES[th]
+    fill = fill or T["ink"]
+    accent = accent or T["acc"]
     b = " ".join(str(v) for v in box)
     minsize = minsize or max(24, int(size * 0.45))
     return (f'<text id="field-{fid}" data-box="{b}" data-size="{size}" data-min="{minsize}" '
-            f'data-font="{font}" data-weight="{weight}" data-fill="{fill}" data-align="{align}" '
+            f'data-font="{font}" data-weight="{weight}" data-fill="{fill}" data-accent="{accent}" data-align="{align}" '
             f'data-lh="{lh}" data-tracking="{tracking}" data-caps="{int(caps)}" data-valign="{valign}"'
             + (f' data-if="{cond}"' if cond else "") + (' data-keep="1"' if sample and not cond and (fid == "etiqueta" or keep) else "") + f' {extra}>{sample}</text>')
 
@@ -62,38 +73,60 @@ def photo(fid, box, clip=None, cond=None, gray=0):
             f'height="{h}" preserveAspectRatio="xMidYMid slice"{c}{ci} href=""/>')
 
 
-def hairline(x1, x2, y, op=1, cond=None):
+def hairline(x1, x2, y, th="clar", op=1, cond=None, w=2):
     ci = f' data-if="{cond}"' if cond else ""
-    return f'<path d="M{x1},{y}H{x2}" stroke="url(#gold)" stroke-width="2" opacity="{op}"{ci}/>'
+    return f'<path d="M{x1},{y}H{x2}" stroke="{THEMES[th]["line"]}" stroke-width="{w}" opacity="{op}"{ci}/>'
 
 
-def eyebrow(fid, cx, y, w, sample, size=26, cond=None, fill=GOLD):
-    """Etiqueta tècnica: Lato Bold en majúscules amb tracking ample, flanquejada per filets."""
+def star(cx, cy, r, fill):
+    """Estrella de quatre puntes (la del filet i la passamaneria)."""
+    k = r * .22
+    return (f'<path d="M{cx},{cy-r}L{cx+k:.1f},{cy-k:.1f}L{cx+r},{cy}L{cx+k:.1f},{cy+k:.1f}L{cx},{cy+r}'
+            f'L{cx-k:.1f},{cy+k:.1f}L{cx-r},{cy}L{cx-k:.1f},{cy-k:.1f}Z" fill="{fill}"/>')
+
+
+def orn(cx, y, w=360, th="clar", r=11):
+    """Filet — estrella — filet (separador i capçalera)."""
+    c = THEMES[th]["line"]
+    return (f'<path d="M{cx-w/2},{y}H{cx-r*2.2}M{cx+r*2.2},{y}H{cx+w/2}" stroke="{c}" stroke-width="2"/>'
+            + star(cx, y, r, c))
+
+
+def eyebrow(fid, cx, y, w, sample, size=26, cond=None, th="clar", fill=None):
+    """Etiqueta tècnica: Lato Bold en majúscules amb tracking ample."""
     box = (cx - w // 2, y, w, 40)
-    return text(fid, box, size, font="lato", weight=700, fill=fill, tracking=7, caps=True,
+    return text(fid, box, size, th=th, font="lato", weight=700, fill=fill or THEMES[th]["eye"], tracking=7, caps=True,
                 minsize=18, sample=sample, cond=cond)
 
 
-def brackets(w, h, m=48, l=70, op=0.9):
-    d = ""
-    for (x, y, sx, sy) in [(m, m, 1, 1), (w - m, m, -1, 1), (m, h - m, 1, -1), (w - m, h - m, -1, -1)]:
-        d += f"M{x},{y+sy*l}V{y}H{x+sx*l}"
-    return f'<path d="{d}" fill="none" stroke="url(#gold)" stroke-width="3" opacity="{op}"/>'
+def frame(w, h, th="clar", m=40, gap=18, stars=True):
+    """Doble filet i cordó de passamaneria: el marc del cartell (fil daurat cosit sobre el paper)."""
+    c = THEMES[th]["line"]
+    o = f'<rect x="{m}" y="{m}" width="{w-2*m}" height="{h-2*m}" fill="none" stroke="{c}" stroke-width="4" opacity=".95"/>'
+    # fil trenat: puntets clars sobre el cordó, com els tors d'una passamaneria
+    o += (f'<rect x="{m}" y="{m}" width="{w-2*m}" height="{h-2*m}" fill="none" stroke="#FFF6DC" stroke-width="2" '
+          f'stroke-dasharray="1.5 6" opacity=".55"/>')
+    n = m + gap
+    o += f'<rect x="{n}" y="{n}" width="{w-2*n}" height="{h-2*n}" fill="none" stroke="{c}" stroke-width="1.5" opacity=".7"/>'
+    if stars:
+        for (x, y) in [(n, n), (w - n, n), (n, h - n), (w - n, h - n)]:
+            o += star(x, y, 9, c)
+    return f'<g id="marc">{o}</g>'
 
 
-DEFS = f"""<defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="{GOLD}"/><stop offset="1" stop-color="#A9761E"/>
-    </linearGradient>
-    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
-    </linearGradient>
-    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
-    </linearGradient>
-    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
-      <stop offset=".55" stop-color="{MAG}" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
-    </radialGradient>
+def footer(cx, y, th="clar", cond=None):
+    c = THEMES[th]
+    return text("peu_marca", (cx - 400, y, 800, 34), 22, th=th, font="lato", weight=700, fill=c["label"], tracking=6, caps=True,
+                minsize=16, sample="Filà Magenta · Alcoi · Any 1865", keep=True)
+
+
+def bgimg(th, w, h):
+    kind = "story" if (w, h) == (1080, 1920) else ("video" if w > h else "post")
+    return f'<image id="fons" x="0" y="0" width="{w}" height="{h}" preserveAspectRatio="xMidYMid slice" href="{FONS}{THEMES[th]["bg"]}-{kind}.jpg"/>'
+
+
+DEFS = """<defs>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
   </defs>"""
 
 
@@ -103,8 +136,18 @@ def svg(w, h, body, title, extra_defs=""):
             f'width="{w}" height="{h}" viewBox="0 0 {w} {h}">\n  <title>{title}</title>\n  {d}\n{body}\n</svg>\n')
 
 
-def bg(file, w, h):
-    return f'<image id="fons" x="0" y="0" width="{w}" height="{h}" preserveAspectRatio="xMidYMid slice" href="{FONS}{file}"/>'
+def seal(x, y, d, tag, th="clar"):
+    """Escut circular com un segell de cera/botó: anell de paper + filet daurat."""
+    r = d / 2
+    return (f'<circle cx="{x+r}" cy="{y+r}" r="{r+10}" fill="{PAPER}" filter="url(#ombra)"/>'
+            f'<circle cx="{x+r}" cy="{y+r}" r="{r+10}" fill="none" stroke="{GOLD}" stroke-width="2.5"/>'
+            + escut_circ(x, y, d, tag))
+
+
+def card(x, y, w, h, op=.96):
+    """Targeta de paper amb ombra suau (rectangles apilats; evita filtres amb opacitat)."""
+    sh = "".join(f'<rect x="{x-d}" y="{y-d+8}" width="{w+2*d}" height="{h+2*d}" fill="#3A1427" opacity="{.07 - d*.006:.3f}"/>' for d in (0, 3, 6, 9))
+    return sh + f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{PAPER}" opacity="{op}"/>'
 
 
 INDEX = {}
@@ -120,69 +163,85 @@ P = 1080
 
 # ───────────────────────── STORIES ─────────────────────────
 # 1. Horaris  (dades en blocs: es dibuixen amb render.py, camp 'grups')
-body = f"""{bg('story-cortines-marc.jpg', S_W, S_H)}
-  {text('titol', (90, 330, 900, 330), 133, weight=700, lh=1.08, sample='Horaris\nMig Any')}
-  <g id="field-grups" data-box="110 700 860 820" data-size="88" data-min="38" data-fill="{WHITE}" data-gold="{GOLD}"></g>
-  {text('nota', (110, 1540, 860, 70), 34, font='lato', weight=700, fill=GOLD, tracking=3, caps=True, minsize=24, sample='', cond='nota')}"""
+T = THEMES["clar"]
+body = f"""{bgimg('clar', S_W, S_H)}
+  {frame(S_W, S_H)}
+  {orn(540, 292, 380)}
+  {text('data', (90, 322, 900, 40), 28, font='lato', weight=700, fill=T['eye'], tracking=7, caps=True, minsize=18, sample='', cond='data')}
+  {text('titol', (90, 410, 900, 190), 168, fill=MAG, lh=1.0, sample='Mig {{Any}}')}
+  {text('subtitol', (90, 610, 900, 70), 46, fill=INK, sample='', cond='subtitol', extra='font-style="italic"')}
+  <g id="field-grups" data-box="120 750 840 780" data-size="74" data-min="34" data-fill="{INK}" data-accent="{ACC}" data-tab="{MAG}" data-tabink="{WHITE}" data-rule="{GOLD}"></g>
+  {text('nota', (110, 1480, 860, 50), 28, font='lato', weight=700, fill=GOLD_T, tracking=5, caps=True, minsize=20, sample='', cond='nota')}
+  {orn(540, 1545, 120, r=9)}"""
 save("story-horaris", svg(S_W, S_H, body, "Story · Horaris"),
-     "Horaris d'actes, diana, entradeta, arrancà, etc. Blocs de títol + files etiqueta/hora.",
+     "Horaris d'actes (diana, entradeta, Mig Any…) sobre paper clar. Blocs amb pestanya + files hora / acte.",
      ["horaris d'una entradeta", "horaris del Mig Any", "programa d'un cap de setmana"],
-     {"titol": "Títol de la story (\\n per a salt de línia). Ex.: 'Horaris\\nMig Any'",
-      "grups": "[{'titol':'Diana Centenari','files':[['Arrancà','9:35'],['Carbonato','10:31']]}, ...] (màx. ~3 grups / 8 files)",
-      "nota": "(opc.) Línia curta al peu en Lato: 'Recorregut per Sant Nicolau'"}, "story 1080×1920")
+     {"titol": "Títol (\\n per a salt). Paraula en cursiva magenta amb {{ }}: 'Mig {{Any}}'",
+      "data": "(opc.) Línia de data en majúscules: 'Dissabte · 24 d'octubre de 2026'",
+      "subtitol": "(opc.) Línia en cursiva sota el títol: 'Horaris de la jornada'",
+      "grups": "[{'titol':'La diana','files':[['Arrancà','9:35','detall opcional'],['Carbonato','10:31']]}, ...] (màx. ~3 grups / 8 files)",
+      "nota": "(opc.) Línia curta al peu en Lato"}, "story 1080×1920")
 
-# 2. Anunci de text
-body = f"""{bg('story-vellut.png', S_W, S_H)}
+# 2. Anunci de text (clar i magenta)
+def story_anunci(th):
+    T = THEMES[th]
+    body = f"""{bgimg(th, S_W, S_H)}
+  {frame(S_W, S_H, th)}
   {escut(540, 290, 230, 'a')}
-  {eyebrow('etiqueta', 540, 565, 800, 'Filà Magenta · Alcoi')}
-  {hairline(340, 740, 620, .8)}
-  {text('titol', (90, 655, 900, 330), 118, weight=700, lh=1.08, sample='Titular\ndel missatge')}
-  {text('text', (110, 990, 860, 460), 54, weight=400, lh=1.28, sample='Cos amb **noms propis** en negreta.', cond='text')}
-  {text('dada', (90, 1470, 900, 70), 38, font='lato', weight=700, fill=GOLD, tracking=2, sample='', cond='dada')}"""
-save("story-anunci", svg(S_W, S_H, body, "Story · Anunci de text"),
-     "Anunci només de text sobre vellut amb escut: novetats, avisos, convocatòries, renovació de contractes.",
-     ["hem renovat contracte amb la banda", "convocatòria", "avís", "recordatori"],
-     {"etiqueta": "(opc.) Etiqueta tècnica en majúscules, per defecte 'Filà Magenta · Alcoi'",
-      "titol": "Frase principal (2-4 línies). **negreta** per a noms. [[daurat]] per a paraules clau.",
-      "text": "(opc.) Cos explicatiu", "dada": "(opc.) Data/hora/lloc destacat en Lato"}, "story 1080×1920")
+  {eyebrow('etiqueta', 540, 565, 800, 'Filà Magenta · Alcoi', th=th)}
+  {orn(540, 640, 380, th)}
+  {text('titol', (90, 680, 900, 330), 118, th=th, weight=700, fill=T['title'], lh=1.08, sample='Titular\ndel missatge')}
+  {text('text', (110, 1020, 860, 440), 52, th=th, weight=400, lh=1.3, sample='Cos amb **noms propis** en negreta.', cond='text')}
+  {text('dada', (90, 1470, 900, 70), 36, th=th, font='lato', weight=700, fill=T['label'], tracking=3, sample='', cond='dada')}"""
+    return svg(S_W, S_H, body, "Story · Anunci de text")
 
-# 3. Foto a sang amb titular
-body = f"""<rect width="{S_W}" height="{S_H}" fill="{VEL}"/>
-  {photo('foto', (0, 0, S_W, S_H))}
-  <rect width="{S_W}" height="{S_H}" fill="url(#vinyeta)"/>
-  <rect y="{S_H-1250}" width="{S_W}" height="1250" fill="url(#fadeBottom)"/>
-  <rect width="{S_W}" height="420" fill="url(#fadeTop)"/>
-  {escut_circ(64, 262, 150, 'f')}
-  {brackets(S_W, S_H, 40, 60, .0)}
-  {hairline(70, 330, 1250)}
-  {eyebrow('etiqueta', 300, 1180, 600, 'Filà Magenta', cond='etiqueta')}
-  {text('titol', (70, 1275, 940, 330), 104, weight=700, lh=1.1, align='start', valign='top', sample='Titular sobre la foto')}
-  {text('subtitol', (70, 1610, 940, 120), 42, font='lato', weight=400, align='start', valign='top', lh=1.3, sample='', cond='subtitol')}"""
-save("story-foto", svg(S_W, S_H, body, "Story · Foto a sang"),
-     "Una fotografia vertical (o retallada) a pantalla completa amb titular a sota. Ràpida, per a el dia a dia.",
+
+F_ANUNCI = {"etiqueta": "(opc.) Etiqueta en majúscules, per defecte 'Filà Magenta · Alcoi'",
+            "titol": "Frase principal (2-4 línies). **negreta** per a noms. [[x]] = color d'accent; {{x}} = cursiva d'accent.",
+            "text": "(opc.) Cos explicatiu", "dada": "(opc.) Data/hora/lloc destacat en Lato"}
+save("story-anunci", story_anunci("clar"),
+     "Anunci només de text sobre paper clar amb escut: novetats, avisos, convocatòries, renovacions.",
+     ["hem renovat contracte amb la banda", "convocatòria", "avís", "recordatori"], F_ANUNCI, "story 1080×1920")
+save("story-anunci-magenta", story_anunci("magenta"),
+     "Igual que story-anunci però sobre magenta pla: per a notícies destacades i solemnes.",
+     ["renovació amb la banda", "comunicat destacat"], F_ANUNCI, "story 1080×1920")
+
+# 3. Foto d'un acte
+body = f"""{bgimg('clar', S_W, S_H)}
+  {frame(S_W, S_H)}
+  <rect x="86" y="300" width="908" height="1000" fill="none" stroke="{GOLD}" stroke-width="2"/>
+  {photo('foto', (100, 314, 880, 972))}
+  {seal(440, 1236, 130, 'f')}
+  {eyebrow('etiqueta', 540, 1405, 800, 'Filà Magenta', cond='etiqueta')}
+  {text('titol', (90, 1440, 900, 150), 84, weight=700, fill=MAG, lh=1.08, valign='top', sample='Titular sobre la foto')}
+  {text('subtitol', (110, 1595, 860, 60), 36, font='lato', weight=400, valign='top', lh=1.3, sample='', cond='subtitol')}"""
+save("story-foto", svg(S_W, S_H, body, "Story · Foto"),
+     "Una fotografia (vertical o retallada) emmarcada sobre paper, amb segell de l'escut i titular a sota.",
      ["foto d'un acte", "moment de l'entradeta", "agraïment amb foto"],
-     {"foto": "Ruta a la fotografia", "titol": "Titular (1-3 línies)",
+     {"foto": "Ruta a la fotografia", "titol": "Titular (1-2 línies)",
       "subtitol": "(opc.) Frase en Lato", "etiqueta": "(opc.) Etiqueta en majúscules"}, "story 1080×1920")
 
 
 # 4/5. Persona (felicitació / nomenament)  i  dol
-# arc: finestra de la foto, definida una sola vegada amb coordenades coherents
 def persona_story(dol):
-    fil = "#BDBDBD" if dol else GOLD
-    arch = "M200,1030V720A340,340 0 0 1 880,720V1030Z"
-    outer = "M178,1052V720A362,362 0 0 1 902,720V1052Z"
+    th = "dol" if dol else "clar"
+    T = THEMES[th]
+    fil = T["line"]
+    dy = -30
+    arch = f"M200,{1030+dy}V{720+dy}A340,340 0 0 1 880,{720+dy}V{1030+dy}Z"
+    outer = f"M178,{1052+dy}V{720+dy}A362,362 0 0 1 902,{720+dy}V{1052+dy}Z"
     ex = f'<clipPath id="arc"><path d="{arch}"/></clipPath>'
     label = "In memoriam" if dol else "Enhorabona"
-    body = f"""{bg('story-vellut.png', S_W, S_H)}
-  {'<rect width="1080" height="1920" fill="#06010A" opacity=".5"/>' if dol else ''}
-  {eyebrow('etiqueta', 540, 300, 800, label, size=28, fill=('#D0D0D0' if dol else GOLD))}
-  {photo('foto', (200, 380, 680, 650), clip='arc', gray=(1 if dol else 0))}
+    body = f"""{bgimg(th, S_W, S_H)}
+  {frame(S_W, S_H, th)}
+  {eyebrow('etiqueta', 540, 275, 800, label, size=28, th=th)}
+  {photo('foto', (200, 350, 680, 650), clip='arc', gray=(1 if dol else 0))}
   <path d="{arch}" fill="none" stroke="{fil}" stroke-width="5"/>
   <path d="{outer}" fill="none" stroke="{fil}" stroke-width="2" opacity=".65"/>
-  {text('nom', (80, 1110, 920, 230), 100, weight=700, lh=1.06, sample='Nom Cognom')}
-  {text('dates', (90, 1350, 900, 60), 40, font='lato', weight=700, fill=('#D0D0D0' if dol else GOLD), tracking=4, sample='', cond='dates')}
-  {hairline(340, 740, 1425, .7)}
-  {text('text', (110, 1450, 860, 170), 46, weight=400, lh=1.28, sample='', cond='text')}"""
+  {text('nom', (80, 1080, 920, 230), 98, th=th, weight=700, fill=T['title'], lh=1.06, sample='Nom Cognom')}
+  {text('dates', (90, 1320, 900, 60), 38, th=th, font='lato', weight=700, fill=T['label'], tracking=5, sample='', cond='dates')}
+  {orn(540, 1405, 300, th)}
+  {text('text', (110, 1430, 860, 150), 44, th=th, weight=400, lh=1.28, sample='', cond='text')}"""
     return svg(S_W, S_H, body, "Story · " + ("Dol" if dol else "Persona"), ex)
 
 
@@ -193,73 +252,102 @@ save("story-persona", persona_story(False),
       "text": "(opc.) Motiu: 'per la seua alferecia 2027'", "dates": "(opc.) Dada: 'Alferes 2027'",
       "etiqueta": "(opc.) Per defecte 'Enhorabona'"}, "story 1080×1920")
 save("story-dol", persona_story(True),
-     "Condol per defunció. Foto en blanc i negre, fons més fosc, to sobri (sense emojis ni exclamacions).",
+     "Condol per defunció. Paper gris sense calidesa, foto en blanc i negre, to sobri (sense emojis ni exclamacions).",
      ["ha mort un company/a", "condol", "aniversari de la mort"],
      {"foto": "Foto de la persona", "nom": "Nom i cognoms", "dates": "(opc.) '1948 — 2026'",
       "text": "(opc.) Frase sobria: 'La Filà Magenta lamenta la seua pèrdua i acompanya la família'",
       "etiqueta": "(opc.) Per defecte 'In memoriam'"}, "story 1080×1920")
 
+# 6. Concurs d'olla (olla en traç daurat sobre paper; titular segons classificació)
+body = f"""{bgimg('clar', S_W, S_H)}
+  {frame(S_W, S_H)}
+  {escut(540, 290, 230, 'o')}
+  {eyebrow('etiqueta', 540, 565, 800, 'Filà Magenta · Alcoi')}
+  {orn(540, 640, 380)}
+  {text('titol', (90, 680, 900, 330), 118, weight=700, fill=MAG, lh=1.08, sample='Titular\ndel missatge')}
+  <g id="olla" fill="none" stroke="{GOLD}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" transform="translate(540,1215)">
+    <path d="M-170,-40 H170 V60 C170,150 110,190 0,190 C-110,190 -170,150 -170,60 Z"/>
+    <path d="M-170,-10 C-215,-10 -225,40 -170,40 M170,-10 C215,-10 225,40 170,40"/>
+    <path d="M-190,-40 H190 M-120,-70 C-120,-85 120,-85 120,-70 V-40 M-120,-70 V-40"/>
+    <path d="M0,-85 V-100 M-18,-100 H18"/>
+    <path d="M-60,-120 C-85,-160 -35,-180 -60,-225 M0,-130 C-25,-175 25,-195 0,-245 M60,-120 C35,-160 85,-180 60,-225" opacity=".8"/>
+    <path d="M-110,60 C-60,90 60,90 110,60" opacity=".6"/>
+  </g>
+  {text('dada', (90, 1470, 900, 70), 36, font='lato', weight=700, fill=GOLD_T, tracking=3, sample='', cond='dada')}"""
+save("story-olla", svg(S_W, S_H, body, "Story · Olla"),
+     "Concurs d'olla: olla daurada i titular segons classificació (campions / subcampions / tercers).",
+     ["resultat del concurs d'olla", "avís del concurs"],
+     {"etiqueta": "(opc.) per defecte 'Filà Magenta · Alcoi'", "titol": "Titular. [[x]] per a la paraula clau",
+      "dada": "(opc.) 'Enhorabona als cuiners'"}, "story 1080×1920")
+
 # ───────────────────────── POSTS (1080×1350, 4:5 = mínim d'Instagram; la graella retalla 34 px a cada costat) ─────────────────────────
 PW, PH = 1080, 1350
-FR = "marc-45.jpg"
 FMT = "post 1080×1350 (4:5)"
 
-body = f"""{bg(FR, PW, PH)}
-  {escut(540, 34, 150, 'p1')}
-  {text('text', (170, 285, 740, 740), 66, weight=400, lh=1.2, sample='Des de la **Filà Magenta** donem l\'enhorabona a **Nom Cognom**')}
-  {text('dada', (140, 1075, 800, 60), 34, font='lato', weight=700, fill=GOLD, tracking=3, caps=True, sample='', cond='dada')}"""
+body = f"""{bgimg('clar', PW, PH)}
+  {frame(PW, PH)}
+  {escut(540, 110, 150, 'p1')}
+  {orn(540, 310, 340)}
+  {text('text', (160, 345, 760, 640), 66, weight=400, lh=1.22, sample='Des de la **Filà Magenta** donem l\'enhorabona a **Nom Cognom**')}
+  {text('dada', (140, 1030, 800, 60), 32, font='lato', weight=700, fill=GOLD_T, tracking=4, caps=True, sample='', cond='dada')}
+  {footer(540, 1200)}"""
 save("post-anunci", svg(PW, PH, body, "Post · Anunci de text"),
-     "Anunci només de text dins el marc ornamental: felicitacions, avisos, renovacions.",
+     "Anunci només de text sobre paper clar: felicitacions, avisos, renovacions.",
      ["felicitar algú amb text", "avís", "renovació de la banda"],
-     {"text": "Frase completa; **negreta** per a noms propis i [[daurat]] per a paraules clau",
+     {"text": "Frase completa; **negreta** per a noms propis, [[x]] accent, {{x}} cursiva d'accent",
       "dada": "(opc.) Data o lloc en Lato (majúscules)"}, FMT)
 
-body = f"""{bg(FR, PW, PH)}
-  {escut(540, 34, 150, 'p2')}
-  {text('titol', (170, 285, 740, 280), 96, weight=700, fill=GOLD, lh=1.06, sample='Titular')}
-  {hairline(340, 740, 590, .8)}
-  {text('text', (170, 620, 740, 430), 52, weight=400, lh=1.25, sample='Cos del missatge amb **noms**.')}
-  {text('dada', (140, 1075, 800, 56), 32, font='lato', weight=700, fill=GOLD, tracking=3, caps=True, sample='', cond='dada')}"""
+body = f"""{bgimg('clar', PW, PH)}
+  {frame(PW, PH)}
+  {escut(540, 100, 130, 'p2')}
+  {text('titol', (150, 260, 780, 260), 92, weight=700, fill=MAG, lh=1.06, sample='Titular')}
+  {orn(540, 545, 340)}
+  {text('text', (160, 575, 760, 430), 50, weight=400, lh=1.28, sample='Cos del missatge amb **noms**.')}
+  {text('dada', (140, 1030, 800, 56), 30, font='lato', weight=700, fill=GOLD_T, tracking=4, caps=True, sample='', cond='dada')}
+  {footer(540, 1200)}"""
 save("post-anunci-titol", svg(PW, PH, body, "Post · Anunci amb titular"),
-     "Anunci amb titular daurat i cos. Per a missatges amb més informació (assemblea, sopar, cartells).",
+     "Anunci amb titular i cos sobre paper. Per a missatges amb més informació (assemblea, sopar, cartells).",
      ["convocatòria d'assemblea", "novetat", "tancament de carrusel (agraïment)"],
-     {"titol": "Titular daurat (1-2 línies)", "text": "Cos", "dada": "(opc.) Data/lloc"}, FMT)
+     {"titol": "Titular (1-2 línies). {{x}} = paraula en cursiva d'accent", "text": "Cos", "dada": "(opc.) Data/lloc"}, FMT)
 
-body = f"""{bg(FR, PW, PH)}
-  {escut(540, 300, 290, 'p3')}
-  {text('titol', (120, 650, 840, 340), 128, weight=700, caps=True, lh=1.04, tracking=3, sample='COMUNICAT\nOFICIAL', keep=True)}
-  {text('subtitol', (140, 1005, 800, 50), 28, font='lato', weight=700, fill=GOLD, tracking=6, caps=True, sample='', cond='subtitol')}"""
+body = f"""{bgimg('magenta', PW, PH)}
+  {frame(PW, PH, 'magenta')}
+  {escut(540, 250, 270, 'p3')}
+  {text('titol', (120, 580, 840, 340), 118, th='magenta', weight=700, caps=True, lh=1.06, tracking=3, sample='COMUNICAT\nOFICIAL', keep=True)}
+  {orn(540, 975, 340, 'magenta')}
+  {text('subtitol', (140, 1005, 800, 50), 28, th='magenta', font='lato', weight=700, fill='#E8C77D', tracking=6, caps=True, sample='', cond='subtitol')}
+  {footer(540, 1200, 'magenta')}"""
 save("post-comunicat", svg(PW, PH, body, "Post · Comunicat oficial"),
-     "Portada simètrica i solemne per a comunicats oficials. El text complet va al peu de foto o a un 2n slide.",
+     "Portada simètrica i solemne sobre magenta pla per a comunicats oficials. El text complet va al peu de foto o a un 2n slide.",
      ["comunicat oficial", "nota de premsa", "decisió de junta"],
      {"titol": "Per defecte 'COMUNICAT\\nOFICIAL'", "subtitol": "(opc.) Data o assumpte en Lato"}, FMT)
 
-body = f"""<rect width="{PW}" height="{PH}" fill="{VEL}"/>
-  {photo('foto', (0, 0, PW, PH))}
-  <rect width="{PW}" height="{PH}" fill="url(#vinyeta)"/>
-  <rect y="{PH-760}" width="{PW}" height="760" fill="url(#fadeBottom)"/>
-  {escut_circ(54, 54, 130, 'pf')}
-  <rect x="28" y="28" width="{PW-56}" height="{PH-56}" fill="none" stroke="url(#gold)" stroke-width="2" opacity=".85"/>
-  {hairline(70, 250, 960)}
-  {text('titol', (70, 980, 940, 210), 96, weight=700, align='start', valign='top', lh=1.08, sample='Titular sobre la foto')}
-  {text('subtitol', (70, 1205, 940, 90), 40, font='lato', weight=400, align='start', valign='top', sample='', cond='subtitol')}"""
+body = f"""{bgimg('clar', PW, PH)}
+  {frame(PW, PH)}
+  <rect x="86" y="86" width="908" height="820" fill="none" stroke="{GOLD}" stroke-width="2"/>
+  {photo('foto', (100, 100, 880, 792))}
+  {seal(880, 800, 110, 'pf')}
+  {text('titol', (90, 950, 900, 200), 86, weight=700, fill=MAG, valign='top', lh=1.08, sample='Titular sobre la foto')}
+  {text('subtitol', (110, 1160, 860, 80), 36, font='lato', weight=400, valign='top', sample='', cond='subtitol')}"""
 save("post-foto", svg(PW, PH, body, "Post · Foto amb titular"),
-     "Una sola fotografia a sang amb titular. Per a anunci amb foto o resum d'un acte en una imatge.",
+     "Una sola fotografia emmarcada sobre paper amb titular. Per a anunci amb foto o resum d'un acte.",
      ["anunci amb una foto", "foto destacada d'un acte"],
      {"foto": "Fotografia", "titol": "Titular (1-2 línies)", "subtitol": "(opc.) Línia en Lato"}, FMT)
 
 
 def persona_post(dol):
-    fil = "#BDBDBD" if dol else GOLD
-    ex = '<clipPath id="ov"><ellipse cx="540" cy="520" rx="205" ry="270"/></clipPath>'
-    body = f"""{bg(FR, PW, PH)}
-  {'<rect width="1080" height="1350" fill="#06010A" opacity=".5"/>' if dol else ''}
-  {photo('foto', (335, 250, 410, 540), clip='ov', gray=(1 if dol else 0))}
-  <ellipse cx="540" cy="520" rx="205" ry="270" fill="none" stroke="{fil}" stroke-width="4"/>
-  <ellipse cx="540" cy="520" rx="223" ry="288" fill="none" stroke="{fil}" stroke-width="1.5" opacity=".6"/>
-  {eyebrow('etiqueta', 540, 828, 600, 'In memoriam' if dol else 'Enhorabona', size=26, fill=('#D0D0D0' if dol else GOLD))}
-  {text('nom', (140, 872, 800, 100), 80, weight=700, lh=1.05, sample='Nom Cognom')}
-  {text('text', (170, 985, 740, 100), 36, weight=400, lh=1.22, sample='', cond='text')}"""
+    th = "dol" if dol else "clar"
+    T = THEMES[th]; fil = T["line"]
+    ex = '<clipPath id="ov"><ellipse cx="540" cy="450" rx="205" ry="270"/></clipPath>'
+    body = f"""{bgimg(th, PW, PH)}
+  {frame(PW, PH, th)}
+  {photo('foto', (335, 180, 410, 540), clip='ov', gray=(1 if dol else 0))}
+  <ellipse cx="540" cy="450" rx="205" ry="270" fill="none" stroke="{fil}" stroke-width="4"/>
+  <ellipse cx="540" cy="450" rx="225" ry="290" fill="none" stroke="{fil}" stroke-width="1.5" opacity=".6"/>
+  {eyebrow('etiqueta', 540, 780, 600, 'In memoriam' if dol else 'Enhorabona', size=26, th=th)}
+  {text('nom', (120, 830, 840, 110), 80, th=th, weight=700, fill=T['title'], lh=1.05, sample='Nom Cognom')}
+  {text('text', (170, 960, 740, 110), 36, th=th, weight=400, lh=1.24, sample='', cond='text')}
+  {footer(540, 1200, th)}"""
     return svg(PW, PH, body, "Post · " + ("Dol" if dol else "Persona"), ex)
 
 
@@ -268,70 +356,72 @@ save("post-persona", persona_post(False),
      ["felicitar algú", "nou càrrec", "aniversari"],
      {"foto": "Retrat", "nom": "Nom i cognoms", "text": "(opc.) Motiu breu", "etiqueta": "(opc.) 'Enhorabona'"}, FMT)
 save("post-dol", persona_post(True),
-     "Condol per defunció (post). Foto en B/N, to sobri.",
+     "Condol per defunció (post). Paper gris, foto en B/N, to sobri.",
      ["ha mort un company/a", "condol"],
      {"foto": "Retrat", "nom": "Nom i cognoms", "text": "(opc.) Frase sobria breu", "etiqueta": "(opc.) 'In memoriam'"}, FMT)
 
-# Carrusel: portada (la cortina inferior s'allarga amb cortina-45.png)
-body = f"""<rect width="{PW}" height="{PH}" fill="{VEL}"/>
-  {photo('foto', (300, 0, 780, 660))}
-  <image id="cortina" x="0" y="0" width="{PW}" height="{PH}" preserveAspectRatio="none" href="{FONS}cortina-45.png"/>
-  {escut_circ(68, 57, 253, 'cp')}
-  {text('titol1', (30, 935, 1020, 130), 126, weight=700, caps=True, align='start', valign='bottom', lh=1, sample='TITOL')}
-  {text('titol2', (30, 1060, 1020, 130), 126, weight=700, caps=True, fill=GOLD, align='start', valign='bottom', lh=1, sample='DESTACAT', cond='titol2')}
-  {text('subtitol', (40, 1200, 760, 110), 44, weight=400, align='start', valign='top', lh=1.2, sample='Subtítol breu')}
-  <g id="continua" data-if="continua"><text id="label-continua" x="990" y="1275" text-anchor="end" font-family="Playfair Display" font-size="36" fill="{GOLD}">Continua</text>
-  <path d="M1006,1267H1046M1030,1251L1046,1267L1030,1283" fill="none" stroke="{GOLD}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>"""
+# Carrusel: portada (foto emmarcada, titular a sota)
+body = f"""{bgimg('clar', PW, PH)}
+  {frame(PW, PH)}
+  <rect x="86" y="86" width="908" height="700" fill="none" stroke="{GOLD}" stroke-width="2"/>
+  {photo('foto', (100, 100, 880, 672))}
+  {seal(110, 110, 120, 'cp')}
+  {text('titol1', (80, 810, 920, 120), 100, weight=700, fill=MAG, caps=True, align='start', valign='bottom', lh=1, sample='TITOL')}
+  {text('titol2', (80, 925, 920, 110), 100, weight=700, caps=True, fill=ACC, align='start', valign='bottom', lh=1, sample='DESTACAT', cond='titol2', extra='font-style="italic"')}
+  {text('subtitol', (84, 1060, 700, 120), 40, weight=400, align='start', valign='top', lh=1.22, sample='Subtítol breu')}
+  <g id="continua" data-if="continua"><text id="label-continua" x="960" y="1235" text-anchor="end" font-family="Playfair Display" font-style="italic" font-size="38" fill="{ACC}">Continua</text>
+  <path d="M976,1226H1004M992,1212L1006,1226L992,1240" fill="none" stroke="{ACC}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>"""
 save("carrusel-portada", svg(PW, PH, body, "Carrusel · Portada"),
-     "Portada de carrusel: foto a la finestra de la cortina, titular blanc + daurat, subtítol i 'Continua →'.",
+     "Portada de carrusel: foto emmarcada sobre paper amb segell, titular en majúscules (magenta + cursiva d'accent) i 'Continua →'.",
      ["portada de fotos d'un acte", "resum d'una activitat"],
-     {"foto": "Foto de portada (zona visible: part superior dreta)", "titol1": "Primera línia (blanc, majúscules)",
-      "titol2": "(opc.) Segona línia (daurat)", "subtitol": "Frase curta. **negreta** per a noms",
+     {"foto": "Foto de portada", "titol1": "Primera línia (magenta, majúscules)",
+      "titol2": "(opc.) Segona línia (cursiva, color d'accent)", "subtitol": "Frase curta. **negreta** per a noms",
       "continua": "true/false: mostra 'Continua →' (per defecte true)"}, FMT)
 
-body = f"""<rect width="{PW}" height="{PH}" fill="{VEL}"/>
+body = f"""<rect width="{PW}" height="{PH}" fill="{PAPER}"/>
   {photo('foto', (0, 0, PW, PH))}
-  <rect y="{PH-340}" width="{PW}" height="340" fill="url(#fadeBottom)" data-if="peu"/>
-  {escut_circ(40, 40, 96, 'ci')}
-  {text('peu', (60, 1110, 760, 130), 38, weight=400, align='start', valign='bottom', lh=1.22, sample='', cond='peu')}
-  <g data-if="pagina"><rect x="880" y="1250" width="160" height="56" rx="28" fill="#14030A" fill-opacity=".6" stroke="url(#gold)" stroke-width="2"/></g>
-  {text('pagina', (880, 1250, 160, 56), 28, font='lato', weight=700, fill=GOLD, tracking=3, minsize=20, sample='02 / 08', cond='pagina')}"""
+  <g data-if="peu">{card(50, 1150, 700, 150)}<rect x="62" y="1162" width="676" height="126" fill="none" stroke="{GOLD}" stroke-width="1.5"/></g>
+  {escut_circ(50, 50, 96, 'ci')}
+  {text('peu', (80, 1162, 640, 126), 34, fill=INK, align='start', valign='middle', lh=1.22, sample='', cond='peu')}
+  <g data-if="pagina"><rect x="870" y="1236" width="160" height="56" rx="28" fill="{PAPER}" stroke="{GOLD}" stroke-width="2"/></g>
+  {text('pagina', (870, 1236, 160, 56), 26, font='lato', weight=700, fill=GOLD_T, tracking=3, minsize=20, sample='02 / 08', cond='pagina')}"""
 save("carrusel-interior", svg(PW, PH, body, "Carrusel · Foto interior"),
-     "Foto a sang per als slides interiors del carrusel, amb escut petit i comptador opcional.",
+     "Foto a sang per als slides interiors del carrusel, amb escut petit, peu en targeta de paper i comptador opcional.",
      ["resta de fotos del carrusel"],
      {"foto": "Fotografia", "peu": "(opc.) Peu breu", "pagina": "(opc.) '02 / 08'"}, FMT)
 
-# Carrusel: interior apaïsat (foto 4:3 sencera a tota l'amplada sobre vellut; el llenç continua en 4:5)
-body = f"""<rect width="{PW}" height="{PH}" fill="{VEL}"/>
-  {photo('foto', (0, 270, PW, 810))}
-  <rect y="268" width="{PW}" height="3" fill="url(#gold)"/><rect y="1079" width="{PW}" height="3" fill="url(#gold)"/>
-  {escut_circ(40, 40, 96, 'ia')}
-  {text('peu', (60, 1115, 760, 150), 38, weight=400, align='start', valign='top', lh=1.22, sample='', cond='peu')}
-  <g data-if="pagina"><rect x="880" y="1250" width="160" height="56" rx="28" fill="#14030A" fill-opacity=".6" stroke="url(#gold)" stroke-width="2"/></g>
-  {text('pagina', (880, 1250, 160, 56), 28, font='lato', weight=700, fill=GOLD, tracking=3, minsize=20, sample='02 / 08', cond='pagina')}"""
-save("carrusel-interior-apaisat", svg(PW, PH, body, "Carrusel · Foto interior apaïsada"),
-     "Foto apaïsada (4:3) sencera a tota l'amplada, centrada sobre vellut. El llenç segueix sent 4:5 perquè Instagram fixa la proporció del carrusel amb la primera imatge.",
+body = f"""{bgimg('clar', PW, PH)}
+  {frame(PW, PH)}
+  <rect x="76" y="226" width="928" height="708" fill="none" stroke="{GOLD}" stroke-width="2"/>
+  {photo('foto', (90, 240, 900, 680))}
+  {escut_circ(50, 100, 100, 'ia')}
+  {text('peu', (80, 980, 920, 170), 42, fill=INK, align='start', valign='top', lh=1.24, sample='', cond='peu')}
+  <g data-if="pagina"><rect x="870" y="110" width="160" height="56" rx="28" fill="none" stroke="{GOLD}" stroke-width="2"/></g>
+  {text('pagina', (870, 110, 160, 56), 26, font='lato', weight=700, fill=GOLD_T, tracking=3, minsize=20, sample='02 / 08', cond='pagina')}"""
+save("carrusel-interior-apaisat", svg(PW, PH, body, "Carrusel · Foto interior apaisada"),
+     "Foto apaïsada (4:3) emmarcada sobre paper. El llenç segueix sent 4:5 perquè Instagram fixa la proporció del carrusel amb la primera imatge.",
      ["foto horitzontal d'un carrusel (grups, files)"],
      {"foto": "Fotografia apaïsada", "peu": "(opc.) Peu breu", "pagina": "(opc.) '02 / 08'"}, FMT)
 
 # ───────────────────────── VÍDEO (capes amb transparència) ─────────────────────────
-body = f"""<rect x="0" y="{820}" width="1920" height="260" fill="url(#fadeBottom)" opacity=".85"/>
-  <rect x="96" y="896" width="6" height="108" fill="url(#gold)"/>
-  {text('nom', (126, 880, 1100, 80), 64, weight=700, align='start', valign='middle', lh=1, sample='Nom Cognom')}
-  {text('carrec', (126, 962, 1100, 44), 28, font='lato', weight=700, fill=GOLD, align='start', tracking=6, caps=True, minsize=20, sample='Càrrec', cond='carrec')}
-  {escut_circ(1700, 884, 120, 'v1')}"""
+body = f"""{card(96, 850, 1100, 160, .96)}
+  <rect x="96" y="850" width="10" height="160" fill="{MAG}"/>
+  <rect x="116" y="862" width="1068" height="136" fill="none" stroke="{GOLD}" stroke-width="1.5" opacity=".8"/>
+  {text('nom', (150, 868, 1000, 76), 60, weight=700, fill=MAG, align='start', valign='middle', lh=1, sample='Nom Cognom')}
+  {text('carrec', (150, 948, 1000, 40), 26, font='lato', weight=700, fill=ACC, align='start', tracking=6, caps=True, minsize=20, sample='Càrrec', cond='carrec')}
+  {escut_circ(1190, 830, 110, 'v1')}"""
 save("video-lower-third", svg(1920, 1080, body, "Vídeo · Lower third"),
-     "Capa transparent 1920×1080 (PNG amb alfa) amb nom i càrrec sobre un vídeo.",
+     "Capa transparent 1920×1080 (PNG amb alfa): targeta de paper amb nom i càrrec sobre un vídeo.",
      ["identificar qui parla al vídeo"], {"nom": "Nom", "carrec": "(opc.) Càrrec o rol"}, "vídeo 1920×1080 alfa")
 
-body = f"""<rect y="{S_H-900}" width="{S_W}" height="900" fill="url(#fadeBottom)"/>
-  {escut_circ(64, 262, 130, 'v2')}
-  {hairline(70, 330, 1300)}
-  {eyebrow('etiqueta', 300, 1230, 600, 'Filà Magenta', cond='etiqueta')}
-  {text('titol', (70, 1325, 940, 280), 100, weight=700, align='start', valign='top', lh=1.08, sample='Títol del vídeo')}
-  {text('subtitol', (70, 1610, 940, 80), 40, font='lato', align='start', valign='top', sample='', cond='subtitol')}"""
+body = f"""{card(60, 1250, 960, 380)}
+  <rect x="76" y="1266" width="928" height="348" fill="none" stroke="{GOLD}" stroke-width="1.5"/>
+  {escut_circ(100, 1290, 100, 'v2')}
+  {eyebrow('etiqueta', 640, 1310, 700, 'Filà Magenta', cond='etiqueta', size=24)}
+  {text('titol', (90, 1380, 900, 150), 84, weight=700, fill=MAG, align='middle', valign='middle', lh=1.06, sample='Títol del vídeo')}
+  {text('subtitol', (90, 1535, 900, 60), 34, font='lato', fill=INK, align='middle', valign='top', sample='', cond='subtitol')}"""
 save("video-titol", svg(S_W, S_H, body, "Vídeo · Targeta de títol"),
-     "Capa transparent vertical 1080×1920 amb títol i escut per a obrir un vídeo/reel (respecta zones segures).",
+     "Capa transparent vertical 1080×1920: targeta de paper amb títol i escut per a obrir un vídeo/reel (respecta zones segures).",
      ["títol d'inici de reel", "tancament amb data"],
      {"titol": "Títol", "subtitol": "(opc.)", "etiqueta": "(opc.)"}, "vídeo 1080×1920 alfa")
 

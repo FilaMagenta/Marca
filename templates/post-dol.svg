@@ -1,25 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1350" viewBox="0 0 1080 1350">
   <title>Post · Dol</title>
   <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="#C69232"/><stop offset="1" stop-color="#A9761E"/>
-    </linearGradient>
-    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
-    </linearGradient>
-    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
-    </linearGradient>
-    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
-      <stop offset=".55" stop-color="#7D1941" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
-    </radialGradient>
-  <clipPath id="ov"><ellipse cx="540" cy="520" rx="205" ry="270"/></clipPath></defs>
-<image id="fons" x="0" y="0" width="1080" height="1350" preserveAspectRatio="xMidYMid slice" href="../assets/fons/marc-45.jpg"/>
-  <rect width="1080" height="1350" fill="#06010A" opacity=".5"/>
-  <image id="field-foto" data-box="335 250 410 540" data-gray="1" x="335" y="250" width="410" height="540" preserveAspectRatio="xMidYMid slice" clip-path="url(#ov)" href=""/>
-  <ellipse cx="540" cy="520" rx="205" ry="270" fill="none" stroke="#BDBDBD" stroke-width="4"/>
-  <ellipse cx="540" cy="520" rx="223" ry="288" fill="none" stroke="#BDBDBD" stroke-width="1.5" opacity=".6"/>
-  <text id="field-etiqueta" data-box="240 828 600 40" data-size="26" data-min="18" data-font="lato" data-weight="700" data-fill="#D0D0D0" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-keep="1" >In memoriam</text>
-  <text id="field-nom" data-box="140 872 800 100" data-size="80" data-min="36" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-align="middle" data-lh="1.05" data-tracking="0" data-caps="0" data-valign="middle" >Nom Cognom</text>
-  <text id="field-text" data-box="170 985 740 100" data-size="36" data-min="24" data-font="playfair" data-weight="400" data-fill="#F5F5F5" data-align="middle" data-lh="1.22" data-tracking="0" data-caps="0" data-valign="middle" data-if="text" ></text>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
+  <clipPath id="ov"><ellipse cx="540" cy="450" rx="205" ry="270"/></clipPath></defs>
+<image id="fons" x="0" y="0" width="1080" height="1350" preserveAspectRatio="xMidYMid slice" href="../assets/fons/dol-post.jpg"/>
+  <g id="marc"><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#A8A29E" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1234" fill="none" stroke="#A8A29E" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#A8A29E"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#A8A29E"/><path d="M58,1283L60.0,1290.0L67,1292L60.0,1294.0L58,1301L56.0,1294.0L49,1292L56.0,1290.0Z" fill="#A8A29E"/><path d="M1022,1283L1024.0,1290.0L1031,1292L1024.0,1294.0L1022,1301L1020.0,1294.0L1013,1292L1020.0,1290.0Z" fill="#A8A29E"/></g>
+  <image id="field-foto" data-box="335 180 410 540" data-gray="1" x="335" y="180" width="410" height="540" preserveAspectRatio="xMidYMid slice" clip-path="url(#ov)" href=""/>
+  <ellipse cx="540" cy="450" rx="205" ry="270" fill="none" stroke="#A8A29E" stroke-width="4"/>
+  <ellipse cx="540" cy="450" rx="225" ry="290" fill="none" stroke="#A8A29E" stroke-width="1.5" opacity=".6"/>
+  <text id="field-etiqueta" data-box="240 780 600 40" data-size="26" data-min="18" data-font="lato" data-weight="700" data-fill="#6E686A" data-accent="#6E686A" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-keep="1" >In memoriam</text>
+  <text id="field-nom" data-box="120 830 840 110" data-size="80" data-min="36" data-font="playfair" data-weight="700" data-fill="#2F2B2D" data-accent="#6E686A" data-align="middle" data-lh="1.05" data-tracking="0" data-caps="0" data-valign="middle" >Nom Cognom</text>
+  <text id="field-text" data-box="170 960 740 110" data-size="36" data-min="24" data-font="playfair" data-weight="400" data-fill="#2F2B2D" data-accent="#6E686A" data-align="middle" data-lh="1.24" data-tracking="0" data-caps="0" data-valign="middle" data-if="text" ></text>
+  <text id="field-peu_marca" data-box="140 1200 800 34" data-size="22" data-min="16" data-font="lato" data-weight="700" data-fill="#8A8587" data-accent="#6E686A" data-align="middle" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-keep="1" >Filà Magenta · Alcoi · Any 1865</text>
 </svg>

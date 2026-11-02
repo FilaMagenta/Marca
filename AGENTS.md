@@ -9,7 +9,10 @@ Manual visual per a persones: `manual/index.html`. Tokens: `tokens/brand.json`.
 - Vocabulari: *primer tro* (president), *alferes*, *capità*, *sargent*, *dianer*, *glorier/glorieret*, *esquadra*, *boato*, *entrada/entradeta*, *diana*, *arrancà*, *font redona*, *Mig Any*, *assemblea*, *festers*, *cavallers*.
 - Dades històriques vénen de fonts comunitàries: **no inventes dades**; si falta un nom, data o hora, pregunta-ho o deixa el camp buit.
 
-## 2. Identitat visual (resum)
+## 2. Identitat visual (resum) — disseny «Paper i fil» (branca `redisseny-modern`)
+Nou llenguatge: **paper crema pla i clar** amb tacte de teixit (lli + gra), doble filet daurat amb cordó de passamaneria i estrelles, majúscules espaiades, i **una paraula en cursiva d'accent** (`{{Any}}`). Variants de fons: `clar` (per defecte), `magenta` pla (anunci destacat, comunicat) i `dol` (gris sobri). El vellut i les cortines de la versió anterior ja no s'usen. Tokens nous: Paper `#F3EBDD`, Tinta `#3A1427`, Magenta Viu `#A91F5C`, Daurat de Text `#B08628`, Magenta Pla `#8A1F4B`. Fons: `python3 tools/make_fons_clars.py`.
+Marcat nou: `{{paraula}}` = cursiva amb color d'accent. Horaris: `files` accepta `[acte, hora, detall]`, camps nous `data` i `subtitol`. Plantilla nova: `story-anunci-magenta`.
+**Text d'aquest bloc anterior (versió vellut, encara vàlid per colors base):**
 - Clàssic i solemne, textures de **vellut, cortinatges i passamaneria daurada**, formes orgàniques; toc modern: etiquetes en majúscules amb tracking, filets daurats fins, numeració i composicions netes.
 - Colors: Magenta Històric `#7D1941`, Daurat Enriquit `#C69232`, Verd Bosc `#576437`, Blanco Roto `#F5F5F5`, Gris Obscur `#373C41`. Fons de vellut fosc ~`#2A0614`.
 - Tipus: **Playfair Display** (titulars, noms, frases) i **Lato** (dades, etiquetes, peus). Sobre fosc: titular **daurat** o blanc, text blanc roto. Mai text sobre fons magenta brillant amb gris.

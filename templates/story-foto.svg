@@ -1,25 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1920" viewBox="0 0 1080 1920">
-  <title>Story · Foto a sang</title>
+  <title>Story · Foto</title>
   <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="#C69232"/><stop offset="1" stop-color="#A9761E"/>
-    </linearGradient>
-    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
-    </linearGradient>
-    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
-    </linearGradient>
-    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
-      <stop offset=".55" stop-color="#7D1941" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
-    </radialGradient>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
   </defs>
-<rect width="1080" height="1920" fill="#2A0614"/>
-  <image id="field-foto" data-box="0 0 1080 1920" data-gray="0" x="0" y="0" width="1080" height="1920" preserveAspectRatio="xMidYMid slice" href=""/>
-  <rect width="1080" height="1920" fill="url(#vinyeta)"/>
-  <rect y="670" width="1080" height="1250" fill="url(#fadeBottom)"/>
-  <rect width="1080" height="420" fill="url(#fadeTop)"/>
-  <g id="escut-circular" transform="translate(64,262) scale(0.2930)">
+<image id="fons" x="0" y="0" width="1080" height="1920" preserveAspectRatio="xMidYMid slice" href="../assets/fons/clar-story.jpg"/>
+  <g id="marc"><rect x="40" y="40" width="1000" height="1840" fill="none" stroke="#C69232" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1840" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1804" fill="none" stroke="#C69232" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#C69232"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#C69232"/><path d="M58,1853L60.0,1860.0L67,1862L60.0,1864.0L58,1871L56.0,1864.0L49,1862L56.0,1860.0Z" fill="#C69232"/><path d="M1022,1853L1024.0,1860.0L1031,1862L1024.0,1864.0L1022,1871L1020.0,1864.0L1013,1862L1020.0,1860.0Z" fill="#C69232"/></g>
+  <rect x="86" y="300" width="908" height="1000" fill="none" stroke="#C69232" stroke-width="2"/>
+  <image id="field-foto" data-box="100 314 880 972" data-gray="0" x="100" y="314" width="880" height="972" preserveAspectRatio="xMidYMid slice" href=""/>
+  <circle cx="505.0" cy="1301.0" r="75.0" fill="#F3EBDD" filter="url(#ombra)"/><circle cx="505.0" cy="1301.0" r="75.0" fill="none" stroke="#C69232" stroke-width="2.5"/><g id="escut-circular" transform="translate(440,1236) scale(0.2539)">
   
   <path
      d="m 256.0055,256.00034 m -255.99998225,0 a 256,254.33051 0 1 1 511.98896225,0 256,254.33051 0 1 1 -511.98896225,0"
@@ -64,9 +52,7 @@
      stroke-width="19.8637"
      id="f-path7" />
 </g>
-  <path d="M40,100V40H100M1040,100V40H980M40,1820V1880H100M1040,1820V1880H980" fill="none" stroke="url(#gold)" stroke-width="3" opacity="0.0"/>
-  <path d="M70,1250H330" stroke="url(#gold)" stroke-width="2" opacity="1"/>
-  <text id="field-etiqueta" data-box="0 1180 600 40" data-size="26" data-min="18" data-font="lato" data-weight="700" data-fill="#C69232" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-if="etiqueta" >Filà Magenta</text>
-  <text id="field-titol" data-box="70 1275 940 330" data-size="104" data-min="46" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-align="start" data-lh="1.1" data-tracking="0" data-caps="0" data-valign="top" >Titular sobre la foto</text>
-  <text id="field-subtitol" data-box="70 1610 940 120" data-size="42" data-min="24" data-font="lato" data-weight="400" data-fill="#F5F5F5" data-align="start" data-lh="1.3" data-tracking="0" data-caps="0" data-valign="top" data-if="subtitol" ></text>
+  <text id="field-etiqueta" data-box="140 1405 800 40" data-size="26" data-min="18" data-font="lato" data-weight="700" data-fill="#A91F5C" data-accent="#A91F5C" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-if="etiqueta" >Filà Magenta</text>
+  <text id="field-titol" data-box="90 1440 900 150" data-size="84" data-min="37" data-font="playfair" data-weight="700" data-fill="#7D1941" data-accent="#A91F5C" data-align="middle" data-lh="1.08" data-tracking="0" data-caps="0" data-valign="top" >Titular sobre la foto</text>
+  <text id="field-subtitol" data-box="110 1595 860 60" data-size="36" data-min="24" data-font="lato" data-weight="400" data-fill="#3A1427" data-accent="#A91F5C" data-align="middle" data-lh="1.3" data-tracking="0" data-caps="0" data-valign="top" data-if="subtitol" ></text>
 </svg>

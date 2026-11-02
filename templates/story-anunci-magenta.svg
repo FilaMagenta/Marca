@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <title>Story · Anunci de text</title>
+  <defs>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
+  </defs>
+<image id="fons" x="0" y="0" width="1080" height="1920" preserveAspectRatio="xMidYMid slice" href="../assets/fons/magenta-story.jpg"/>
+  <g id="marc"><rect x="40" y="40" width="1000" height="1840" fill="none" stroke="#D9B25F" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1840" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1804" fill="none" stroke="#D9B25F" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#D9B25F"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#D9B25F"/><path d="M58,1853L60.0,1860.0L67,1862L60.0,1864.0L58,1871L56.0,1864.0L49,1862L56.0,1860.0Z" fill="#D9B25F"/><path d="M1022,1853L1024.0,1860.0L1031,1862L1024.0,1864.0L1022,1871L1020.0,1864.0L1013,1862L1020.0,1860.0Z" fill="#D9B25F"/></g>
+  <g id="escut" transform="translate(455.8,290) scale(0.8623)"><g
+     id="a-layer1"
+     transform="translate(-36.548623,-4.4242843)"><path
+       style="display:inline;fill:#c71a85;fill-opacity:1;stroke:#028005;stroke-width:13.2292;stroke-dasharray:none;stroke-opacity:1"
+       d="m 51.220076,19.111969 166.274134,0.38224 -0.38224,200.675661 c -0.38224,11.65831 -3.44015,19.87646 -20.25869,20.2587 l -35.16602,-1.14672 c -22.74324,0.19112 -27.33012,11.6583 -27.33012,11.6583 0,0 -4.01351,-11.46718 -23.88996,-10.89382 L 69.185328,239.66409 C 59.055984,239.28185 51.602315,236.22393 51.220076,220.55212 Z"
+       id="a-path2" /><path
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:7.9375;stroke-dasharray:none;stroke-opacity:1"
+       d="M 40.517373,8.4092663 227.81467,9.173745 V 221.69883 c -0.38224,11.65831 -8.02702,27.90348 -24.84556,28.28572 l -42.04633,-0.76448 c -22.74324,0.19112 -26.56564,21.21429 -26.56564,21.21429 0,0 -3.63127,-21.02317 -23.50772,-20.44981 L 62.305019,249.22007 C 52.175675,248.83783 40.899612,237.75289 40.517373,222.08108 Z"
+       id="a-path1" /><path
+       id="a-path3"
+       style="fill:#f9f053;fill-opacity:1;stroke:none;stroke-width:13.2292;stroke-dasharray:none;stroke-opacity:1"
+       d="m 131.72581,65.74534 a 63.069496,62.216637 0 0 0 -63.069536,62.21636 63.069496,62.216637 0 0 0 63.069536,62.21687 63.069496,62.216637 0 0 0 57.99801,-38.03179 l -2.28462,-2.63498 a 47.206562,46.633205 0 0 1 -41.99692,25.554 47.206562,46.633205 0 0 1 -47.206934,-46.63333 47.206562,46.633205 0 0 1 47.206934,-46.63333 47.206562,46.633205 0 0 1 44.04589,29.89585 l 2.47324,-2.14457 a 63.069496,62.216637 0 0 0 -60.2356,-43.80508 z" /><path
+       style="fill:#028005;fill-opacity:1;stroke:none;stroke-width:13.2292;stroke-dasharray:none;stroke-opacity:1"
+       id="a-path4"
+       d="m 189.87456,130.14177 -7.40393,-4.05192 -7.53527,3.80209 1.56566,-8.29367 -5.94452,-5.99155 8.37155,-1.07386 3.86136,-7.50507 3.60824,7.62999 8.33098,1.35317 -6.14154,5.78944 z"
+       transform="translate(8.2436637,10.811362)" /></g></g>
+  <text id="field-etiqueta" data-box="140 565 800 40" data-size="26" data-min="18" data-font="lato" data-weight="700" data-fill="#E8C77D" data-accent="#E8C77D" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-keep="1" >Filà Magenta · Alcoi</text>
+  <path d="M350.0,640H515.8M564.2,640H730.0" stroke="#D9B25F" stroke-width="2"/><path d="M540,629L542.4,637.6L551,640L542.4,642.4L540,651L537.6,642.4L529,640L537.6,637.6Z" fill="#D9B25F"/>
+  <text id="field-titol" data-box="90 680 900 330" data-size="118" data-min="53" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-accent="#E8C77D" data-align="middle" data-lh="1.08" data-tracking="0" data-caps="0" data-valign="middle" >Titular
+del missatge</text>
+  <text id="field-text" data-box="110 1020 860 440" data-size="52" data-min="24" data-font="playfair" data-weight="400" data-fill="#F5F5F5" data-accent="#E8C77D" data-align="middle" data-lh="1.3" data-tracking="0" data-caps="0" data-valign="middle" data-if="text" >Cos amb **noms propis** en negreta.</text>
+  <text id="field-dada" data-box="90 1470 900 70" data-size="36" data-min="24" data-font="lato" data-weight="700" data-fill="#E8C77D" data-accent="#E8C77D" data-align="middle" data-lh="1.14" data-tracking="3" data-caps="0" data-valign="middle" data-if="dada" ></text>
+</svg>

@@ -1,21 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1350" viewBox="0 0 1080 1350">
   <title>Post · Comunicat oficial</title>
   <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="#C69232"/><stop offset="1" stop-color="#A9761E"/>
-    </linearGradient>
-    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
-    </linearGradient>
-    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
-    </linearGradient>
-    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
-      <stop offset=".55" stop-color="#7D1941" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
-    </radialGradient>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
   </defs>
-<image id="fons" x="0" y="0" width="1080" height="1350" preserveAspectRatio="xMidYMid slice" href="../assets/fons/marc-45.jpg"/>
-  <g id="escut" transform="translate(433.9,300) scale(1.0873)"><g
+<image id="fons" x="0" y="0" width="1080" height="1350" preserveAspectRatio="xMidYMid slice" href="../assets/fons/magenta-post.jpg"/>
+  <g id="marc"><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#D9B25F" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1234" fill="none" stroke="#D9B25F" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#D9B25F"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#D9B25F"/><path d="M58,1283L60.0,1290.0L67,1292L60.0,1294.0L58,1301L56.0,1294.0L49,1292L56.0,1290.0Z" fill="#D9B25F"/><path d="M1022,1283L1024.0,1290.0L1031,1292L1024.0,1294.0L1022,1301L1020.0,1294.0L1013,1292L1020.0,1290.0Z" fill="#D9B25F"/></g>
+  <g id="escut" transform="translate(441.2,250) scale(1.0123)"><g
      id="p3-layer1"
      transform="translate(-36.548623,-4.4242843)"><path
        style="display:inline;fill:#c71a85;fill-opacity:1;stroke:#028005;stroke-width:13.2292;stroke-dasharray:none;stroke-opacity:1"
@@ -31,7 +21,9 @@
        id="p3-path4"
        d="m 189.87456,130.14177 -7.40393,-4.05192 -7.53527,3.80209 1.56566,-8.29367 -5.94452,-5.99155 8.37155,-1.07386 3.86136,-7.50507 3.60824,7.62999 8.33098,1.35317 -6.14154,5.78944 z"
        transform="translate(8.2436637,10.811362)" /></g></g>
-  <text id="field-titol" data-box="120 650 840 340" data-size="128" data-min="57" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-align="middle" data-lh="1.04" data-tracking="3" data-caps="1" data-valign="middle" data-keep="1" >COMUNICAT
+  <text id="field-titol" data-box="120 580 840 340" data-size="118" data-min="53" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-accent="#E8C77D" data-align="middle" data-lh="1.06" data-tracking="3" data-caps="1" data-valign="middle" data-keep="1" >COMUNICAT
 OFICIAL</text>
-  <text id="field-subtitol" data-box="140 1005 800 50" data-size="28" data-min="24" data-font="lato" data-weight="700" data-fill="#C69232" data-align="middle" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-if="subtitol" ></text>
+  <path d="M370.0,975H515.8M564.2,975H710.0" stroke="#D9B25F" stroke-width="2"/><path d="M540,964L542.4,972.6L551,975L542.4,977.4L540,986L537.6,977.4L529,975L537.6,972.6Z" fill="#D9B25F"/>
+  <text id="field-subtitol" data-box="140 1005 800 50" data-size="28" data-min="24" data-font="lato" data-weight="700" data-fill="#E8C77D" data-accent="#E8C77D" data-align="middle" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-if="subtitol" ></text>
+  <text id="field-peu_marca" data-box="140 1200 800 34" data-size="22" data-min="16" data-font="lato" data-weight="700" data-fill="#E8C77D" data-accent="#E8C77D" data-align="middle" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-keep="1" >Filà Magenta · Alcoi · Any 1865</text>
 </svg>

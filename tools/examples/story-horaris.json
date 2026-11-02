@@ -1,6 +1,8 @@
 {"plantilla": "story-horaris",
- "titol": "Horaris\nMig Any",
+ "data": "Dissabte · 24 d'octubre de 2026",
+ "titol": "Mig {{Any}}",
+ "subtitol": "Horaris de la jornada",
  "grups": [
-  {"titol": "Diana Centenari", "files": [["Arrancà", "9:35"], ["Carbonato", "10:31"]]},
-  {"titol": "Entradeta", "files": [["Font Redona", "20:55"]]}
+  {"titol": "La diana", "files": [["Arrancà", "9:35", "Bambú 9:55 · P. Valenciana 10:04"], ["Carbonato", "10:31", "Partidor 10:31 · Final 11:02"]]},
+  {"titol": "L'entradeta", "files": [["Font Redona", "20:55", "Tot Mentira 21:25 · Ajuntament 22:20"]]}
  ]}

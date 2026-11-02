@@ -1,21 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1920" viewBox="0 0 1080 1920">
   <title>Vídeo · Targeta de títol</title>
   <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="#C69232"/><stop offset="1" stop-color="#A9761E"/>
-    </linearGradient>
-    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
-    </linearGradient>
-    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
-    </linearGradient>
-    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
-      <stop offset=".55" stop-color="#7D1941" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
-    </radialGradient>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
   </defs>
-<rect y="1020" width="1080" height="900" fill="url(#fadeBottom)"/>
-  <g id="escut-circular" transform="translate(64,262) scale(0.2539)">
+<rect x="60" y="1258" width="960" height="380" fill="#3A1427" opacity="0.070"/><rect x="57" y="1255" width="966" height="386" fill="#3A1427" opacity="0.052"/><rect x="54" y="1252" width="972" height="392" fill="#3A1427" opacity="0.034"/><rect x="51" y="1249" width="978" height="398" fill="#3A1427" opacity="0.016"/><rect x="60" y="1250" width="960" height="380" fill="#F3EBDD" opacity="0.96"/>
+  <rect x="76" y="1266" width="928" height="348" fill="none" stroke="#C69232" stroke-width="1.5"/>
+  <g id="escut-circular" transform="translate(100,1290) scale(0.1953)">
   
   <path
      d="m 256.0055,256.00034 m -255.99998225,0 a 256,254.33051 0 1 1 511.98896225,0 256,254.33051 0 1 1 -511.98896225,0"
@@ -60,8 +50,7 @@
      stroke-width="19.8637"
      id="v2-path7" />
 </g>
-  <path d="M70,1300H330" stroke="url(#gold)" stroke-width="2" opacity="1"/>
-  <text id="field-etiqueta" data-box="0 1230 600 40" data-size="26" data-min="18" data-font="lato" data-weight="700" data-fill="#C69232" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-if="etiqueta" >Filà Magenta</text>
-  <text id="field-titol" data-box="70 1325 940 280" data-size="100" data-min="45" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-align="start" data-lh="1.08" data-tracking="0" data-caps="0" data-valign="top" >Títol del vídeo</text>
-  <text id="field-subtitol" data-box="70 1610 940 80" data-size="40" data-min="24" data-font="lato" data-weight="400" data-fill="#F5F5F5" data-align="start" data-lh="1.14" data-tracking="0" data-caps="0" data-valign="top" data-if="subtitol" ></text>
+  <text id="field-etiqueta" data-box="290 1310 700 40" data-size="24" data-min="18" data-font="lato" data-weight="700" data-fill="#A91F5C" data-accent="#A91F5C" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-if="etiqueta" >Filà Magenta</text>
+  <text id="field-titol" data-box="90 1380 900 150" data-size="84" data-min="37" data-font="playfair" data-weight="700" data-fill="#7D1941" data-accent="#A91F5C" data-align="middle" data-lh="1.06" data-tracking="0" data-caps="0" data-valign="middle" >Títol del vídeo</text>
+  <text id="field-subtitol" data-box="90 1535 900 60" data-size="34" data-min="24" data-font="lato" data-weight="400" data-fill="#3A1427" data-accent="#A91F5C" data-align="middle" data-lh="1.14" data-tracking="0" data-caps="0" data-valign="top" data-if="subtitol" ></text>
 </svg>
