@@ -229,10 +229,11 @@ def build_grups(g, grups):
     for k in list(g): g.remove(k)
     hw = measure("00:00", "lato", 900, s * .92, 0) + s * .6
 
-    def t(txt, x, y, fam, weight, size, color, anchor="start", tracking=0, extra=None):
+    def t(txt, x, y, fam, weight, size, color, anchor="start", tracking=0, italic=False):
         e = ET.SubElement(g, f"{{{SVG}}}text", {"x": f"{x:.1f}", "y": f"{y:.1f}", "font-family": FAMILY[fam],
                                                 "font-weight": str(weight), "font-size": f"{size:.1f}", "fill": color,
                                                 "text-anchor": anchor, "letter-spacing": str(tracking)})
+        if italic: e.set("font-style", "italic")
         e.text = txt
     for gi, x in enumerate(grups):
         if gi: y += GAP * s
@@ -251,7 +252,7 @@ def build_grups(g, grups):
             t(lab, bx + hw, base, "playfair", 400, s, ink)
             y += ROW * s
             if det:
-                t(det, bx + hw, y - .02 * s + DET * s * .5, "lato", 400, s * .5, accent)
+                t(det, bx + hw, y - .02 * s + DET * s * .5, "playfair", 400, s * .52, accent, italic=True)
                 y += DET * s
     for k in [k for k in g.attrib if k.startswith("data-")]: del g.attrib[k]
 
