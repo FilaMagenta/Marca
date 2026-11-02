@@ -115,11 +115,30 @@ def frame(w, h, th="clar", m=40, gap=18, stars=True):
 
 
 def llac(cx, cy, k=1.0):
-    """Llaç negre de dol, simple: una sola cinta que fa un llaç i es creua en dues cues. Centrat a (cx,cy)."""
-    a = "M0,-48 C-36,-48 -32,-6 -2,20 L24,68"
-    b = "M0,-48 C36,-48 32,-6 2,20 L-24,68"
-    return (f'<g id="llac" transform="translate({cx},{cy}) scale({k})" fill="none" stroke="#141012" stroke-width="13" stroke-linejoin="round">'
-            f'<path d="{a}"/><path d="{b}"/></g>')
+    """Llaç negre de dol (assets/llac-negre.svg). Alçada ≈ 117·k px, centrat a (cx, cy+10·k)."""
+    import xml.etree.ElementTree as ET
+    NS = "{http://www.w3.org/2000/svg}"
+    ET.register_namespace("", "http://www.w3.org/2000/svg")
+    root = ET.parse(ROOT / "assets" / "llac-negre.svg").getroot()
+    keep = []
+    for el in root.iter():
+        if el.tag in (NS + "linearGradient", NS + "radialGradient", NS + "path"):
+            keep.append(el)
+    # els degradats van dins de defs; els camins (hereten transform del grup layer1)
+    defs = "".join(ET.tostring(e, encoding="unicode") for e in keep if e.tag != NS + "path")
+    layer = next(e for e in root.iter(NS + "g"))
+    tr = layer.get("transform", "")
+    paths = "".join(ET.tostring(e, encoding="unicode") for e in layer.iter(NS + "path"))
+    inner = f"<defs>{defs}</defs><g transform=\"{tr}\">{paths}</g>"
+    inner = re.sub(r'\sxmlns(:\w+)?="[^"]*"', "", inner)
+    inner = re.sub(r"<(/?)ns\d+:", r"<\1", inner)
+    inner = re.sub(r'\sns\d*:[\w-]+="[^"]*"', "", inner)
+    inner = re.sub(r'\s(?:sodipodi|inkscape|ns\d*):[\w-]+="[^"]*"', "", inner)
+    inner = re.sub(r'\bid="([^"]+)"', lambda m: f'id="ll-{m.group(1)}"', inner)
+    inner = re.sub(r"url\(#([^)]+)\)", r"url(#ll-\1)", inner)
+    VW, VH = 373.14, 409.41
+    h = 117 * k; sc = h / VH
+    return f'<g id="llac" transform="translate({cx - VW*sc/2:.1f},{cy + 10*k - h/2:.1f}) scale({sc:.4f})">{inner}</g>'
 
 
 def footer(cx, y, th="clar", cond=None):

@@ -5,7 +5,20 @@
   <clipPath id="ov"><ellipse cx="540" cy="480" rx="205" ry="270"/></clipPath></defs>
 <image id="fons" x="0" y="0" width="1080" height="1350" preserveAspectRatio="xMidYMid slice" href="../assets/fons/dol-post.jpg"/>
   <g id="marc"><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#A8A29E" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1234" fill="none" stroke="#A8A29E" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#A8A29E"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#A8A29E"/><path d="M58,1283L60.0,1290.0L67,1292L60.0,1294.0L58,1301L56.0,1294.0L49,1292L56.0,1290.0Z" fill="#A8A29E"/><path d="M1022,1283L1024.0,1290.0L1031,1292L1024.0,1294.0L1022,1301L1020.0,1294.0L1013,1292L1020.0,1290.0Z" fill="#A8A29E"/></g>
-  <g id="llac" transform="translate(540,112) scale(0.85)" fill="none" stroke="#141012" stroke-width="13" stroke-linejoin="round"><path d="M0,-48 C-36,-48 -32,-6 -2,20 L24,68"/><path d="M0,-48 C36,-48 32,-6 2,20 L-24,68"/></g>
+  <g id="llac" transform="translate(494.7,70.8) scale(0.2429)"><defs><radialGradient id="ll-radialGradient3623" fx="376.9" fy="172.3" gradientUnits="userSpaceOnUse" cy="177.22" cx="375.94" gradientTransform="matrix(.58351 -.50453 .49140 .56832 68.861 259.87)" r="45.378">
+      <stop id="ll-stop3619" style="stop-color:#2b2b2b;stop-opacity:0" offset="0" />
+      <stop id="ll-stop3621" style="stop-color:#171717" offset="1" />
+    </radialGradient>
+    <linearGradient id="ll-linearGradient3691" y2="333.19" gradientUnits="userSpaceOnUse" x2="393.2" y1="376.96" x1="325.52">
+      <stop id="ll-stop3687" style="stop-color:#000000" offset="0" />
+      <stop id="ll-stop3689" style="stop-color:#000000;stop-opacity:0" offset="1" />
+    </linearGradient>
+  </defs><g transform="translate(-184.36 -157.99)"><path id="ll-path2822-3" style="stroke:#000000;stroke-width:1px;fill:#4d4d4d" d="m332.4 167.72c25.248-10.863 49.058-12.879 83.903-2.0326 4.0702 4.1664-3.5772 48.009-3.5772 48.009-30.696-14.182-48.263-17.126-78.96 3.3127 0 0-12.596-39.276-1.3659-49.289z" />
+    <path id="ll-path2822" style="stroke:#000000;stroke-width:1px;fill:url(#ll-radialGradient3623)" d="m332.4 167.72c25.248-10.863 49.058-12.879 83.903-2.0326 4.0702 4.1664-3.5772 48.009-3.5772 48.009-30.696-14.182-48.263-17.126-78.96 3.3127 0 0-12.596-39.276-1.3659-49.289z" />
+    <path id="ll-path2818" style="stroke:#000000;stroke-width:1px;fill:#000000" d="m184.86 540.9c104.31-80.352 232.22-342.44 232.22-374.35 0 0 49.226 56.261 41.352 84.064-33.919 119.77-168.16 286.27-192.18 316.3l-81.39-26.009z" />
+    <path id="ll-path2820" style="stroke:#000000;stroke-width:1px;fill:#252525" d="m331.33 168.98s-39.275 49.571-33.728 74.323c29.365 131.04 175.09 313.35 175.09 313.35l84.308-53.149c-77.44-28.78-230.94-307.37-225.67-334.52z" />
+    <path id="ll-path2820-0" style="stroke:#000000;stroke-width:1px;fill:url(#ll-linearGradient3691)" d="m331.33 168.98s-39.275 49.571-33.728 74.323c29.365 131.04 175.09 313.35 175.09 313.35l84.308-53.149c-77.44-28.78-230.94-307.37-225.67-334.52z" />
+  </g></g>
   <image id="field-foto" data-box="335 210 410 540" data-gray="1" x="335" y="210" width="410" height="540" preserveAspectRatio="xMidYMid slice" clip-path="url(#ov)" href=""/>
   <ellipse cx="540" cy="480" rx="205" ry="270" fill="none" stroke="#A8A29E" stroke-width="4"/>
   <ellipse cx="540" cy="480" rx="225" ry="290" fill="none" stroke="#A8A29E" stroke-width="1.5" opacity=".6"/>
