@@ -4,10 +4,30 @@ Llig açò abans de generar res. Objectiu: convertir una petició curta («ha mo
 Manual visual per a persones: `manual/index.html`. Tokens: `tokens/brand.json`.
 
 ## 1. Context en 30 segons
-- **Festes de Moros i Cristians d'Alcoi**: es celebren al voltant de Sant Jordi (abril) i commemoren la defensa d'Alcoi davant al-Azraq (1276). Trilogia Festera (22, 23 i 24 d'abril): entrades, actes de Sant Jordi i dia de la pólvora. A octubre es fa el **Mig Any** (diana, entradeta, assemblea…).
+- **Festes de Moros i Cristians d'Alcoi**: es celebren al voltant de Sant Jordi (abril) i commemoren la defensa d'Alcoi davant al-Azraq (1276). Trilogia Festera (22, 23 i 24 d'abril): entrades, actes de Sant Jordi i dia de la pólvora. A octubre es fa el **Mig Any** (vegeu §1b).
 - **Filà** = comparsa. **Filà Magenta** (bàndol moro; fundada maig de 1865 com a *Beduïns*, nom actual oficial el 1878; magenta pel color dels bombatxos). Emblema: mitja lluna groga amb estrella verda sobre fons magenta. Lema popular: «La Magenta la que més espenta». Seu: c/ Sant Doménech. Banda actual: **Primitiva Apolo d'Alcoi** (Instagram: instagram.com/primitivaalcoi). Abans, segons fonts de 2021, la Unió Musical de Beniarrés.
 - Vocabulari: *primer tro* (president), *alferes*, *capità*, *sargent*, *dianer*, *glorier/glorieret*, *esquadra*, *boato*, *entrada/entradeta*, *diana*, *arrancà*, *font redona*, *Mig Any*, *assemblea*, *festers*, *cavallers*.
 - Dades històriques vénen de fonts comunitàries: **no inventes dades**; si falta un nom, data o hora, pregunta-ho o deixa el camp buit.
+
+## 1b. El Mig Any: com es viu (context après)
+Informació donada per la filà; úsala com a punt de partida i **confirma-la** si hi ha dubte. Casos de referència: `casos/20261019-horaris mig any.json`, `casos/2026102*`.
+- **Quan**: un dissabte d'octubre (2026: dissabte 24). Cada filà publica el seu horari intern, i l'organització un programa general per a totes («Programa d'actes»).
+- **Diana**: a mig any **no se sol fer diana** (només la del matí del dia de l'entrada). El 2026 va ser una excepció: **diana extraordinària pel 750 aniversari del patronatge de Sant Jordi**. Missa del Fester a Sant Jordi, Plaça d'Espanya (res de l'Avemaria, hissada de l'ensenya pel Sant Jordiet a l'ajuntament, *Himne de la Festa*) i diana per ordre d'antiguitat. Els festers van poder vestir el **tratge oficial** (disseny oficial de cada filà).
+- **Aniversari**: el 750 aniversari del patronatge és de **2026**; es va celebrar a les festes d'abril de 2026 i al Mig Any 2026, **però no es farà a les festes de 2027**. No hi facis referència en peces de 2027.
+- **Esquadra del mig**: la filà ostenta el càrrec **d'esquadra del mig** durant el cicle 2026-2027, fins a les festes. El Mig Any 2026 va ser el seu primer acte al carrer com a tal. Escriu «enguany ostentem el càrrec d'esquadra del mig» o «som l'esquadra del mig», no «hem tingut esquadra del mig». Té una **heràldica pròpia**, gravada a la **cullera commemorativa** del Mig Any (cullera de fusta amb «Magenta» i l'heràldica, lliurada amb l'olla).
+- **Dinar**: es dina **olleta** (olla). Les esquadres amb càrrec, com l'esquadra del mig, **dinen a la glorieta**; la resta de la filà dina a la seua filà (el 2026, **als Creuats**, perquè la seu de la Magenta encara estava en obres, i cal traure ticket a l'App).
+- **Concurs d'olleta** (Parc de la Glorieta): lliurament d'ingredients a partir de les 8.30; plat concursant entre les 13.30 i les 13.40; premi a les 14.00. Cuina una colla xicoteta, no tota la filà. El 2026 el va guanyar la **Filà Maseros**; la Magenta no va guanyar però va fer una olla deliciosa. No ho oblides en les peces.
+- **Nit**: **entradetes**, desfilada informal pel centre històric; és el **final de la jornada**, no el dinar. El programa permet formar amb disseny oficial **o de paisà**, però **no esquadres amb vestimenta mixta**. El 2026 la Magenta va formar **només de paisà**: hi havia festers amb el tratge, però no els suficients per a una esquadra i, per la imatge de la filà, es va decidir no formar-ne.
+- **Llocs**: Creuats, Cafeteria Blau (darrere dels Verds), Bar Mamella, Parc de la Glorieta, Font Redona (eixida de l'entradeta de la Magenta, 20.55), Tot Mentira, **Cercle Industrial** (als horaris apareix com «Círcol»: és un error), Ajuntament.
+- **Ordre de la jornada Magenta 2026**: 8.00 Creuats (café, herbero, dolcets) → 9.00 dianers de l'Arrancà (Cafeteria Blau) → 10.00 dianers del Carbonato (Bar Mamella) → arrancà, Bambú, País Valencià, Partidor, final → carrer Sant Jordi i Carbonato → 14.00 concurs d'olletes → 14.30 dinar → 20.55 entradeta des de la Font Redona.
+- **Fonts**: `ca.750sanjorge.org` (programa del 750 aniversari).
+
+## 1c. Peces del Mig Any: fluxos i criteris (aprés al Mig Any 2026)
+- **Carrusel d'acte**: `carrusel-portada` (foto 1) + `carrusel-interior` per foto + `post-anunci-titol` de tancament. Numera tot «02 / 0N» **comptant la portada**; si afegeixes tancament, renumera les interiors. Noms: `casos/AAAAMMDD-carrusel-<acte>-NN.json` i `out/…png`; la data és la de l'acte, no la de la peça.
+- **Peus de foto**: només el que sàpigues (acte, lloc). No inventes noms. Pregunta quina foto és quin acte si no ho saps.
+- **Descripcions**: una versió **Facebook** (llarga, càlida, amb enllaços) i una **Instagram** (curta, fresca, amb un parell d'emojis i hashtags: #FilàMagenta #MigAny #Alcoi). Agraeix als cuiners i a la filà que ens va acollir; no diguis «gràcies a tots» pels cuiners (és una colla xicoteta). A IG es menciona la filà amb el seu usuari (Creuats: `@fila.cruzados`).
+- **Crònica** (ODT, estil de les publicacions, `out/AAAAMMDD-cronica-<acte>.odt`): **atemporal**, pensada per a llegir-se d'ací 100 anys. Sense xarxes socials ni usuaris, sense «enguany/aquest any/ja només queda…». Data completa, context (què és la filà, el Mig Any) i horaris com a «horari previst» si no estàs segur que es complís. Pots esplaiar-te més que a les xarxes i incloure l'horari de la filà i el general. Genera l'ODT directament (zip amb `content.xml`, `styles.xml`, `Pictures/`); al meu entorn el LibreOffice no carregava fitxers i no vaig poder verificar-lo visualment: comprova'l abans de donar-lo per bo.
+- **Estil d'escriptura**: normativa de l'AVL (§5). Evita floritures no sustentades («un dels punts més emotius…»).
 
 ## 2. Identitat visual (resum) — disseny «Paper i fil»
 - Clar, pla i net, però amb tacte físic: **paper de lli** amb gra, **doble filet daurat amb cordó de passamaneria** i estrelles de quatre puntes, majúscules espaiades, numeració, molt d'aire. Una **paraula en cursiva d'accent** al titular: `{{Any}}`.
@@ -61,7 +81,7 @@ Requisits: Python 3 + Pillow, Inkscape CLI, fonts (`python3 tools/render.py --in
 **Vídeo d'activitat**: edita el vídeo en vertical 1080×1920, sobreposa `video-titol` (PNG amb alfa) els primers 2-3 s i `video-lower-third` (1920×1080) si apareix algú identificat; tanca amb `story-anunci`.
 
 ## 5. Redacció
-- Català (valencià). Accents i apòstrofs correctes. Tractament de «nosaltres» («Des de la Filà Magenta donem…»).
+- Català (valencià), **normativa de l'AVL**: subjuntiu en -isca/-esca (llegisca, servisquen), formes valencianes (eixir, xicotet, conéixer, aquell, vam), «Cercle Industrial» (no «Círcol»). Accents i apòstrofs correctes. Tractament de «nosaltres» («Des de la Filà Magenta donem…»).
 - Titulars curts (≤ 8 paraules). **Negreta només per a noms propis i dades clau.**
 - Dates: «divendres 18 de setembre», hores «17:30 h» (en story, «17:30»).
 - Cap valor de dades inventat. Cap faltes. «Magenta» sempre amb majúscula; el nom oficial és «Filà Magenta».
