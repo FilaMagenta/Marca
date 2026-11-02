@@ -2,15 +2,15 @@
   <title>Post · Dol</title>
   <defs>
     <filter id="ombra" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#3A1427" flood-opacity=".22"/></filter>
-  <clipPath id="ov"><ellipse cx="540" cy="450" rx="205" ry="270"/></clipPath></defs>
+  <clipPath id="ov"><ellipse cx="540" cy="480" rx="205" ry="270"/></clipPath></defs>
 <image id="fons" x="0" y="0" width="1080" height="1350" preserveAspectRatio="xMidYMid slice" href="../assets/fons/dol-post.jpg"/>
   <g id="marc"><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#A8A29E" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1234" fill="none" stroke="#A8A29E" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#A8A29E"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#A8A29E"/><path d="M58,1283L60.0,1290.0L67,1292L60.0,1294.0L58,1301L56.0,1294.0L49,1292L56.0,1290.0Z" fill="#A8A29E"/><path d="M1022,1283L1024.0,1290.0L1031,1292L1024.0,1294.0L1022,1301L1020.0,1294.0L1013,1292L1020.0,1290.0Z" fill="#A8A29E"/></g>
-  <g id="llac" transform="translate(540,106) scale(0.6)" fill="none" stroke="#141012" stroke-width="13" stroke-linejoin="round"><path d="M0,-48 C-36,-48 -32,-6 -2,20 L24,68"/><path d="M0,-48 C36,-48 32,-6 2,20 L-24,68"/></g>
-  <image id="field-foto" data-box="335 180 410 540" data-gray="1" x="335" y="180" width="410" height="540" preserveAspectRatio="xMidYMid slice" clip-path="url(#ov)" href=""/>
-  <ellipse cx="540" cy="450" rx="205" ry="270" fill="none" stroke="#A8A29E" stroke-width="4"/>
-  <ellipse cx="540" cy="450" rx="225" ry="290" fill="none" stroke="#A8A29E" stroke-width="1.5" opacity=".6"/>
-  <text id="field-etiqueta" data-box="240 780 600 40" data-size="26" data-min="18" data-font="lato" data-weight="700" data-fill="#6E686A" data-accent="#6E686A" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-keep="1" >In memoriam</text>
-  <text id="field-nom" data-box="120 830 840 110" data-size="80" data-min="36" data-font="playfair" data-weight="700" data-fill="#2F2B2D" data-accent="#6E686A" data-align="middle" data-lh="1.05" data-tracking="0" data-caps="0" data-valign="middle" >Nom Cognom</text>
-  <text id="field-text" data-box="170 960 740 110" data-size="36" data-min="24" data-font="playfair" data-weight="400" data-fill="#2F2B2D" data-accent="#6E686A" data-align="middle" data-lh="1.24" data-tracking="0" data-caps="0" data-valign="middle" data-if="text" ></text>
+  <g id="llac" transform="translate(540,112) scale(0.85)" fill="none" stroke="#141012" stroke-width="13" stroke-linejoin="round"><path d="M0,-48 C-36,-48 -32,-6 -2,20 L24,68"/><path d="M0,-48 C36,-48 32,-6 2,20 L-24,68"/></g>
+  <image id="field-foto" data-box="335 210 410 540" data-gray="1" x="335" y="210" width="410" height="540" preserveAspectRatio="xMidYMid slice" clip-path="url(#ov)" href=""/>
+  <ellipse cx="540" cy="480" rx="205" ry="270" fill="none" stroke="#A8A29E" stroke-width="4"/>
+  <ellipse cx="540" cy="480" rx="225" ry="290" fill="none" stroke="#A8A29E" stroke-width="1.5" opacity=".6"/>
+  <text id="field-etiqueta" data-box="240 810 600 40" data-size="26" data-min="18" data-font="lato" data-weight="700" data-fill="#6E686A" data-accent="#6E686A" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-keep="1" >In memoriam</text>
+  <text id="field-nom" data-box="120 860 840 110" data-size="80" data-min="36" data-font="playfair" data-weight="700" data-fill="#2F2B2D" data-accent="#6E686A" data-align="middle" data-lh="1.05" data-tracking="0" data-caps="0" data-valign="middle" >Nom Cognom</text>
+  <text id="field-text" data-box="170 990 740 110" data-size="36" data-min="24" data-font="playfair" data-weight="400" data-fill="#2F2B2D" data-accent="#6E686A" data-align="middle" data-lh="1.24" data-tracking="0" data-caps="0" data-valign="middle" data-if="text" ></text>
   <text id="field-peu_marca" data-box="140 1200 800 34" data-size="22" data-min="16" data-font="lato" data-weight="700" data-fill="#8A8587" data-accent="#6E686A" data-align="middle" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-keep="1" >Filà Magenta · Alcoi · Des de 1865</text>
 </svg>

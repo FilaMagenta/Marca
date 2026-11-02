@@ -241,7 +241,7 @@ def persona_story(dol):
     label = "In memoriam" if dol else "Enhorabona"
     body = f"""{bgimg(th, S_W, S_H)}
   {frame(S_W, S_H, th)}
-  {llac(540, 130, 1.25) if dol else ''}
+  {llac(540, 140, 1.6) if dol else ''}
   {eyebrow('etiqueta', 540, 275, 800, label, size=28, th=th)}
   {photo('foto', (200, 350, 680, 650), clip='arc', gray=(1 if dol else 0))}
   <path d="{arch}" fill="none" stroke="{fil}" stroke-width="5"/>
@@ -346,16 +346,16 @@ save("post-foto", svg(PW, PH, body, "Post · Foto amb titular"),
 def persona_post(dol):
     th = "dol" if dol else "clar"
     T = THEMES[th]; fil = T["line"]
-    ex = '<clipPath id="ov"><ellipse cx="540" cy="450" rx="205" ry="270"/></clipPath>'
+    ex = '<clipPath id="ov"><ellipse cx="540" cy="480" rx="205" ry="270"/></clipPath>'
     body = f"""{bgimg(th, PW, PH)}
   {frame(PW, PH, th)}
-  {llac(540, 106, .6) if dol else ''}
-  {photo('foto', (335, 180, 410, 540), clip='ov', gray=(1 if dol else 0))}
-  <ellipse cx="540" cy="450" rx="205" ry="270" fill="none" stroke="{fil}" stroke-width="4"/>
-  <ellipse cx="540" cy="450" rx="225" ry="290" fill="none" stroke="{fil}" stroke-width="1.5" opacity=".6"/>
-  {eyebrow('etiqueta', 540, 780, 600, 'In memoriam' if dol else 'Enhorabona', size=26, th=th)}
-  {text('nom', (120, 830, 840, 110), 80, th=th, weight=700, fill=T['title'], lh=1.05, sample='Nom Cognom')}
-  {text('text', (170, 960, 740, 110), 36, th=th, weight=400, lh=1.24, sample='', cond='text')}
+  {llac(540, 112, .85) if dol else ''}
+  {photo('foto', (335, 210, 410, 540), clip='ov', gray=(1 if dol else 0))}
+  <ellipse cx="540" cy="480" rx="205" ry="270" fill="none" stroke="{fil}" stroke-width="4"/>
+  <ellipse cx="540" cy="480" rx="225" ry="290" fill="none" stroke="{fil}" stroke-width="1.5" opacity=".6"/>
+  {eyebrow('etiqueta', 540, 810, 600, 'In memoriam' if dol else 'Enhorabona', size=26, th=th)}
+  {text('nom', (120, 860, 840, 110), 80, th=th, weight=700, fill=T['title'], lh=1.05, sample='Nom Cognom')}
+  {text('text', (170, 990, 740, 110), 36, th=th, weight=400, lh=1.24, sample='', cond='text')}
   {footer(540, 1200, th)}"""
     return svg(PW, PH, body, "Post · " + ("Dol" if dol else "Persona"), ex)
 
