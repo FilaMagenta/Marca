@@ -115,14 +115,11 @@ def frame(w, h, th="clar", m=40, gap=18, stars=True):
 
 
 def llac(cx, cy, k=1.0):
-    """Llaç negre de dol: llaç en gota amb el buit al mig i dues cues creuades. Centrat a (cx,cy)."""
-    loop = ("M0,26 C-46,-12 -38,-56 0,-56 C38,-56 46,-12 0,26 Z "
-            "M0,10 C-27,-14 -23,-40 0,-40 C23,-40 27,-14 0,10 Z")
-    tails = ("M-5,18 L-34,70 L-17,66 L-10,80 L12,26 Z "
-             "M5,18 L34,70 L17,66 L10,80 L-12,26 Z")
-    return (f'<g id="llac" transform="translate({cx},{cy}) scale({k})">'
-            f'<path d="{tails}" fill="#141012" stroke="#141012" stroke-width="2" stroke-linejoin="round"/>'
-            f'<path d="{loop}" fill="#141012" fill-rule="evenodd" stroke="#141012" stroke-width="2" stroke-linejoin="round"/></g>')
+    """Llaç negre de dol, simple: una sola cinta que fa un llaç i es creua en dues cues. Centrat a (cx,cy)."""
+    a = "M0,-48 C-36,-48 -32,-6 -2,20 L24,68"
+    b = "M0,-48 C36,-48 32,-6 2,20 L-24,68"
+    return (f'<g id="llac" transform="translate({cx},{cy}) scale({k})" fill="none" stroke="#141012" stroke-width="13" stroke-linejoin="round">'
+            f'<path d="{a}"/><path d="{b}"/></g>')
 
 
 def footer(cx, y, th="clar", cond=None):
