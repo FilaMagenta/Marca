@@ -15,9 +15,9 @@ Per a generar fons coherents amb els existents (`assets/fons/`). Sempre: **sense
 - **Dol**: base + «more muted and darker, desaturated wine and charcoal, gold trim subdued and matte, candle-like soft glow, solemn, no bright highlights».
 - **Mig Any / festa**: base + «warmer golden highlights, festive but refined».
 - **Fons clar (ús diürn)**: «warm off-white (#F5F5F5) linen with fine gold and magenta embroidered border, minimal».
-- **Textura de vellut sola**: «macro photo of wine-magenta velvet, subtle pile, no folds, seamless, even lighting».
+- **Textura de paper/lli**: «macro photo of cream linen paper, fine weave, soft warm light, no folds, seamless, flat». (Els fons habituals es generen amb `tools/make_fons_clars.py`.)
 
 ## Després de generar
 1. Redimensiona a 1080×1920 / 1080×1350 (mín. 1080 d'amplada; millor 2×).
 2. Guarda a `assets/fons/` i referencia'l des de `tools/build_templates.py` (`bg('nom.jpg', w, h)`).
-3. Comprova que el centre és prou fosc per a text blanc (contrast ≥ 7:1) i que els ornaments no entren a les zones segures.
+3. Comprova que el centre és prou net per al text (contrast ≥ 7:1) i que els ornaments no entren a les zones segures.

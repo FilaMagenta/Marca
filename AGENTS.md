@@ -9,20 +9,19 @@ Manual visual per a persones: `manual/index.html`. Tokens: `tokens/brand.json`.
 - Vocabulari: *primer tro* (president), *alferes*, *capità*, *sargent*, *dianer*, *glorier/glorieret*, *esquadra*, *boato*, *entrada/entradeta*, *diana*, *arrancà*, *font redona*, *Mig Any*, *assemblea*, *festers*, *cavallers*.
 - Dades històriques vénen de fonts comunitàries: **no inventes dades**; si falta un nom, data o hora, pregunta-ho o deixa el camp buit.
 
-## 2. Identitat visual (resum) — disseny «Paper i fil» (branca `redisseny-modern`)
-Nou llenguatge: **paper crema pla i clar** amb tacte de teixit (lli + gra), doble filet daurat amb cordó de passamaneria i estrelles, majúscules espaiades, i **una paraula en cursiva d'accent** (`{{Any}}`). Variants de fons: `clar` (per defecte), `magenta` pla (anunci destacat, comunicat) i `dol` (gris sobri). El vellut i les cortines de la versió anterior ja no s'usen. Tokens nous: Paper `#F3EBDD`, Tinta `#3A1427`, Magenta Viu `#A91F5C`, Daurat de Text `#B08628`, Magenta Pla `#8A1F4B`. Fons: `python3 tools/make_fons_clars.py`.
-Marcat nou: `{{paraula}}` = cursiva amb color d'accent. Horaris: `files` accepta `[acte, hora, detall]`, camps nous `data` i `subtitol`. Plantilla nova: `story-anunci-magenta`.
-**Text d'aquest bloc anterior (versió vellut, encara vàlid per colors base):**
-- Clàssic i solemne, textures de **vellut, cortinatges i passamaneria daurada**, formes orgàniques; toc modern: etiquetes en majúscules amb tracking, filets daurats fins, numeració i composicions netes.
-- Colors: Magenta Històric `#7D1941`, Daurat Enriquit `#C69232`, Verd Bosc `#576437`, Blanco Roto `#F5F5F5`, Gris Obscur `#373C41`. Fons de vellut fosc ~`#2A0614`.
-- Tipus: **Playfair Display** (titulars, noms, frases) i **Lato** (dades, etiquetes, peus). Sobre fosc: titular **daurat** o blanc, text blanc roto. Mai text sobre fons magenta brillant amb gris.
-- Escut: `assets/escut.svg` (rectangular) o `assets/escut-circular.svg`. No deformar, no recolorar, no afegir ombres.
+## 2. Identitat visual (resum) — disseny «Paper i fil»
+- Clar, pla i net, però amb tacte físic: **paper de lli** amb gra, **doble filet daurat amb cordó de passamaneria** i estrelles de quatre puntes, majúscules espaiades, numeració, molt d'aire. Una **paraula en cursiva d'accent** al titular: `{{Any}}`.
+- Fons (`assets/fons/`, es regeneren amb `python3 tools/make_fons_clars.py`): `clar` (per defecte), `magenta` pla (avisos solemnes i comunicat) i `dol` (gris sobri, amb llaç negre `assets/llac-negre.svg`). Ja no hi ha vellut ni cortines.
+- Colors de marca: Magenta Històric `#7D1941`, Daurat Enriquit `#C69232`, Verd Bosc `#576437`, Blanco Roto `#F5F5F5`, Gris Obscur `#373C41`. Derivats: Paper `#F3EBDD`, Tinta `#3A1427` (cos), Magenta Viu `#A91F5C` (accent i hores), Daurat de Text `#B08628` (etiquetes), Magenta Pla `#8A1F4B` (fons).
+- Tipus: **Playfair Display** (titulars, noms, frases, detalls en cursiva) i **Lato** (etiquetes, hores, peus). Sobre paper: titular magenta, cos en tinta. Sobre magenta pla: titular i cos blanc roto, accent daurat clar. El daurat `#C69232` és per a filets, mai per a text.
+- Escut: `assets/escut.svg` (rectangular) o `assets/escut-circular.svg`. No deformar, no recolorar. El circular va com a segell sobre la vora d'una foto, sense anell daurat.
+- Peu de marca dels posts de text: «Filà Magenta · Alcoi · Des de 1865».
 
 ## 2b. Tria de plantilla (taula de decisió)
 | Petició | Plantilla | Camps |
 |---|---|---|
-| Horaris d'acte (entradeta, diana, Mig Any) | `story-horaris` | `titol`, `grups[]` |
-| Avís / renovació / novetat només amb text, story | `story-anunci` | `titol`, `text`, `dada` |
+| Horaris d'acte (entradeta, diana, Mig Any) | `story-horaris` | `data`, `titol`, `subtitol`, `grups[]` |
+| Avís / renovació / novetat només amb text, story | `story-anunci` (o `story-anunci-magenta` si és solemne) | `titol`, `text`, `dada` |
 | Una foto d'un acte, story | `story-foto` | `foto`, `titol`, `subtitol` |
 | Felicitar / nomenar algú, story | `story-persona` | `foto`, `nom`, `text`, `dates` |
 | **Mort d'algú**, story | `story-dol` | `foto`, `nom`, `dates`, `text` |
@@ -46,13 +45,13 @@ Marcat nou: `{{paraula}}` = cursiva amb color d'accent. Horaris: `files` accepta
    ```
 2. `python3 tools/render.py peça.json -o out/nom.png` (opcional `--scale 2`).
 3. Obri el PNG i passa la **checklist de §6**. Si el text no cap, acurça'l (l'script avisa amb ⚠), no baixes de la mida mínima.
-Marcat de text: `**negreta**` (noms propis), `[[daurat]]` (paraula clau), `\n` salt de línia. L'script ajusta la mida automàticament.
+Marcat de text: `**negreta**` (noms propis), `[[accent]]` (paraula clau amb color d'accent), `{{cursiva}}` (cursiva amb color d'accent), `\n` salt de línia. L'script ajusta la mida automàticament.
 `foto_focus` = punt d'interès (x,y entre 0 i 1) per al retall; apunta-lo a la cara.
 Requisits: Python 3 + Pillow, Inkscape CLI, fonts (`python3 tools/render.py --install-fonts`).
 
 ## 4. Receptes
 **Ha mort X (+ foto)** → `story-dol` (story) i/o `post-dol`. Foto en B/N automàtica. Text sobri: *«La Filà Magenta lamenta la mort de [Nom] i acompanya la família i els amics en aquest moment.»* Sense emojis, sense exclamacions, sense hashtags festius. Si no hi ha foto: `story-anunci` amb `titol` «Descanse en pau» i `text` amb el nom (no inventes foto).
-**Horari de [acte]** → `story-horaris`. `titol`: «Horaris\nMig Any». Un `grup` per cada acte (`titol`) amb `files` `[etiqueta, hora]`. Hores en format `9:35` / `20:55`. Màx. 3 grups / 8 files; si n'hi ha més, parteix en dues stories. Nom del fitxer: `AAAAMMDD-horaris <acte>.png`.
+**Horari de [acte]** → `story-horaris`. `data`: «Dissabte · 24 d'octubre de 2026», `titol`: «Mig {{Any}}», `subtitol`: «Horaris de la jornada». Un `grup` per cada acte (`titol`, es dibuixa com a pestanya) amb `files` `[acte, hora, detall opcional]`. Hores en format `9:35` / `20:55`. Màx. 3 grups / 8 files; si n'hi ha més, parteix en dues stories. Nom del fitxer: `AAAAMMDD-horaris <acte>.png`.
 **Felicitació / nou càrrec** → `post-persona` o `post-anunci` (frase tipus: «Des de la **Filà Magenta** donem l'enhorabona a **[Nom]** pel seu càrrec de **[càrrec]**»).
 **Renovació amb la banda / contracte** → `post-anunci-titol` (`titol` «Renovem amb la banda», `text` amb la informació) o `story-anunci`.
 **Comunicat oficial** → `post-comunicat` com a primera imatge; el text íntegre al peu de la publicació.
