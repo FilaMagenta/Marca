@@ -7,7 +7,7 @@
   <g id="marc"><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#C69232" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1234" fill="none" stroke="#C69232" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#C69232"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#C69232"/><path d="M58,1283L60.0,1290.0L67,1292L60.0,1294.0L58,1301L56.0,1294.0L49,1292L56.0,1290.0Z" fill="#C69232"/><path d="M1022,1283L1024.0,1290.0L1031,1292L1024.0,1294.0L1022,1301L1020.0,1294.0L1013,1292L1020.0,1290.0Z" fill="#C69232"/></g>
   <rect x="76" y="226" width="928" height="708" fill="none" stroke="#C69232" stroke-width="2"/>
   <image id="field-foto" data-box="90 240 900 680" data-gray="0" x="90" y="240" width="900" height="680" preserveAspectRatio="xMidYMid slice" href=""/>
-  <g id="escut-circular" transform="translate(50,100) scale(0.1953)">
+  <g id="escut-circular" transform="translate(96,100) scale(0.1758)">
   
   <path
      d="m 256.0055,256.00034 m -255.99998225,0 a 256,254.33051 0 1 1 511.98896225,0 256,254.33051 0 1 1 -511.98896225,0"
@@ -53,6 +53,6 @@
      id="ia-path7" />
 </g>
   <text id="field-peu" data-box="80 980 920 170" data-size="42" data-min="24" data-font="playfair" data-weight="400" data-fill="#3A1427" data-accent="#A91F5C" data-align="start" data-lh="1.24" data-tracking="0" data-caps="0" data-valign="top" data-if="peu" ></text>
-  <g data-if="pagina"><rect x="870" y="110" width="160" height="56" rx="28" fill="none" stroke="#C69232" stroke-width="2"/></g>
-  <text id="field-pagina" data-box="870 110 160 56" data-size="26" data-min="20" data-font="lato" data-weight="700" data-fill="#B08628" data-accent="#A91F5C" data-align="middle" data-lh="1.14" data-tracking="3" data-caps="0" data-valign="middle" data-if="pagina" >02 / 08</text>
+  <g data-if="pagina"><rect x="826" y="107" width="158" height="56" rx="28" fill="none" stroke="#C69232" stroke-width="2"/></g>
+  <text id="field-pagina" data-box="826 107 158 56" data-size="26" data-min="20" data-font="lato" data-weight="700" data-fill="#B08628" data-accent="#A91F5C" data-align="middle" data-lh="1.14" data-tracking="3" data-caps="0" data-valign="middle" data-if="pagina" >02 / 08</text>
 </svg>

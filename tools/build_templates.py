@@ -114,10 +114,21 @@ def frame(w, h, th="clar", m=40, gap=18, stars=True):
     return f'<g id="marc">{o}</g>'
 
 
+def llac(cx, cy, k=1.0):
+    """Llaç negre de dol: llaç en gota amb el buit al mig i dues cues creuades. Centrat a (cx,cy)."""
+    loop = ("M0,26 C-46,-12 -38,-56 0,-56 C38,-56 46,-12 0,26 Z "
+            "M0,10 C-27,-14 -23,-40 0,-40 C23,-40 27,-14 0,10 Z")
+    tails = ("M-5,18 L-34,70 L-17,66 L-10,80 L12,26 Z "
+             "M5,18 L34,70 L17,66 L10,80 L-12,26 Z")
+    return (f'<g id="llac" transform="translate({cx},{cy}) scale({k})">'
+            f'<path d="{tails}" fill="#141012" stroke="#141012" stroke-width="2" stroke-linejoin="round"/>'
+            f'<path d="{loop}" fill="#141012" fill-rule="evenodd" stroke="#141012" stroke-width="2" stroke-linejoin="round"/></g>')
+
+
 def footer(cx, y, th="clar", cond=None):
     c = THEMES[th]
     return text("peu_marca", (cx - 400, y, 800, 34), 22, th=th, font="lato", weight=700, fill=c["label"], tracking=6, caps=True,
-                minsize=16, sample="Filà Magenta · Alcoi · Any 1865", keep=True)
+                minsize=16, sample="Filà Magenta · Alcoi · Des de 1865", keep=True)
 
 
 def bgimg(th, w, h):
@@ -137,10 +148,9 @@ def svg(w, h, body, title, extra_defs=""):
 
 
 def seal(x, y, d, tag, th="clar"):
-    """Escut circular com un segell de cera/botó: anell de paper + filet daurat."""
+    """Escut circular com un segell: anell de paper amb ombra (sense filet daurat, per no competir amb el vora de la foto)."""
     r = d / 2
     return (f'<circle cx="{x+r}" cy="{y+r}" r="{r+10}" fill="{PAPER}" filter="url(#ombra)"/>'
-            f'<circle cx="{x+r}" cy="{y+r}" r="{r+10}" fill="none" stroke="{GOLD}" stroke-width="2.5"/>'
             + escut_circ(x, y, d, tag))
 
 
@@ -234,6 +244,7 @@ def persona_story(dol):
     label = "In memoriam" if dol else "Enhorabona"
     body = f"""{bgimg(th, S_W, S_H)}
   {frame(S_W, S_H, th)}
+  {llac(540, 130, 1.25) if dol else ''}
   {eyebrow('etiqueta', 540, 275, 800, label, size=28, th=th)}
   {photo('foto', (200, 350, 680, 650), clip='arc', gray=(1 if dol else 0))}
   <path d="{arch}" fill="none" stroke="{fil}" stroke-width="5"/>
@@ -341,6 +352,7 @@ def persona_post(dol):
     ex = '<clipPath id="ov"><ellipse cx="540" cy="450" rx="205" ry="270"/></clipPath>'
     body = f"""{bgimg(th, PW, PH)}
   {frame(PW, PH, th)}
+  {llac(540, 106, .6) if dol else ''}
   {photo('foto', (335, 180, 410, 540), clip='ov', gray=(1 if dol else 0))}
   <ellipse cx="540" cy="450" rx="205" ry="270" fill="none" stroke="{fil}" stroke-width="4"/>
   <ellipse cx="540" cy="450" rx="225" ry="290" fill="none" stroke="{fil}" stroke-width="1.5" opacity=".6"/>
@@ -365,7 +377,7 @@ body = f"""{bgimg('clar', PW, PH)}
   {frame(PW, PH)}
   <rect x="86" y="86" width="908" height="700" fill="none" stroke="{GOLD}" stroke-width="2"/>
   {photo('foto', (100, 100, 880, 672))}
-  {seal(110, 110, 120, 'cp')}
+  {seal(150, 150, 104, 'cp')}
   {text('titol1', (80, 810, 920, 120), 100, weight=700, fill=MAG, caps=True, align='start', valign='bottom', lh=1, sample='TITOL')}
   {text('titol2', (80, 925, 920, 110), 100, weight=700, caps=True, fill=ACC, align='start', valign='bottom', lh=1, sample='DESTACAT', cond='titol2', extra='font-style="italic"')}
   {text('subtitol', (84, 1060, 700, 120), 40, weight=400, align='start', valign='top', lh=1.22, sample='Subtítol breu')}
@@ -380,7 +392,7 @@ save("carrusel-portada", svg(PW, PH, body, "Carrusel · Portada"),
 
 body = f"""<rect width="{PW}" height="{PH}" fill="{PAPER}"/>
   {photo('foto', (0, 0, PW, PH))}
-  <g data-if="peu">{card(50, 1150, 700, 150)}<rect x="62" y="1162" width="676" height="126" fill="none" stroke="{GOLD}" stroke-width="1.5"/></g>
+  <g data-if="peu">{card(50, 1150, 700, 150, 1)}<rect x="62" y="1162" width="676" height="126" fill="none" stroke="{GOLD}" stroke-width="1.5"/></g>
   {escut_circ(50, 50, 96, 'ci')}
   {text('peu', (80, 1162, 640, 126), 34, fill=INK, align='start', valign='middle', lh=1.22, sample='', cond='peu')}
   <g data-if="pagina"><rect x="870" y="1236" width="160" height="56" rx="28" fill="{PAPER}" stroke="{GOLD}" stroke-width="2"/></g>
@@ -394,10 +406,10 @@ body = f"""{bgimg('clar', PW, PH)}
   {frame(PW, PH)}
   <rect x="76" y="226" width="928" height="708" fill="none" stroke="{GOLD}" stroke-width="2"/>
   {photo('foto', (90, 240, 900, 680))}
-  {escut_circ(50, 100, 100, 'ia')}
+  {escut_circ(96, 100, 90, 'ia')}
   {text('peu', (80, 980, 920, 170), 42, fill=INK, align='start', valign='top', lh=1.24, sample='', cond='peu')}
-  <g data-if="pagina"><rect x="870" y="110" width="160" height="56" rx="28" fill="none" stroke="{GOLD}" stroke-width="2"/></g>
-  {text('pagina', (870, 110, 160, 56), 26, font='lato', weight=700, fill=GOLD_T, tracking=3, minsize=20, sample='02 / 08', cond='pagina')}"""
+  <g data-if="pagina"><rect x="826" y="107" width="158" height="56" rx="28" fill="none" stroke="{GOLD}" stroke-width="2"/></g>
+  {text('pagina', (826, 107, 158, 56), 26, font='lato', weight=700, fill=GOLD_T, tracking=3, minsize=20, sample='02 / 08', cond='pagina')}"""
 save("carrusel-interior-apaisat", svg(PW, PH, body, "Carrusel · Foto interior apaisada"),
      "Foto apaïsada (4:3) emmarcada sobre paper. El llenç segueix sent 4:5 perquè Instagram fixa la proporció del carrusel amb la primera imatge.",
      ["foto horitzontal d'un carrusel (grups, files)"],

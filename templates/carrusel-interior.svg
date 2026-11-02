@@ -5,7 +5,7 @@
   </defs>
 <rect width="1080" height="1350" fill="#F3EBDD"/>
   <image id="field-foto" data-box="0 0 1080 1350" data-gray="0" x="0" y="0" width="1080" height="1350" preserveAspectRatio="xMidYMid slice" href=""/>
-  <g data-if="peu"><rect x="50" y="1158" width="700" height="150" fill="#3A1427" opacity="0.070"/><rect x="47" y="1155" width="706" height="156" fill="#3A1427" opacity="0.052"/><rect x="44" y="1152" width="712" height="162" fill="#3A1427" opacity="0.034"/><rect x="41" y="1149" width="718" height="168" fill="#3A1427" opacity="0.016"/><rect x="50" y="1150" width="700" height="150" fill="#F3EBDD" opacity="0.96"/><rect x="62" y="1162" width="676" height="126" fill="none" stroke="#C69232" stroke-width="1.5"/></g>
+  <g data-if="peu"><rect x="50" y="1158" width="700" height="150" fill="#3A1427" opacity="0.070"/><rect x="47" y="1155" width="706" height="156" fill="#3A1427" opacity="0.052"/><rect x="44" y="1152" width="712" height="162" fill="#3A1427" opacity="0.034"/><rect x="41" y="1149" width="718" height="168" fill="#3A1427" opacity="0.016"/><rect x="50" y="1150" width="700" height="150" fill="#F3EBDD" opacity="1"/><rect x="62" y="1162" width="676" height="126" fill="none" stroke="#C69232" stroke-width="1.5"/></g>
   <g id="escut-circular" transform="translate(50,50) scale(0.1875)">
   
   <path

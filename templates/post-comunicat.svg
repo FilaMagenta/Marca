@@ -25,5 +25,5 @@
 OFICIAL</text>
   <path d="M370.0,975H515.8M564.2,975H710.0" stroke="#D9B25F" stroke-width="2"/><path d="M540,964L542.4,972.6L551,975L542.4,977.4L540,986L537.6,977.4L529,975L537.6,972.6Z" fill="#D9B25F"/>
   <text id="field-subtitol" data-box="140 1005 800 50" data-size="28" data-min="24" data-font="lato" data-weight="700" data-fill="#E8C77D" data-accent="#E8C77D" data-align="middle" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-if="subtitol" ></text>
-  <text id="field-peu_marca" data-box="140 1200 800 34" data-size="22" data-min="16" data-font="lato" data-weight="700" data-fill="#E8C77D" data-accent="#E8C77D" data-align="middle" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-keep="1" >Filà Magenta · Alcoi · Any 1865</text>
+  <text id="field-peu_marca" data-box="140 1200 800 34" data-size="22" data-min="16" data-font="lato" data-weight="700" data-fill="#E8C77D" data-accent="#E8C77D" data-align="middle" data-lh="1.14" data-tracking="6" data-caps="1" data-valign="middle" data-keep="1" >Filà Magenta · Alcoi · Des de 1865</text>
 </svg>

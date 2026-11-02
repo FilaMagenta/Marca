@@ -7,7 +7,7 @@
   <g id="marc"><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#C69232" stroke-width="4" opacity=".95"/><rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#FFF6DC" stroke-width="2" stroke-dasharray="1.5 6" opacity=".55"/><rect x="58" y="58" width="964" height="1234" fill="none" stroke="#C69232" stroke-width="1.5" opacity=".7"/><path d="M58,49L60.0,56.0L67,58L60.0,60.0L58,67L56.0,60.0L49,58L56.0,56.0Z" fill="#C69232"/><path d="M1022,49L1024.0,56.0L1031,58L1024.0,60.0L1022,67L1020.0,60.0L1013,58L1020.0,56.0Z" fill="#C69232"/><path d="M58,1283L60.0,1290.0L67,1292L60.0,1294.0L58,1301L56.0,1294.0L49,1292L56.0,1290.0Z" fill="#C69232"/><path d="M1022,1283L1024.0,1290.0L1031,1292L1024.0,1294.0L1022,1301L1020.0,1294.0L1013,1292L1020.0,1290.0Z" fill="#C69232"/></g>
   <rect x="86" y="86" width="908" height="700" fill="none" stroke="#C69232" stroke-width="2"/>
   <image id="field-foto" data-box="100 100 880 672" data-gray="0" x="100" y="100" width="880" height="672" preserveAspectRatio="xMidYMid slice" href=""/>
-  <circle cx="170.0" cy="170.0" r="70.0" fill="#F3EBDD" filter="url(#ombra)"/><circle cx="170.0" cy="170.0" r="70.0" fill="none" stroke="#C69232" stroke-width="2.5"/><g id="escut-circular" transform="translate(110,110) scale(0.2344)">
+  <circle cx="202.0" cy="202.0" r="62.0" fill="#F3EBDD" filter="url(#ombra)"/><g id="escut-circular" transform="translate(150,150) scale(0.2031)">
   
   <path
      d="m 256.0055,256.00034 m -255.99998225,0 a 256,254.33051 0 1 1 511.98896225,0 256,254.33051 0 1 1 -511.98896225,0"
