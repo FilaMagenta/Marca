@@ -1,0 +1,28 @@
+{
+  "nom": "Filà Magenta",
+  "lloc": "Alcoi",
+  "fundacio": 1865,
+  "idioma": "ca-valencià",
+  "colors": {
+    "magenta": {"hex": "#7D1941", "rol": "principal", "nom": "Magenta Històric"},
+    "daurat": {"hex": "#C69232", "rol": "accent", "nom": "Daurat Enriquit"},
+    "verd": {"hex": "#576437", "rol": "contrast", "nom": "Verd Bosc"},
+    "blanc": {"hex": "#F5F5F5", "rol": "fons clar / text sobre fosc", "nom": "Blanco Roto"},
+    "gris": {"hex": "#373C41", "rol": "fons obscur / text sobre clar", "nom": "Gris Obscur"},
+    "vellut_fosc": {"hex": "#2A0614", "rol": "fons de vellut (derivat, no és de paleta)", "nom": "Vellut fosc"},
+    "escut": {"magenta": "#C81E82", "groc": "#F9EF5A", "verd": "#008A00", "negre": "#000000", "nota": "Només dins de l'escut. No usar com a colors de text o fons."}
+  },
+  "tipografies": {
+    "titol": {"familia": "Playfair Display", "pesos": [400, 700, 900], "us": "titulars, noms, càrrecs, cites"},
+    "text": {"familia": "Lato", "pesos": [400, 700, 900], "us": "dades pràctiques, peus, etiquetes, CTA"}
+  },
+  "formats": {
+    "story": {"w": 1080, "h": 1920, "zona_segura": {"dalt": 250, "baix": 340, "laterals": 70}},
+    "post": {"w": 1080, "h": 1350, "marge": 90, "relacio": "4:5 (mínim acceptat; la graella mostra 3:4 i retalla ~34 px per costat)"},
+    "video_vertical": {"w": 1080, "h": 1920},
+    "video_horitzontal": {"w": 1920, "h": 1080}
+  },
+  "mides_text": {
+    "titular": [100, 150], "subtitol": [48, 60], "cos": [40, 56], "etiqueta": [24, 30], "minim_story": 32
+  }
+}

@@ -1,0 +1,225 @@
+{
+ "story-horaris": {
+  "descripcio": "Horaris d'actes, diana, entradeta, arrancà, etc. Blocs de títol + files etiqueta/hora.",
+  "usar_per_a": [
+   "horaris d'una entradeta",
+   "horaris del Mig Any",
+   "programa d'un cap de setmana"
+  ],
+  "format": "story 1080×1920",
+  "camps": {
+   "titol": "Títol de la story (\\n per a salt de línia). Ex.: 'Horaris\\nMig Any'",
+   "grups": "[{'titol':'Diana Centenari','files':[['Arrancà','9:35'],['Carbonato','10:31']]}, ...] (màx. ~3 grups / 8 files)",
+   "nota": "(opc.) Línia curta al peu en Lato: 'Recorregut per Sant Nicolau'"
+  }
+ },
+ "story-anunci": {
+  "descripcio": "Anunci només de text sobre vellut amb escut: novetats, avisos, convocatòries, renovació de contractes.",
+  "usar_per_a": [
+   "hem renovat contracte amb la banda",
+   "convocatòria",
+   "avís",
+   "recordatori"
+  ],
+  "format": "story 1080×1920",
+  "camps": {
+   "etiqueta": "(opc.) Etiqueta tècnica en majúscules, per defecte 'Filà Magenta · Alcoi'",
+   "titol": "Frase principal (2-4 línies). **negreta** per a noms. [[daurat]] per a paraules clau.",
+   "text": "(opc.) Cos explicatiu",
+   "dada": "(opc.) Data/hora/lloc destacat en Lato"
+  }
+ },
+ "story-foto": {
+  "descripcio": "Una fotografia vertical (o retallada) a pantalla completa amb titular a sota. Ràpida, per a el dia a dia.",
+  "usar_per_a": [
+   "foto d'un acte",
+   "moment de l'entradeta",
+   "agraïment amb foto"
+  ],
+  "format": "story 1080×1920",
+  "camps": {
+   "foto": "Ruta a la fotografia",
+   "titol": "Titular (1-3 línies)",
+   "subtitol": "(opc.) Frase en Lato",
+   "etiqueta": "(opc.) Etiqueta en majúscules"
+  }
+ },
+ "story-persona": {
+  "descripcio": "Felicitació, nomenament o reconeixement a una persona amb la seua foto en finestra d'arc.",
+  "usar_per_a": [
+   "felicitar algú",
+   "nou càrrec",
+   "aniversari",
+   "anunci d'alferes/capità"
+  ],
+  "format": "story 1080×1920",
+  "camps": {
+   "foto": "Foto de la persona (preferiblement retrat; es retalla)",
+   "nom": "Nom i cognoms (2 línies màx.)",
+   "text": "(opc.) Motiu: 'per la seua alferecia 2027'",
+   "dates": "(opc.) Dada: 'Alferes 2027'",
+   "etiqueta": "(opc.) Per defecte 'Enhorabona'"
+  }
+ },
+ "story-dol": {
+  "descripcio": "Condol per defunció. Foto en blanc i negre, fons més fosc, to sobri (sense emojis ni exclamacions).",
+  "usar_per_a": [
+   "ha mort un company/a",
+   "condol",
+   "aniversari de la mort"
+  ],
+  "format": "story 1080×1920",
+  "camps": {
+   "foto": "Foto de la persona",
+   "nom": "Nom i cognoms",
+   "dates": "(opc.) '1948 — 2026'",
+   "text": "(opc.) Frase sobria: 'La Filà Magenta lamenta la seua pèrdua i acompanya la família'",
+   "etiqueta": "(opc.) Per defecte 'In memoriam'"
+  }
+ },
+ "post-anunci": {
+  "descripcio": "Anunci només de text dins el marc ornamental: felicitacions, avisos, renovacions.",
+  "usar_per_a": [
+   "felicitar algú amb text",
+   "avís",
+   "renovació de la banda"
+  ],
+  "format": "post 1080×1350 (4:5)",
+  "camps": {
+   "text": "Frase completa; **negreta** per a noms propis i [[daurat]] per a paraules clau",
+   "dada": "(opc.) Data o lloc en Lato (majúscules)"
+  }
+ },
+ "post-anunci-titol": {
+  "descripcio": "Anunci amb titular daurat i cos. Per a missatges amb més informació (assemblea, sopar, cartells).",
+  "usar_per_a": [
+   "convocatòria d'assemblea",
+   "novetat",
+   "tancament de carrusel (agraïment)"
+  ],
+  "format": "post 1080×1350 (4:5)",
+  "camps": {
+   "titol": "Titular daurat (1-2 línies)",
+   "text": "Cos",
+   "dada": "(opc.) Data/lloc"
+  }
+ },
+ "post-comunicat": {
+  "descripcio": "Portada simètrica i solemne per a comunicats oficials. El text complet va al peu de foto o a un 2n slide.",
+  "usar_per_a": [
+   "comunicat oficial",
+   "nota de premsa",
+   "decisió de junta"
+  ],
+  "format": "post 1080×1350 (4:5)",
+  "camps": {
+   "titol": "Per defecte 'COMUNICAT\\nOFICIAL'",
+   "subtitol": "(opc.) Data o assumpte en Lato"
+  }
+ },
+ "post-foto": {
+  "descripcio": "Una sola fotografia a sang amb titular. Per a anunci amb foto o resum d'un acte en una imatge.",
+  "usar_per_a": [
+   "anunci amb una foto",
+   "foto destacada d'un acte"
+  ],
+  "format": "post 1080×1350 (4:5)",
+  "camps": {
+   "foto": "Fotografia",
+   "titol": "Titular (1-2 línies)",
+   "subtitol": "(opc.) Línia en Lato"
+  }
+ },
+ "post-persona": {
+  "descripcio": "Felicitació o reconeixement a una persona, amb foto en finestra ovalada.",
+  "usar_per_a": [
+   "felicitar algú",
+   "nou càrrec",
+   "aniversari"
+  ],
+  "format": "post 1080×1350 (4:5)",
+  "camps": {
+   "foto": "Retrat",
+   "nom": "Nom i cognoms",
+   "text": "(opc.) Motiu breu",
+   "etiqueta": "(opc.) 'Enhorabona'"
+  }
+ },
+ "post-dol": {
+  "descripcio": "Condol per defunció (post). Foto en B/N, to sobri.",
+  "usar_per_a": [
+   "ha mort un company/a",
+   "condol"
+  ],
+  "format": "post 1080×1350 (4:5)",
+  "camps": {
+   "foto": "Retrat",
+   "nom": "Nom i cognoms",
+   "text": "(opc.) Frase sobria breu",
+   "etiqueta": "(opc.) 'In memoriam'"
+  }
+ },
+ "carrusel-portada": {
+  "descripcio": "Portada de carrusel: foto a la finestra de la cortina, titular blanc + daurat, subtítol i 'Continua →'.",
+  "usar_per_a": [
+   "portada de fotos d'un acte",
+   "resum d'una activitat"
+  ],
+  "format": "post 1080×1350 (4:5)",
+  "camps": {
+   "foto": "Foto de portada (zona visible: part superior dreta)",
+   "titol1": "Primera línia (blanc, majúscules)",
+   "titol2": "(opc.) Segona línia (daurat)",
+   "subtitol": "Frase curta. **negreta** per a noms",
+   "continua": "true/false: mostra 'Continua →' (per defecte true)"
+  }
+ },
+ "carrusel-interior": {
+  "descripcio": "Foto a sang per als slides interiors del carrusel, amb escut petit i comptador opcional.",
+  "usar_per_a": [
+   "resta de fotos del carrusel"
+  ],
+  "format": "post 1080×1350 (4:5)",
+  "camps": {
+   "foto": "Fotografia",
+   "peu": "(opc.) Peu breu",
+   "pagina": "(opc.) '02 / 08'"
+  }
+ },
+ "carrusel-interior-apaisat": {
+  "descripcio": "Foto apaïsada (4:3) sencera a tota l'amplada, centrada sobre vellut. El llenç segueix sent 4:5 perquè Instagram fixa la proporció del carrusel amb la primera imatge.",
+  "usar_per_a": [
+   "foto horitzontal d'un carrusel (grups, files)"
+  ],
+  "format": "post 1080×1350 (4:5)",
+  "camps": {
+   "foto": "Fotografia apaïsada",
+   "peu": "(opc.) Peu breu",
+   "pagina": "(opc.) '02 / 08'"
+  }
+ },
+ "video-lower-third": {
+  "descripcio": "Capa transparent 1920×1080 (PNG amb alfa) amb nom i càrrec sobre un vídeo.",
+  "usar_per_a": [
+   "identificar qui parla al vídeo"
+  ],
+  "format": "vídeo 1920×1080 alfa",
+  "camps": {
+   "nom": "Nom",
+   "carrec": "(opc.) Càrrec o rol"
+  }
+ },
+ "video-titol": {
+  "descripcio": "Capa transparent vertical 1080×1920 amb títol i escut per a obrir un vídeo/reel (respecta zones segures).",
+  "usar_per_a": [
+   "títol d'inici de reel",
+   "tancament amb data"
+  ],
+  "format": "vídeo 1080×1920 alfa",
+  "camps": {
+   "titol": "Títol",
+   "subtitol": "(opc.)",
+   "etiqueta": "(opc.)"
+  }
+ }
+}

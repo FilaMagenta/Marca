@@ -1,0 +1,81 @@
+# Filà Magenta · Guia per a agents d'IA (xarxes socials)
+
+Llig açò abans de generar res. Objectiu: convertir una petició curta («ha mort X, ací tens la foto», «horari de l'entradeta de dimarts») en una peça Meta correcta, sense preguntar el que ja ací està escrit.
+Manual visual per a persones: `manual/index.html`. Tokens: `tokens/brand.json`.
+
+## 1. Context en 30 segons
+- **Festes de Moros i Cristians d'Alcoi**: es celebren al voltant de Sant Jordi (abril) i commemoren la defensa d'Alcoi davant al-Azraq (1276). Trilogia Festera (22, 23 i 24 d'abril): entrades, actes de Sant Jordi i dia de la pólvora. A octubre es fa el **Mig Any** (diana, entradeta, assemblea…).
+- **Filà** = comparsa. **Filà Magenta** (bàndol moro; fundada maig de 1865 com a *Beduïns*, nom actual oficial el 1878; magenta pel color dels bombatxos). Emblema: mitja lluna groga amb estrella verda sobre fons magenta. Lema popular: «La Magenta la que més espenta». Seu: c/ Sant Doménech. Banda actual: **Primitiva Apolo d'Alcoi** (Instagram: instagram.com/primitivaalcoi). Abans, segons fonts de 2021, la Unió Musical de Beniarrés.
+- Vocabulari: *primer tro* (president), *alferes*, *capità*, *sargent*, *dianer*, *glorier/glorieret*, *esquadra*, *boato*, *entrada/entradeta*, *diana*, *arrancà*, *font redona*, *Mig Any*, *assemblea*, *festers*, *cavallers*.
+- Dades històriques vénen de fonts comunitàries: **no inventes dades**; si falta un nom, data o hora, pregunta-ho o deixa el camp buit.
+
+## 2. Identitat visual (resum)
+- Clàssic i solemne, textures de **vellut, cortinatges i passamaneria daurada**, formes orgàniques; toc modern: etiquetes en majúscules amb tracking, filets daurats fins, numeració i composicions netes.
+- Colors: Magenta Històric `#7D1941`, Daurat Enriquit `#C69232`, Verd Bosc `#576437`, Blanco Roto `#F5F5F5`, Gris Obscur `#373C41`. Fons de vellut fosc ~`#2A0614`.
+- Tipus: **Playfair Display** (titulars, noms, frases) i **Lato** (dades, etiquetes, peus). Sobre fosc: titular **daurat** o blanc, text blanc roto. Mai text sobre fons magenta brillant amb gris.
+- Escut: `assets/escut.svg` (rectangular) o `assets/escut-circular.svg`. No deformar, no recolorar, no afegir ombres.
+
+## 2b. Tria de plantilla (taula de decisió)
+| Petició | Plantilla | Camps |
+|---|---|---|
+| Horaris d'acte (entradeta, diana, Mig Any) | `story-horaris` | `titol`, `grups[]` |
+| Avís / renovació / novetat només amb text, story | `story-anunci` | `titol`, `text`, `dada` |
+| Una foto d'un acte, story | `story-foto` | `foto`, `titol`, `subtitol` |
+| Felicitar / nomenar algú, story | `story-persona` | `foto`, `nom`, `text`, `dates` |
+| **Mort d'algú**, story | `story-dol` | `foto`, `nom`, `dates`, `text` |
+| Felicitar algú, post | `post-persona` | `foto`, `nom`, `text` |
+| **Mort d'algú**, post | `post-dol` | `foto`, `nom`, `text` |
+| Anunci de text, post (renovació, felicitació) | `post-anunci` | `text`, `dada` |
+| Anunci amb titular i cos (assemblea, sopar) | `post-anunci-titol` | `titol`, `text`, `dada` |
+| Comunicat oficial | `post-comunicat` | `subtitol` (+ text complet al peu de foto) |
+| Anunci amb **una** foto | `post-foto` | `foto`, `titol`, `subtitol` |
+| Carrusel de fotos d'un acte | `carrusel-portada` + n × `carrusel-interior` (+ opc. `post-anunci-titol` de tancament) | vegeu §4 |
+| Vídeo: nom del que parla | `video-lower-third` | `nom`, `carrec` |
+| Vídeo: títol d'obertura | `video-titol` | `titol`, `subtitol` |
+`python3 tools/render.py --list` mostra tots els camps.
+
+## 3. Com generar (3 passos)
+1. Crea un JSON (copia `tools/examples/<plantilla>.json`):
+   ```json
+   {"plantilla": "story-dol", "foto": "/ruta/foto.jpg", "foto_focus": [0.5, 0.35],
+    "nom": "Nom Cognom", "dates": "1948 — 2026",
+    "text": "La Filà Magenta lamenta la seua pèrdua i acompanya la família i els amics."}
+   ```
+2. `python3 tools/render.py peça.json -o out/nom.png` (opcional `--scale 2`).
+3. Obri el PNG i passa la **checklist de §6**. Si el text no cap, acurça'l (l'script avisa amb ⚠), no baixes de la mida mínima.
+Marcat de text: `**negreta**` (noms propis), `[[daurat]]` (paraula clau), `\n` salt de línia. L'script ajusta la mida automàticament.
+`foto_focus` = punt d'interès (x,y entre 0 i 1) per al retall; apunta-lo a la cara.
+Requisits: Python 3 + Pillow, Inkscape CLI, fonts (`python3 tools/render.py --install-fonts`).
+
+## 4. Receptes
+**Ha mort X (+ foto)** → `story-dol` (story) i/o `post-dol`. Foto en B/N automàtica. Text sobri: *«La Filà Magenta lamenta la mort de [Nom] i acompanya la família i els amics en aquest moment.»* Sense emojis, sense exclamacions, sense hashtags festius. Si no hi ha foto: `story-anunci` amb `titol` «Descanse en pau» i `text` amb el nom (no inventes foto).
+**Horari de [acte]** → `story-horaris`. `titol`: «Horaris\nMig Any». Un `grup` per cada acte (`titol`) amb `files` `[etiqueta, hora]`. Hores en format `9:35` / `20:55`. Màx. 3 grups / 8 files; si n'hi ha més, parteix en dues stories. Nom del fitxer: `AAAAMMDD-horaris <acte>.png`.
+**Felicitació / nou càrrec** → `post-persona` o `post-anunci` (frase tipus: «Des de la **Filà Magenta** donem l'enhorabona a **[Nom]** pel seu càrrec de **[càrrec]**»).
+**Renovació amb la banda / contracte** → `post-anunci-titol` (`titol` «Renovem amb la banda», `text` amb la informació) o `story-anunci`.
+**Comunicat oficial** → `post-comunicat` com a primera imatge; el text íntegre al peu de la publicació.
+**Carrusel d'un acte**: 1) `carrusel-portada` (`titol1` blanc en majúscules, `titol2` daurat en majúscules, `subtitol`, `foto` la millor); 2) una `carrusel-interior` per foto (`pagina` «02 / 08»); 3) opc. `post-anunci-titol` de tancament. Màx. 10 imatges (límit de Meta). Ordre: cronològic, portada primer.
+**Concurs d'olla** → `story-olla` (olla daurada; titular segons classificació: campions / subcampions / tercers) amb `dada` «Enhorabona als cuiners». Cuina només una parella o tres persones, no tota la filà: no escrigues «gràcies a tots». Prepara-les abans del resultat (`casos/*-olla-*.json`) i usa només la que toque. La foto de l'equip, amb `story-foto`.
+**Una sola foto d'un acte** → `post-foto` (post) o `story-foto` (story).
+**Vídeo d'activitat**: edita el vídeo en vertical 1080×1920, sobreposa `video-titol` (PNG amb alfa) els primers 2-3 s i `video-lower-third` (1920×1080) si apareix algú identificat; tanca amb `story-anunci`.
+
+## 5. Redacció
+- Català (valencià). Accents i apòstrofs correctes. Tractament de «nosaltres» («Des de la Filà Magenta donem…»).
+- Titulars curts (≤ 8 paraules). **Negreta només per a noms propis i dades clau.**
+- Dates: «divendres 18 de setembre», hores «17:30 h» (en story, «17:30»).
+- Cap valor de dades inventat. Cap faltes. «Magenta» sempre amb majúscula; el nom oficial és «Filà Magenta».
+- Dol: sobri; ni punts d'admiració ni emojis. Celebració: càlid, però no col·loquial.
+
+## 6. Checklist abans d'entregar
+- [ ] La plantilla correspon al cas i al format (story 1080×1920, post/carrusel 1080×1350 = 4:5). Instagram només accepta pujar de 4:5 a 1,91:1 (3:4 és fora de rang i s'autoretalla); la graella del perfil mostra 3:4 i retalla ~34 px a cada costat d'un 4:5, per això el text i els rostres han d'estar a ≥ 60 px dels laterals. Portades de reel: el títol dins la franja central 3:4 (y 240–1680).
+- [ ] El text no queda tallat ni ha baixat de ~32 px; res a les zones de la UI de Meta (story: 250 px dalt i 340 px baix).
+- [ ] Nom, càrrec, dates i hores coincideixen amb el que ha dit l'usuari.
+- [ ] Ortografia revisada. Majúscules i accents.
+- [ ] Foto: cares ben retallades (usa `foto_focus`); en dol, B/N.
+- [ ] Només colors i tipus de la marca; l'escut sense alterar.
+- [ ] Fitxer: PNG sRGB, nom `AAAAMMDD-descripció.png`.
+
+## 7. Prohibit
+Canviar la paleta o tipus · gradients freds/neó · emojis dins la imatge · estirar l'escut · foto sense permís explícit · text llarg sobre foto · majúscules en blocs llargs · fons blancs sense marca · generar escuts amb IA (usa `assets/escut*.svg`).
+
+## 8. Fons nous i casos no coberts
+Si cap plantilla encaixa, copia la més pròxima de `templates/` i modifica'n els camps (`id="field-…"`, `data-box="x y w h"`). Per a fons nous amb IA d'imatge, usa `prompts/fons.md`. Regenera totes les plantilles amb `python3 tools/build_templates.py`.

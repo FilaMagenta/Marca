@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filà Magenta · Manual de marca digital</title>
+<style>
+@font-face{font-family:"Playfair Display";font-weight:400;src:url("../assets/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf")}
+@font-face{font-family:"Playfair Display";font-weight:700;src:url("../assets/fonts/Playfair_Display/static/PlayfairDisplay-Bold.ttf")}
+@font-face{font-family:"Playfair Display";font-weight:900;src:url("../assets/fonts/Playfair_Display/static/PlayfairDisplay-Black.ttf")}
+@font-face{font-family:"Playfair Display";font-weight:400;font-style:italic;src:url("../assets/fonts/Playfair_Display/static/PlayfairDisplay-Italic.ttf")}
+@font-face{font-family:Lato;font-weight:400;src:url("../assets/fonts/Lato/Lato-Regular.ttf")}
+@font-face{font-family:Lato;font-weight:700;src:url("../assets/fonts/Lato/Lato-Bold.ttf")}
+@font-face{font-family:Lato;font-weight:900;src:url("../assets/fonts/Lato/Lato-Black.ttf")}
+:root{--mag:#7D1941;--gold:#C69232;--green:#576437;--white:#F5F5F5;--grey:#373C41;--vel:#2A0614;--ink:#14030A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--white);font:400 17px/1.65 Lato,system-ui,sans-serif;
+  background-image:radial-gradient(1200px 600px at 80% -10%,rgba(125,25,65,.35),transparent 60%),radial-gradient(900px 500px at -10% 40%,rgba(87,100,55,.18),transparent 60%)}
+a{color:var(--gold)}
+h1,h2,h3{font-family:"Playfair Display",serif;font-weight:700;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2.6rem,7vw,5rem)}
+h2{font-size:clamp(1.9rem,4vw,2.8rem);color:var(--gold)}
+h3{font-size:1.35rem}
+.eyebrow{font:700 .78rem Lato;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header.hero{padding:72px 0 48px;text-align:center;border-bottom:1px solid rgba(198,146,50,.3)}
+header.hero img{width:96px;margin-bottom:20px}
+nav{position:sticky;top:0;z-index:5;background:rgba(20,3,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(198,146,50,.25)}
+nav .wrap{display:flex;gap:6px 18px;flex-wrap:wrap;padding:10px 20px;font:700 .72rem Lato;letter-spacing:.14em;text-transform:uppercase}
+nav a{text-decoration:none;color:var(--white);opacity:.8}nav a:hover{color:var(--gold);opacity:1}
+section{padding:64px 0;border-bottom:1px solid rgba(198,146,50,.15)}
+.num{font:700 .8rem Lato;letter-spacing:.3em;color:var(--gold);display:block;margin-bottom:8px}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(198,146,50,.25);border-radius:14px;padding:20px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.sw{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+.sw i{display:block;height:100px}.sw div{padding:10px 14px;font-size:.9rem;background:rgba(0,0,0,.3)}
+.sw b{font-family:"Playfair Display";font-size:1.1rem;display:block}
+.bar{display:flex;height:34px;border-radius:17px;overflow:hidden;margin:14px 0}
+.bar span{display:block}
+.type1{font:700 3.4rem/1 "Playfair Display"}
+.type2{font:400 1.2rem Lato}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(198,146,50,.2);vertical-align:top}
+th{font:700 .72rem Lato;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+code{background:rgba(0,0,0,.45);padding:2px 6px;border-radius:5px;font-size:.88em;color:#f0d79a}
+pre{background:rgba(0,0,0,.5);padding:16px;border-radius:12px;overflow:auto;font-size:.85rem;border:1px solid rgba(198,146,50,.2)}
+.tpl{display:flex;flex-direction:column;gap:10px}
+.tpl img{width:100%;border-radius:10px;border:1px solid rgba(198,146,50,.3);background:#000}
+.tpl.story img{max-height:520px;object-fit:contain}
+.tpl h3{margin:0;font-size:1.15rem}
+.tpl small{color:#cfc3b0}
+.tag{display:inline-block;font:700 .65rem Lato;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);border-radius:99px;padding:2px 10px;margin-right:6px}
+.ok{border-left:4px solid var(--green);padding-left:14px}.no{border-left:4px solid #b3304f;padding-left:14px}
+.logo-box{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+.logo-box .b{background:var(--vel);padding:30px;border-radius:14px;border:1px solid rgba(198,146,50,.25);text-align:center}
+.logo-box .l{background:var(--white);padding:30px;border-radius:14px}
+.logo-box img{height:150px}
+.quote{font:italic 400 1.5rem/1.4 "Playfair Display";color:var(--gold);border-left:3px solid var(--gold);padding-left:18px;margin:20px 0}
+footer{padding:40px 0;text-align:center;opacity:.7;font-size:.85rem}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px}dt{font-weight:700;color:var(--gold)}dd{margin:0}
+@media print{nav{display:none}body{background:#14030A;-webkit-print-color-adjust:exact;print-color-adjust:exact}section{break-inside:avoid-page}}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <img src="img/escut.svg" alt="Escut de la Filà Magenta">
+  <div class="eyebrow">Filà Magenta · Alcoi · 1865</div>
+  <h1>Manual de marca digital</h1>
+  <p style="max-width:640px;margin:0 auto;opacity:.85">Guia d'estil per a stories, publicacions i vídeos a Meta (Facebook i Instagram). Clàssica i càlida, amb vellut, passamaneria daurada i un punt tècnic i actual.</p>
+</div></header>
+
+<nav><div class="wrap">
+  <a href="#rapid">Guia ràpida</a><a href="#qui">Qui som</a><a href="#estil">Estil</a><a href="#logo">Escut</a><a href="#color">Color</a><a href="#tipus">Tipografia</a><a href="#textures">Textures</a><a href="#foto">Fotografia</a><a href="#catalec">Plantilles</a><a href="#video">Vídeo</a><a href="#meta">Meta</a><a href="#ia">Agents d'IA</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="rapid">
+  <span class="num">00</span><h2>Guia ràpida: vull publicar…</h2>
+  <table>
+    <tr><th>Vull publicar…</th><th>Plantilla</th><th>Què canvie</th></tr>
+    <tr><td>Fotos d'un acte (carrusel)</td><td><code>carrusel-portada</code> + <code>carrusel-interior</code></td><td>foto, títol (2 línies), subtítol; una interior per foto</td></tr>
+    <tr><td>Un horari (entradeta, mig any…)</td><td><code>story-horaris</code></td><td>títol i files etiqueta/hora</td></tr>
+    <tr><td>Felicitar algú</td><td><code>post-persona</code> / <code>story-persona</code> / <code>post-anunci</code></td><td>foto, nom, motiu</td></tr>
+    <tr><td>Lamentar una mort</td><td><code>post-dol</code> / <code>story-dol</code></td><td>foto, nom, dates, frase</td></tr>
+    <tr><td>Renovació amb la banda, avisos</td><td><code>post-anunci-titol</code> / <code>story-anunci</code></td><td>titular i cos</td></tr>
+    <tr><td>Comunicat oficial</td><td><code>post-comunicat</code></td><td>data/assumpte; text complet al peu</td></tr>
+    <tr><td>Una sola foto</td><td><code>post-foto</code> / <code>story-foto</code></td><td>foto i titular</td></tr>
+    <tr><td>Un vídeo</td><td><code>video-titol</code>, <code>video-lower-third</code></td><td>títol, nom i càrrec</td></tr>
+  </table>
+  <h3 style="margin-top:28px">Tres maneres de fer-ho</h3>
+  <div class="grid g3">
+    <div class="card"><b>1 · Amb l'script</b><p>Copia un JSON de <code>tools/examples/</code>, canvia el text i executa<br><code>python3 tools/render.py peça.json</code></p></div>
+    <div class="card"><b>2 · Amb Inkscape</b><p>Obri <code>templates/&lt;nom&gt;.svg</code>, edita el text (fonts Playfair Display i Lato), arrossega la foto i exporta a PNG.</p></div>
+    <div class="card"><b>3 · Amb una IA</b><p>Dona-li <code>AGENTS.md</code> i la petició («ha mort X, ací la foto»). Vegeu <a href="#ia">Agents d'IA</a>.</p></div>
+  </div>
+</section>
+
+<section id="qui">
+  <span class="num">01</span><h2>Qui som</h2>
+  <div class="grid g2">
+    <div>
+      <h3>Els Moros i Cristians d'Alcoi</h3>
+      <p>Cada abril, al voltant de Sant Jordi, Alcoi commemora la defensa de la ciutat davant del cabdill al-Azraq (1276) amb una festa única: <b>entrades</b> de cada filà, processons, ambaixades, el soroll de la pólvora i la música. La Trilogia Festera ocupa els dies 22, 23 i 24 d'abril. A octubre arriba el <b>Mig Any</b>, quan la filà tria els seus càrrecs i prepara l'any festiu.</p>
+      <p>Una <b>filà</b> és una comparsa que desfila amb vestimenta pròpia; cada filà pertany al bàndol moro o cristià. Càrrecs: <i>primer tro</i>, <i>alferes</i>, <i>capità</i>, <i>sargent</i>, <i>dianer</i>, <i>glorier</i>…</p>
+    </div>
+    <div>
+      <h3>La Filà Magenta</h3>
+      <dl>
+        <dt>1865</dt><dd>Es funda en maig com a <i>Beduïns</i> (bàndol moro).</dd>
+        <dt>1876</dt><dd>Primera alferecia mora; el poble ja li diu «Magenta».</dd>
+        <dt>1878</dt><dd>Les actes de l'Associació de Sant Jordi recullen el nom <b>Magenta</b>, pel color dels bombatxos.</dd>
+        <dt>1926 / 1967</dt><dd>Reformes del vestit; el 1967 es recupera l'esperit nòmada de 1865.</dd>
+        <dt>1965</dt><dd>Centenari de la filà.</dd>
+        <dt>2008</dt><dd>S'estrena el vestit femení.</dd>
+        <dt>2015</dt><dd>150 aniversari amb vestit commemoratiu.</dd>
+      </dl>
+      <div class="quote">«La Magenta la que més espenta»</div>
+      <p style="font-size:.9rem;opacity:.75">Emblema: mitja lluna groga abraçant una estrella verda sobre fons magenta. Dades extretes de fonts comunitàries; validar amb l'arxiu de la filà i l'Associació de Sant Jordi abans de publicar-les com a oficials.</p>
+    </div>
+  </div>
+</section>
+
+<section id="estil">
+  <span class="num">02</span><h2>Personalitat i to</h2>
+  <div class="grid g3">
+    <div class="card"><h3>Clàssica</h3><p>Vellut, cortinatges, passamaneria daurada i marcs orgànics. Tipografia amb rematades.</p></div>
+    <div class="card"><h3>Actual</h3><p>Composicions netes, filets fins daurats, etiquetes en majúscules amb tracking, comptadors «02 / 08», molt d'aire.</p></div>
+    <div class="card"><h3>Càlida</h3><p>Parlem en «nosaltres» i en valencià: «Des de la <b>Filà Magenta</b> donem l'enhorabona…».</p></div>
+  </div>
+  <table style="margin-top:24px">
+    <tr><th>Cas</th><th>To</th><th>Evitar</th></tr>
+    <tr><td>Felicitació, nomenament</td><td>càlid, orgullós</td><td>col·loquialismes, emojis excessius</td></tr>
+    <tr><td>Dol</td><td>sobri, respectuós, breu</td><td>emojis, exclamacions, hashtags festius, colors vius</td></tr>
+    <tr><td>Informació (horaris, convocatòries)</td><td>clar, directe</td><td>text llarg, ambigüitat en dates/hores</td></tr>
+    <tr><td>Comunicat</td><td>solemne, simètric</td><td>humor</td></tr>
+  </table>
+</section>
+
+<section id="logo">
+  <span class="num">03</span><h2>L'escut</h2>
+  <div class="logo-box">
+    <div class="b"><img src="img/escut.png" alt=""><br><small>Escut (principal)</small></div>
+    <div class="b"><img src="img/escut-circular.png" alt=""><br><small>Escut circular (cantonades, avatars)</small></div>
+    <div class="l"><img src="img/escut.png" alt=""><br><small style="color:#333">També sobre clar</small></div>
+  </div>
+  <div class="grid g2" style="margin-top:20px">
+    <div class="ok"><b>Fer</b><ul><li>Fitxers: <code>assets/escut.svg</code> i <code>escut-circular.svg</code>.</li><li>Zona de respecte ≥ ¼ de l'amplada de l'escut.</li><li>Mida mínima: 90 px d'alçada en pantalla.</li><li>Rectangular a dalt al centre (posts de text) o circular en una cantonada (sobre foto).</li></ul></div>
+    <div class="no"><b>No fer</b><ul><li>Deformar-lo, girar-lo o recolorar-lo.</li><li>Afegir ombres, llums o contorns.</li><li>Posar-lo sobre zones de molt de detall.</li><li>Fer-ne versions amb IA.</li></ul></div>
+  </div>
+  <p style="font-size:.9rem;opacity:.75">Els colors de l'escut (magenta brillant, groc i verd) són propis de l'emblema; no s'usen en text ni fons.</p>
+</section>
+
+<section id="color">
+  <span class="num">04</span><h2>Color</h2>
+  <div class="swatches">
+    <div class="sw"><i style="background:#7D1941"></i><div><b>Magenta Històric</b>#7D1941 · principal</div></div>
+    <div class="sw"><i style="background:#C69232"></i><div><b>Daurat Enriquit</b>#C69232 · accent</div></div>
+    <div class="sw"><i style="background:#576437"></i><div><b>Verd Bosc</b>#576437 · contrast</div></div>
+    <div class="sw"><i style="background:#F5F5F5"></i><div style="color:#fff"><b>Blanco Roto</b>#F5F5F5 · fons clar / text</div></div>
+    <div class="sw"><i style="background:#373C41"></i><div><b>Gris Obscur</b>#373C41 · text sobre clar</div></div>
+    <div class="sw"><i style="background:#2A0614"></i><div><b>Vellut fosc</b>#2A0614 · fons (derivat)</div></div>
+  </div>
+  <h3 style="margin-top:28px">Proporció</h3>
+  <div class="bar"><span style="width:55%;background:#2A0614"></span><span style="width:8%;background:#7D1941"></span><span style="width:25%;background:#F5F5F5"></span><span style="width:8%;background:#C69232"></span><span style="width:4%;background:#576437"></span></div>
+  <p>Fons fosc de vellut/magenta (~55-60%), text blanc roto (~25%), daurat per a titulars i filets (~10%), verd només com a ornament (~5%).</p>
+  <h3>Contrast (WCAG)</h3>
+  <table><tr><th>Combinació</th><th>Ús</th></tr>
+    <tr><td><b style="color:#F5F5F5">Blanco Roto</b> sobre vellut fosc</td><td>Text informatiu, cossos de text (≈ 16:1)</td></tr>
+    <tr><td><b style="color:#C69232">Daurat</b> sobre vellut fosc</td><td>Titulars i dades destacades (≈ 6:1)</td></tr>
+    <tr><td><b style="color:#7D1941;background:#F5F5F5;padding:0 6px">Magenta</b> sobre blanc roto</td><td>Titulars en versió clara (≈ 9:1)</td></tr>
+    <tr><td>Daurat sobre magenta #7D1941</td><td>Només titulars grans (≈ 3:1) — mai text petit</td></tr>
+    <tr><td>Gris Obscur sobre magenta</td><td>No usar</td></tr></table>
+</section>
+
+<section id="tipus">
+  <span class="num">05</span><h2>Tipografia</h2>
+  <div class="grid g2">
+    <div class="card"><div class="eyebrow">Titulars · noms · càrrecs · frases</div><div class="type1">Playfair Display</div><p>Bold o Black per a titulars curts, Regular/Italic per a cites i lemes. En MAJÚSCULES amb tracking ample per a capçaleres institucionals.</p></div>
+    <div class="card"><div class="eyebrow">Dades · etiquetes · peus · CTA</div><div class="type1" style="font-family:Lato;font-weight:900;font-size:3rem;padding:.3em 0">Lato</div><p class="type2">Regular per a text; Bold/Black només per a dades crítiques: <b>dissabte 24 d'abril a les 21:00 h</b>.</p></div>
+  </div>
+  <table style="margin-top:22px">
+    <tr><th>Rol</th><th>Font</th><th>Mida (story / post)</th><th>Notes</th></tr>
+    <tr><td>Titular</td><td>Playfair Bold</td><td>100–150 px</td><td>≥ 2–3× el cos. Blanc o daurat. 2-4 línies.</td></tr>
+    <tr><td>Subtítol / frase</td><td>Playfair Regular</td><td>46–60 px</td><td>Noms propis en <b>Bold</b>.</td></tr>
+    <tr><td>Cos informatiu</td><td>Lato Regular</td><td>38–44 px</td><td>Alt/baix, mai llargs en majúscules.</td></tr>
+    <tr><td>Dada destacada</td><td>Lato Bold</td><td>34–40 px</td><td>Daurat; opcionalment en majúscules amb tracking.</td></tr>
+    <tr><td>Etiqueta tècnica</td><td>Lato Bold caps</td><td>24–28 px</td><td>Tracking +0.3 em, daurat: «FILÀ MAGENTA · ALCOI».</td></tr>
+    <tr><td>Mínim absolut</td><td>—</td><td>32 px en story</td><td>Menys no es llig en el mòbil.</td></tr>
+  </table>
+  <p>Alineació: <b>centrada</b> per a comunicats i protocol; <b>a l'esquerra</b> per a anuncis dinàmics i portades. Sobre fons fosc: titular daurat o blanc i text blanc roto; sobre fons clar: titular magenta o verd i text gris obscur.</p>
+</section>
+
+<section id="textures">
+  <span class="num">06</span><h2>Textures, formes i composició</h2>
+  <p>El llenguatge visual és el del teatre i la vestimenta festera: <b>vellut magenta</b>, <b>cortines drapejades</b>, <b>bordats daurats i verds</b>. Les formes són orgàniques (cintes, onades, arcs); els elements «tecnològics» són discrets i geomètrics (filets, cantonades, píndoles, comptadors).</p>
+  <div class="grid g3">
+    <div class="card"><b>Fons disponibles</b><p><code>assets/fons/</code>: <i>story-vellut</i>, <i>story-cortines-marc</i>, <i>marc-45</i>, <i>cortina-45</i>, <i>cortina-diagonal</i> (alfa, per a fotos).</p></div>
+    <div class="card"><b>Zones segures</b><p>Story: 250 px lliures a dalt i 340 a baix (UI de Meta). Post: marge 90 px. Res important als ornaments.</p></div>
+    <div class="card"><b>Jerarquia</b><p>Escut → etiqueta → titular → cos → dada. Un sol focus per peça. Centre fosc i buit per a text.</p></div>
+  </div>
+  <p style="margin-top:14px">Nous fons amb IA: <code>prompts/fons.md</code>.</p>
+</section>
+
+<section id="foto">
+  <span class="num">07</span><h2>Fotografia</h2>
+  <div class="grid g2">
+    <div class="ok"><b>Fer</b><ul><li>Retalla pels ulls/cara; usa el punt d'interès (<code>foto_focus</code>).</li><li>Llum natural, color cálid; correcció suau.</li><li>Vinyeta magenta fosca i degradat inferior per a text.</li><li>Dol: blanc i negre, contrast suau.</li><li>Fons de la foto net: festers amb vestimenta, actes, detalls.</li></ul></div>
+    <div class="no"><b>No fer</b><ul><li>Filtres saturats o d'Instagram.</li><li>Text llarg sobre la foto.</li><li>Fotos borroses o de baixa resolució (&lt; 1080 px).</li><li>Publicar persones sense el seu consentiment (menors especialment).</li></ul></div>
+  </div>
+</section>
+
+<section id="catalec">
+  <span class="num">08</span><h2>Catàleg de plantilles</h2>
+  <p>Totes a <code>templates/</code> (SVG editable) i generables amb <code>tools/render.py</code>. Story = 1080×1920; post i carrusel = 1080×1350 (4:5).</p>
+
+  <h3 style="margin-top:28px">Stories</h3>
+  <div class="grid g3">
+    <div class="tpl story"><img src="img/story-horaris.jpg" alt=""><h3>story-horaris</h3><small><span class="tag">horaris</span>Diana, entradeta, arrancà… <br><code>titol</code> · <code>grups[]</code></small></div>
+    <div class="tpl story"><img src="img/story-anunci.jpg" alt=""><h3>story-anunci</h3><small><span class="tag">anunci</span>Renovació de la banda, avisos. <br><code>titol</code> · <code>text</code> · <code>dada</code></small></div>
+    <div class="tpl story"><img src="img/story-foto.jpg" alt=""><h3>story-foto</h3><small><span class="tag">foto</span>Una foto a sang amb titular. <br><code>foto</code> · <code>titol</code> · <code>subtitol</code></small></div>
+    <div class="tpl story"><img src="img/story-persona.jpg" alt=""><h3>story-persona</h3><small><span class="tag">felicitació</span>Foto en arc, nom i motiu. <br><code>foto</code> · <code>nom</code> · <code>text</code> · <code>dates</code></small></div>
+    <div class="tpl story"><img src="img/story-dol.jpg" alt=""><h3>story-dol</h3><small><span class="tag">dol</span>Foto B/N, fons més fosc, to sobri. <br><code>foto</code> · <code>nom</code> · <code>dates</code> · <code>text</code></small></div>
+  </div>
+
+  <h3 style="margin-top:36px">Publicacions</h3>
+  <div class="grid g3">
+    <div class="tpl"><img src="img/post-anunci.jpg" alt=""><h3>post-anunci</h3><small><span class="tag">text</span>Felicitacions i avisos en text. <code>text</code> · <code>dada</code></small></div>
+    <div class="tpl"><img src="img/post-anunci-titol.jpg" alt=""><h3>post-anunci-titol</h3><small><span class="tag">text</span>Titular + cos (assemblea, sopars). <code>titol</code> · <code>text</code> · <code>dada</code></small></div>
+    <div class="tpl"><img src="img/post-comunicat.jpg" alt=""><h3>post-comunicat</h3><small><span class="tag">oficial</span>Simètric i solemne. <code>subtitol</code></small></div>
+    <div class="tpl"><img src="img/post-foto.jpg" alt=""><h3>post-foto</h3><small><span class="tag">foto</span>Anunci amb una única foto. <code>foto</code> · <code>titol</code> · <code>subtitol</code></small></div>
+    <div class="tpl"><img src="img/post-persona.jpg" alt=""><h3>post-persona</h3><small><span class="tag">felicitació</span>Foto ovalada. <code>foto</code> · <code>nom</code> · <code>text</code></small></div>
+    <div class="tpl"><img src="img/post-dol.jpg" alt=""><h3>post-dol</h3><small><span class="tag">dol</span>Condol sobri. <code>foto</code> · <code>nom</code> · <code>text</code></small></div>
+  </div>
+
+  <h3 style="margin-top:36px">Carrusel</h3>
+  <div class="grid g3">
+    <div class="tpl"><img src="img/carrusel-portada.jpg" alt=""><h3>carrusel-portada</h3><small><span class="tag">portada</span><code>foto</code> · <code>titol1</code> · <code>titol2</code> · <code>subtitol</code> · <code>continua</code></small></div>
+    <div class="tpl"><img src="img/carrusel-interior.jpg" alt=""><h3>carrusel-interior</h3><small><span class="tag">interior</span><code>foto</code> · <code>peu</code> · <code>pagina</code></small></div>
+    <div class="card"><b>Estructura d'un carrusel</b><ol><li>Portada (la millor foto).</li><li>Fins a 8 interiors, cronològics, «02 / 10».</li><li>Opcional: tancament amb <code>post-anunci-titol</code>.</li></ol>Màxim 10 imatges.</div>
+  </div>
+</section>
+
+<section id="video">
+  <span class="num">09</span><h2>Vídeo d'activitats</h2>
+  <div class="grid g2">
+    <div>
+      <ul>
+        <li><b>Format</b>: vertical 1080×1920 (reels/stories), 30 fps, 9–45 s.</li>
+        <li><b>Obertura</b> (2–3 s): <code>video-titol</code> amb escut, etiqueta i títol.</li>
+        <li><b>Identificació</b>: <code>video-lower-third</code> (1920×1080 horitzontal; versiona-la en vertical si cal).</li>
+        <li><b>Subtítols</b>: Lato Bold, blanc roto, ombra suau, fins a 2 línies, sempre dins de la zona segura. Molta gent mira sense so.</li>
+        <li><b>Tancament</b>: <code>story-anunci</code> amb data, lloc i escut.</li>
+        <li><b>Marca</b>: escut circular en una cantonada (≥ 96 px). Música sense drets reservats o de la pròpia banda.</li>
+      </ul>
+    </div>
+    <div class="grid g2"><div class="tpl story"><img src="img/video-titol.jpg" alt=""><small>video-titol (alfa)</small></div><div class="tpl"><img src="img/video-lower-third.jpg" alt=""><small>video-lower-third (alfa)</small></div></div>
+  </div>
+</section>
+
+<section id="meta">
+  <span class="num">10</span><h2>Meta: formats i bones pràctiques</h2>
+  <table>
+    <tr><th>Peça</th><th>Mida</th><th>Notes</th></tr>
+    <tr><td>Story / Reel</td><td>1080×1920 (9:16)</td><td>Zona segura 250 px dalt, 340 px baix.</td></tr>
+    <tr><td>Publicació i carrusel</td><td>1080×1350 (4:5)</td><td>Instagram només deixa pujar entre 4:5 i 1,91:1; més estret (com 3:4) s'autoretalla. La graella del perfil es veu en 3:4 i retalla ~34 px a cada costat: res important a menys de 60 px dels laterals. Màx. 10 imatges, totes amb la mateixa proporció.</td></tr>
+    <tr><td>Portada de Reel</td><td>1080×1920 (9:16)</td><td>A la graella es veu retallada a 3:4: títol i escut dins la franja central (y 240–1680).</td></tr>
+    <tr><td>Avatar</td><td>escut circular</td><td>Es mostra com a cercle: usa <code>escut-circular.svg</code>.</td></tr>
+    <tr><td>Fitxer</td><td>PNG sRGB (o JPG ≤ 1 MB)</td><td>Nom: <code>AAAAMMDD-descripció.png</code>. Usa <code>--scale 2</code> per a alta resolució.</td></tr>
+  </table>
+  <ul>
+    <li>El text íntegre va al peu de la publicació; la imatge porta només l'essencial.</li>
+    <li>Text alternatiu: descriu l'escena i el text de la imatge.</li>
+    <li>Hashtags (màx. 3-5): <code>#FilàMagenta</code> <code>#MorosiCristiansAlcoi</code>. Cap en dol.</li>
+    <li>Revisa dates, noms i ortografia abans de publicar; no es pot editar una imatge ja publicada.</li>
+  </ul>
+</section>
+
+<section id="ia">
+  <span class="num">11</span><h2>Per a agents d'IA</h2>
+  <p>El fitxer <a href="../AGENTS.md"><code>AGENTS.md</code></a> conté context, regles i receptes. Resum:</p>
+  <ol>
+    <li>Llig <code>AGENTS.md</code> i <code>templates/INDEX.json</code> (plantilles i camps).</li>
+    <li>Tria la plantilla amb la taula de decisió.</li>
+    <li>Escriu un JSON i executa <code>python3 tools/render.py peça.json</code>.</li>
+    <li>Passa la checklist (ortografia, dades, zones segures, escut, mida de lletra).</li>
+  </ol>
+  <h3>Exemples de peticions</h3>
+  <pre>«Ha mort Josep Pérez Mira, ací tens la foto (foto.jpg). Genera una story.»
+→ story-dol  { foto, nom: "Josep Pérez Mira", dates, text sobri }
+
+«Ja tenim l'horari de l'entradeta de dimarts: Font Redona 20:55, Plaça 21:40. Genera una story.»
+→ story-horaris  { titol: "Horaris\nEntradeta", grups: [{files:[["Font Redona","20:55"],["Plaça","21:40"]]}] }
+
+«Hem renovat el contracte amb la banda. Fes un post.»
+→ post-anunci-titol  { titol: "Renovem amb la banda", text: "…" }</pre>
+</section>
+
+</main>
+<footer><div class="wrap">Filà Magenta · Alcoi · Manual de marca digital · Tipografies: Playfair Display i Lato (SIL OFL)</div></footer>
+</body>
+</html>

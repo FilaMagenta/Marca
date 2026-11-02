@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <title>Story · Horaris</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="#C69232"/><stop offset="1" stop-color="#A9761E"/>
+    </linearGradient>
+    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
+    </linearGradient>
+    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
+    </linearGradient>
+    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
+      <stop offset=".55" stop-color="#7D1941" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
+    </radialGradient>
+  </defs>
+<image id="fons" x="0" y="0" width="1080" height="1920" preserveAspectRatio="xMidYMid slice" href="../assets/fons/story-cortines-marc.jpg"/>
+  <text id="field-titol" data-box="90 330 900 330" data-size="133" data-min="59" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-align="middle" data-lh="1.08" data-tracking="0" data-caps="0" data-valign="middle" >Horaris
+Mig Any</text>
+  <g id="field-grups" data-box="110 700 860 820" data-size="88" data-min="38" data-fill="#F5F5F5" data-gold="#C69232"></g>
+  <text id="field-nota" data-box="110 1540 860 70" data-size="34" data-min="24" data-font="lato" data-weight="700" data-fill="#C69232" data-align="middle" data-lh="1.14" data-tracking="3" data-caps="1" data-valign="middle" data-if="nota" ></text>
+</svg>

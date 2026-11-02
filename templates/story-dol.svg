@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <title>Story · Dol</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E2B857"/><stop offset=".5" stop-color="#C69232"/><stop offset="1" stop-color="#A9761E"/>
+    </linearGradient>
+    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset=".55" stop-color="#14030A" stop-opacity=".78"/><stop offset="1" stop-color="#14030A" stop-opacity=".96"/>
+    </linearGradient>
+    <linearGradient id="fadeTop" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#14030A" stop-opacity="0"/><stop offset="1" stop-color="#14030A" stop-opacity=".7"/>
+    </linearGradient>
+    <radialGradient id="vinyeta" cx=".5" cy=".5" r=".75">
+      <stop offset=".55" stop-color="#7D1941" stop-opacity="0"/><stop offset="1" stop-color="#1a0410" stop-opacity=".7"/>
+    </radialGradient>
+  <clipPath id="arc"><path d="M200,1030V720A340,340 0 0 1 880,720V1030Z"/></clipPath></defs>
+<image id="fons" x="0" y="0" width="1080" height="1920" preserveAspectRatio="xMidYMid slice" href="../assets/fons/story-vellut.png"/>
+  <rect width="1080" height="1920" fill="#06010A" opacity=".5"/>
+  <text id="field-etiqueta" data-box="140 300 800 40" data-size="28" data-min="18" data-font="lato" data-weight="700" data-fill="#D0D0D0" data-align="middle" data-lh="1.14" data-tracking="7" data-caps="1" data-valign="middle" data-keep="1" >In memoriam</text>
+  <image id="field-foto" data-box="200 380 680 650" data-gray="1" x="200" y="380" width="680" height="650" preserveAspectRatio="xMidYMid slice" clip-path="url(#arc)" href=""/>
+  <path d="M200,1030V720A340,340 0 0 1 880,720V1030Z" fill="none" stroke="#BDBDBD" stroke-width="5"/>
+  <path d="M178,1052V720A362,362 0 0 1 902,720V1052Z" fill="none" stroke="#BDBDBD" stroke-width="2" opacity=".65"/>
+  <text id="field-nom" data-box="80 1110 920 230" data-size="100" data-min="45" data-font="playfair" data-weight="700" data-fill="#F5F5F5" data-align="middle" data-lh="1.06" data-tracking="0" data-caps="0" data-valign="middle" >Nom Cognom</text>
+  <text id="field-dates" data-box="90 1350 900 60" data-size="40" data-min="24" data-font="lato" data-weight="700" data-fill="#D0D0D0" data-align="middle" data-lh="1.14" data-tracking="4" data-caps="0" data-valign="middle" data-if="dates" ></text>
+  <path d="M340,1425H740" stroke="url(#gold)" stroke-width="2" opacity="0.7"/>
+  <text id="field-text" data-box="110 1450 860 170" data-size="46" data-min="24" data-font="playfair" data-weight="400" data-fill="#F5F5F5" data-align="middle" data-lh="1.28" data-tracking="0" data-caps="0" data-valign="middle" data-if="text" ></text>
+</svg>

@@ -1,0 +1,13 @@
+{
+ "plantilla": "carrusel-portada",
+ "foto": "/run/media/arnyminerz/MAGATZEMHDD/Nextcloud/Arnau/FilaMagenta/Social/documents/bivia/fototeca-00040019-magenta-entradetes-1952.jpg",
+ "foto_focus": [
+  0.5,
+  0.45
+ ],
+ "titol1": "MIG ANY",
+ "titol2": "EL CENIT FESTER",
+ "subtitol": "Origen i història, amb la **Filà Magenta**",
+ "continua": true,
+ "sortida": "mig-any-01"
+}
